@@ -20,6 +20,7 @@ struct TileFaceView: View {
         case .dragon:
             if typeId == "dR" { return AnyView(soloGlyph("中", color: Theme.dragonRed)) }
             if typeId == "dG" { return AnyView(soloGlyph("發", color: Theme.dragonGreen)) }
+            // dW (white dragon / haku) is conventionally blank in real sets.
             return AnyView(RoundedRectangle(cornerRadius: 3).stroke(Theme.tileEdge.opacity(0.4), lineWidth: 2).padding(6))
         case .flower:
             let kanji = ["fl1": "梅", "fl2": "蘭", "fl3": "竹", "fl4": "菊"][typeId] ?? "?"

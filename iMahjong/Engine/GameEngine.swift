@@ -92,13 +92,16 @@ final class GameEngine: ObservableObject {
     /// solvability testing, not used by normal gameplay (which lets the player pick
     /// any legal pair, not just this one).
     private(set) var provenSolveOrder: [(Int, Int)] = []
+    private(set) var difficulty: Difficulty
 
-    init() {
+    init(difficulty: Difficulty = .medium) {
+        self.difficulty = difficulty
         reset()
     }
 
-    func reset() {
-        tiles = TURTLE_LAYOUT.enumerated().map { i, pos in
+    func reset(difficulty newDifficulty: Difficulty? = nil) {
+        if let newDifficulty { difficulty = newDifficulty }
+        tiles = difficulty.layout.enumerated().map { i, pos in
             GameTile(id: i, x: pos.x, y: pos.y, z: pos.z, removed: false, typeId: nil)
         }
 
@@ -106,7 +109,7 @@ final class GameEngine: ObservableObject {
         guard let pairing = try? computeSolvablePairingWithRetry(refPositions) else {
             fatalError("Could not compute a solvable pairing for the turtle layout")
         }
-        let units = buildShuffledPairUnits()
+        let units = buildPairUnits(for: difficulty)
 
         for (idx, pair) in pairing.enumerated() {
             let (typeA, typeB) = units[idx]
@@ -276,6 +279,7 @@ final class GameEngine: ObservableObject {
 
     func makeSnapshot() -> GameSnapshot {
         GameSnapshot(
+            difficulty: difficulty.rawValue,
             tiles: tiles,
             selectedId: selectedId,
             historyPairs: history.map { [$0.a, $0.b] },
@@ -286,6 +290,7 @@ final class GameEngine: ObservableObject {
     }
 
     func restore(from snapshot: GameSnapshot) {
+        difficulty = Difficulty(rawValue: snapshot.difficulty) ?? .medium
         tiles = snapshot.tiles
         selectedId = snapshot.selectedId
         history = snapshot.historyPairs.map { (a: $0[0], b: $0[1]) }
@@ -297,6 +302,7 @@ final class GameEngine: ObservableObject {
 }
 
 struct GameSnapshot: Codable {
+    var difficulty: String
     var tiles: [GameTile]
     var selectedId: Int?
     var historyPairs: [[Int]]

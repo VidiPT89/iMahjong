@@ -31,12 +31,49 @@ struct LangToggle: View {
     }
 }
 
+struct DifficultyPicker: View {
+    @EnvironmentObject var loc: Localization
+    @Binding var selected: Difficulty
+
+    var body: some View {
+        VStack(spacing: 6) {
+            Text(loc.t("difficultyLabel"))
+                .font(.system(size: 10, weight: .semibold))
+                .tracking(1.5)
+                .foregroundColor(Theme.textFaint)
+                .textCase(.uppercase)
+
+            HStack(spacing: 2) {
+                option(.easy, label: loc.t("difficultyEasy"))
+                option(.medium, label: loc.t("difficultyMedium"))
+                option(.hard, label: loc.t("difficultyHard"))
+            }
+            .padding(3)
+            .background(Capsule().fill(Theme.bgPanel).overlay(Capsule().stroke(Theme.border, lineWidth: 1)))
+        }
+    }
+
+    private func option(_ value: Difficulty, label: String) -> some View {
+        Button(action: { selected = value }) {
+            Text(label)
+                .font(.system(size: 13, weight: .bold))
+                .foregroundColor(selected == value ? Theme.bg : Theme.textFaint)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(Capsule().fill(selected == value ? Theme.accent : Color.clear))
+        }
+        .buttonStyle(.plain)
+    }
+}
+
 struct MainMenuView: View {
     @EnvironmentObject var loc: Localization
     let hasSave: Bool
+    @Binding var selectedDifficulty: Difficulty
     let onPlay: () -> Void
     let onContinue: () -> Void
     let onHowToPlay: () -> Void
+    let onTraditionalMode: () -> Void
 
     var body: some View {
         ZStack {
@@ -50,7 +87,7 @@ struct MainMenuView: View {
                 Spacer()
             }
 
-            VStack(spacing: 18) {
+            VStack(spacing: 16) {
                 Spacer()
 
                 Text(loc.t("menuTag"))
@@ -63,7 +100,9 @@ struct MainMenuView: View {
                 Text(loc.t("menuSubtitle"))
                     .font(.system(size: 15))
                     .foregroundColor(Theme.textDim)
-                    .padding(.bottom, 10)
+
+                DifficultyPicker(selected: $selectedDifficulty)
+                    .padding(.top, 6)
 
                 VStack(spacing: 12) {
                     if hasSave {
@@ -72,9 +111,12 @@ struct MainMenuView: View {
                     }
                     Button(loc.t("play"), action: onPlay)
                         .buttonStyle(PrimaryButtonStyle())
+                    Button(loc.t("traditionalMode"), action: onTraditionalMode)
+                        .buttonStyle(SecondaryButtonStyle())
                     Button(loc.t("howToPlay"), action: onHowToPlay)
                         .buttonStyle(GhostButtonStyle())
                 }
+                .padding(.top, 10)
 
                 Spacer()
                 FooterCredits()

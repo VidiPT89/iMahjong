@@ -142,16 +142,19 @@ struct GameView: View {
     // MARK: - Board
 
     private var boardArea: some View {
-        GeometryReader { outer in
+        let extents = BoardExtents(tiles: engine.tiles)
+        let boardW = BoardGeometry.boardWidth(extents)
+        let boardH = BoardGeometry.boardHeight(extents)
+        return GeometryReader { outer in
             let scale = min(
-                outer.size.width / BoardGeometry.boardWidth,
-                outer.size.height / BoardGeometry.boardHeight,
+                outer.size.width / boardW,
+                outer.size.height / boardH,
                 1.5
             )
             ZStack {
                 ForEach(engine.tiles) { tile in
                     if !tile.removed {
-                        let point = BoardGeometry.point(for: tile)
+                        let point = BoardGeometry.point(for: tile, in: extents)
                         TileView(
                             tile: tile,
                             width: BoardGeometry.tileW,
@@ -173,7 +176,7 @@ struct GameView: View {
                     }
                 }
             }
-            .frame(width: BoardGeometry.boardWidth, height: BoardGeometry.boardHeight)
+            .frame(width: boardW, height: boardH)
             .scaleEffect(scale)
             .frame(width: outer.size.width, height: outer.size.height)
         }

@@ -93,6 +93,23 @@ func buildShuffledPairUnits() -> [(String, String)] {
     return units.map { Bool.random() ? ($0.1, $0.0) : $0 }
 }
 
+/// Easy mode's pool: numbered suit tiles only (27 types x4 = 108), no
+/// winds/dragons/bonus tiles to memorize the positions of.
+func buildEasyPairUnits() -> [(String, String)] {
+    var units: [(String, String)] = []
+    for t in TILE_TYPES where t.category == .suit {
+        units.append((t.id, t.id))
+        units.append((t.id, t.id))
+    }
+    units.shuffle()
+    return units.map { Bool.random() ? ($0.1, $0.0) : $0 }
+}
+
+/// Picks the right pair-unit pool for a fresh deal at the given difficulty.
+func buildPairUnits(for difficulty: Difficulty) -> [(String, String)] {
+    difficulty == .easy ? buildEasyPairUnits() : buildShuffledPairUnits()
+}
+
 /// Builds matching pair-units from whatever type inventory is passed in (e.g. the types
 /// still on the board when reshuffling mid-game).
 func buildPairUnitsFromInventory(_ typeCounts: [String: Int]) -> [(String, String)] {

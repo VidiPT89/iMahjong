@@ -2,13 +2,31 @@ import SwiftUI
 
 enum AppScreen {
     case splash, menu, howToPlay, game
+    case traditionalModeSelect, traditionalSetup, traditionalTable
+}
+
+final class DifficultyStore: ObservableObject {
+    @Published var value: Difficulty {
+        didSet { UserDefaults.standard.set(value.rawValue, forKey: "imahjong-difficulty") }
+    }
+
+    init() {
+        if let stored = UserDefaults.standard.string(forKey: "imahjong-difficulty"), let d = Difficulty(rawValue: stored) {
+            value = d
+        } else {
+            value = .easy
+        }
+    }
 }
 
 struct RootView: View {
     @StateObject private var loc = Localization.shared
     @StateObject private var engine = GameEngine()
+    @StateObject private var difficultyStore = DifficultyStore()
     @State private var screen: AppScreen = .splash
     @State private var hasSave = SaveStore.hasSave()
+    @State private var humanSeats: [Bool] = [true, false, false, false]
+    @State private var localMatch: LocalMatch?
 
     var body: some View {
         ZStack {
@@ -18,9 +36,11 @@ struct RootView: View {
             case .menu:
                 MainMenuView(
                     hasSave: hasSave,
+                    selectedDifficulty: $difficultyStore.value,
                     onPlay: { startNewGame() },
                     onContinue: { continueGame() },
-                    onHowToPlay: { withAnimation(Theme.ease) { screen = .howToPlay } }
+                    onHowToPlay: { withAnimation(Theme.ease) { screen = .howToPlay } },
+                    onTraditionalMode: { withAnimation(Theme.ease) { screen = .traditionalModeSelect } }
                 )
             case .howToPlay:
                 HowToPlayView(onClose: { withAnimation(Theme.ease) { screen = .menu } })
@@ -30,6 +50,30 @@ struct RootView: View {
                     hasSave = true
                     withAnimation(Theme.ease) { screen = .menu }
                 })
+            case .traditionalModeSelect:
+                TraditionalModeSelectView(
+                    onBack: { withAnimation(Theme.ease) { screen = .menu } },
+                    onLocal: { withAnimation(Theme.ease) { screen = .traditionalSetup } }
+                )
+            case .traditionalSetup:
+                TraditionalSetupView(
+                    humanSeats: $humanSeats,
+                    onBack: { withAnimation(Theme.ease) { screen = .traditionalModeSelect } },
+                    onStart: {
+                        let match = LocalMatch(isHuman: humanSeats)
+                        localMatch = match
+                        match.startHand()
+                        withAnimation(Theme.ease) { screen = .traditionalTable }
+                    }
+                )
+            case .traditionalTable:
+                if let localMatch {
+                    TraditionalTableView(match: localMatch, onExit: {
+                        localMatch.stop()
+                        self.localMatch = nil
+                        withAnimation(Theme.ease) { screen = .traditionalModeSelect }
+                    })
+                }
             }
         }
         .environmentObject(loc)
@@ -41,7 +85,7 @@ struct RootView: View {
     }
 
     private func startNewGame() {
-        engine.reset()
+        engine.reset(difficulty: difficultyStore.value)
         SaveStore.clear()
         hasSave = false
         withAnimation(Theme.ease) { screen = .game }
@@ -51,7 +95,7 @@ struct RootView: View {
         if let snapshot = SaveStore.load() {
             engine.restore(from: snapshot)
         } else {
-            engine.reset()
+            engine.reset(difficulty: difficultyStore.value)
         }
         withAnimation(Theme.ease) { screen = .game }
     }

@@ -7,37 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05ADD72D2C3A135E0BA4A03A /* Scoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD2A7F45E380579D8E23A3A /* Scoring.swift */; };
+		05E15C20AC9BC31E52816CB2 /* RiichiEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */; };
 		0EDD9303C86A46A9E59E55EF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFF7A88598298F5F31EDFD0 /* Theme.swift */; };
 		116A539F792206AD5CB22755 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */; };
+		14FC6E4E840BAEBFDFC386D7 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95CF3E4605BE42D64C8623F /* Yaku.swift */; };
 		1E02422A42C910B3FC58BE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02665AE9CB42448F1ACF71D0 /* Assets.xcassets */; };
 		1F5B30E364222F7870B02D72 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674FFD847215C28EFBAB070 /* Layout.swift */; };
 		26D3747F45AB2DC5F9CC0392 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D40E9AAE5C868DF6A4C74 /* GameView.swift */; };
 		2FB389B3B110E393116F74CC /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B3BA9B29816955B126332 /* GameEngine.swift */; };
 		34EE828F78A639B948E2197D /* SaveStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD96AE5EA782E611267A454B /* SaveStore.swift */; };
 		3D3AF4DD6608C520CB604D18 /* Modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52A4FD1DFB01CF14234E961 /* Modals.swift */; };
+		3D617E160A5D362BC07A4759 /* TraditionalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD71D7F9EB696814598C96 /* TraditionalTableView.swift */; };
 		422885A47F9E784CB93E0C40 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFF7A88598298F5F31EDFD0 /* Theme.swift */; };
+		4537105BB4E1A188F9F9EC9A /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D5292734539FE7BA8399DE /* Bot.swift */; };
 		4B33AF21DF5C92D9C7B8CDF7 /* BackgroundGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306FEA07AC223BAA496E5AC /* BackgroundGlow.swift */; };
 		4F0E81DA58EF6BE1C1E8570A /* Modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52A4FD1DFB01CF14234E961 /* Modals.swift */; };
 		4F957A0B859692261A03C7E0 /* iMahjongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51775D10F3776DD569F463B7 /* iMahjongApp.swift */; };
 		5B3750ED6A23E3BD5C443C94 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1B20B0499F947631D1B8D /* TileType.swift */; };
+		5D9E1B657CC51CC738A9E4E1 /* TraditionalSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95482FE4C920FC9CA7FA953 /* TraditionalSetupView.swift */; };
+		6A5043499BAED0DAB380BCF8 /* TraditionalSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95482FE4C920FC9CA7FA953 /* TraditionalSetupView.swift */; };
+		6BE94E3B24470027C7B2F507 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95CF3E4605BE42D64C8623F /* Yaku.swift */; };
+		71165DA8F16246BF389CD3DF /* HandEval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */; };
 		74CB00F5512F1FC32F71A25B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */; };
 		7FE5A3333A0A6F4DCA0008E9 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2E7F120A28CBCE82595382 /* Localization.swift */; };
 		804C1C0EA3D18F40241E4A93 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1B20B0499F947631D1B8D /* TileType.swift */; };
+		80F226D746B3039134D7726E /* RiichiEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */; };
 		81424A16C0C0D3B043BF4C16 /* iMahjongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51775D10F3776DD569F463B7 /* iMahjongApp.swift */; };
 		8533D1A35D6AF043D353768C /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2EEC002D016505DFF54E4 /* TileView.swift */; };
 		870E7A78FE1AD99933DC8E84 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */; };
 		87758A4E39EC125A140F3C0C /* TileFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB067CA09EAFA7EB95FF31CB /* TileFaceView.swift */; };
 		8FA3F7CB42242F486EEF7B9C /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2EEC002D016505DFF54E4 /* TileView.swift */; };
+		969D6076F36653C4BFA2BB0F /* LocalMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */; };
+		9ABE048BDA4249B234780FF3 /* TraditionalModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792280898DFEE7E3F888E62C /* TraditionalModeSelectView.swift */; };
+		9D83E010E9C7DB48B92FEC06 /* RiichiTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB987BAB003106FB4DBA40A /* RiichiTiles.swift */; };
 		A705F82256FAA509FD6CC668 /* TileFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB067CA09EAFA7EB95FF31CB /* TileFaceView.swift */; };
 		A82A2B7A7AE8EDDB995F4348 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCECC0EA90F1B64957BDEF87 /* RootView.swift */; };
+		AEB87B671ADB772819EAE2FF /* TraditionalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD71D7F9EB696814598C96 /* TraditionalTableView.swift */; };
 		B0B70C9F8B3FD36A2DEA0DDB /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B3BA9B29816955B126332 /* GameEngine.swift */; };
 		B5CC69C0E5C99E6916289185 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E060BC81A86AB3A5958C372 /* Tile.swift */; };
+		B93E780860DC68BE17235B6B /* RiichiTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB987BAB003106FB4DBA40A /* RiichiTiles.swift */; };
+		BF7A2910176DE60B91213FBF /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D5292734539FE7BA8399DE /* Bot.swift */; };
+		C117E961809BF14CED5D2E4D /* LocalMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */; };
 		C2966FABE7432907D20C66C5 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2E7F120A28CBCE82595382 /* Localization.swift */; };
 		C51796F6CC172E31D7C60C55 /* BoardGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336DD92F4BACCE825F145135 /* BoardGeometry.swift */; };
 		C6E43C6938F852FCE540D4EF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D40E9AAE5C868DF6A4C74 /* GameView.swift */; };
+		CB27F6079BF170F2218A014A /* TraditionalModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792280898DFEE7E3F888E62C /* TraditionalModeSelectView.swift */; };
+		D3C73730413A15945A54039F /* Scoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD2A7F45E380579D8E23A3A /* Scoring.swift */; };
 		D3D14C7217F8447F9A155306 /* SaveStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD96AE5EA782E611267A454B /* SaveStore.swift */; };
 		D5ABF2063D8C40FA6F2C13CF /* BackgroundGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306FEA07AC223BAA496E5AC /* BackgroundGlow.swift */; };
 		DBB89F82CF73E0D8A20B0747 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */; };
+		DC46D598C6EF5E8F676C7EE2 /* HandEval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */; };
 		E288B4F5ABD94107B42D2A1B /* BoardGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336DD92F4BACCE825F145135 /* BoardGeometry.swift */; };
 		E43983FA3E9F9DCA0EFE480C /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A166F71035441B9CA9F191 /* MainMenuView.swift */; };
 		EB0A48AF3043CED39BC22E1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02665AE9CB42448F1ACF71D0 /* Assets.xcassets */; };
@@ -50,23 +70,33 @@
 /* Begin PBXFileReference section */
 		02665AE9CB42448F1ACF71D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07C5E324696D8019F85AFA7D /* iMahjong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iMahjong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FD71D7F9EB696814598C96 /* TraditionalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalTableView.swift; sourceTree = "<group>"; };
+		146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandEval.swift; sourceTree = "<group>"; };
 		1E060BC81A86AB3A5958C372 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		2306FEA07AC223BAA496E5AC /* BackgroundGlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGlow.swift; sourceTree = "<group>"; };
 		270D40E9AAE5C868DF6A4C74 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		30A166F71035441B9CA9F191 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		336DD92F4BACCE825F145135 /* BoardGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGeometry.swift; sourceTree = "<group>"; };
-		40741EE1DCF68B1806A0E854 /* iMahjong-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "iMahjong-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40741EE1DCF68B1806A0E854 /* iMahjong-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iMahjong-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMatch.swift; sourceTree = "<group>"; };
 		51775D10F3776DD569F463B7 /* iMahjongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMahjongApp.swift; sourceTree = "<group>"; };
 		5674FFD847215C28EFBAB070 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiichiEngine.swift; sourceTree = "<group>"; };
+		6EB987BAB003106FB4DBA40A /* RiichiTiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiichiTiles.swift; sourceTree = "<group>"; };
+		792280898DFEE7E3F888E62C /* TraditionalModeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalModeSelectView.swift; sourceTree = "<group>"; };
+		89D5292734539FE7BA8399DE /* Bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bot.swift; sourceTree = "<group>"; };
 		9C2E7F120A28CBCE82595382 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		BD96AE5EA782E611267A454B /* SaveStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStore.swift; sourceTree = "<group>"; };
 		C52A4FD1DFB01CF14234E961 /* Modals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modals.swift; sourceTree = "<group>"; };
+		C95CF3E4605BE42D64C8623F /* Yaku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yaku.swift; sourceTree = "<group>"; };
+		CCD2A7F45E380579D8E23A3A /* Scoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scoring.swift; sourceTree = "<group>"; };
 		D3B1B20B0499F947631D1B8D /* TileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileType.swift; sourceTree = "<group>"; };
 		DCECC0EA90F1B64957BDEF87 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		DFFF7A88598298F5F31EDFD0 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E7B2EEC002D016505DFF54E4 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		E95482FE4C920FC9CA7FA953 /* TraditionalSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalSetupView.swift; sourceTree = "<group>"; };
 		EB067CA09EAFA7EB95FF31CB /* TileFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileFaceView.swift; sourceTree = "<group>"; };
 		ED2B3BA9B29816955B126332 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +115,9 @@
 				2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */,
 				EB067CA09EAFA7EB95FF31CB /* TileFaceView.swift */,
 				E7B2EEC002D016505DFF54E4 /* TileView.swift */,
+				792280898DFEE7E3F888E62C /* TraditionalModeSelectView.swift */,
+				E95482FE4C920FC9CA7FA953 /* TraditionalSetupView.swift */,
+				09FD71D7F9EB696814598C96 /* TraditionalTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -107,6 +140,7 @@
 				DFFF7A88598298F5F31EDFD0 /* Theme.swift */,
 				D36B60AD71963DE547E6D7CB /* Engine */,
 				9D26AB4F1BE0B6BE26A1C6E7 /* Models */,
+				E9EAD88066C891149528910C /* Riichi */,
 				62177652E1DC6A67306F0BFA /* Views */,
 			);
 			path = iMahjong;
@@ -137,6 +171,20 @@
 				99BEE238A6B61673D22EB25E /* iMahjong */,
 				718069C5BBC16E428F234E89 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		E9EAD88066C891149528910C /* Riichi */ = {
+			isa = PBXGroup;
+			children = (
+				89D5292734539FE7BA8399DE /* Bot.swift */,
+				146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */,
+				50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */,
+				69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */,
+				6EB987BAB003106FB4DBA40A /* RiichiTiles.swift */,
+				CCD2A7F45E380579D8E23A3A /* Scoring.swift */,
+				C95CF3E4605BE42D64C8623F /* Yaku.swift */,
+			);
+			path = Riichi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,21 +289,31 @@
 			files = (
 				D5ABF2063D8C40FA6F2C13CF /* BackgroundGlow.swift in Sources */,
 				E288B4F5ABD94107B42D2A1B /* BoardGeometry.swift in Sources */,
+				BF7A2910176DE60B91213FBF /* Bot.swift in Sources */,
 				2FB389B3B110E393116F74CC /* GameEngine.swift in Sources */,
 				C6E43C6938F852FCE540D4EF /* GameView.swift in Sources */,
+				DC46D598C6EF5E8F676C7EE2 /* HandEval.swift in Sources */,
 				DBB89F82CF73E0D8A20B0747 /* HowToPlayView.swift in Sources */,
 				1F5B30E364222F7870B02D72 /* Layout.swift in Sources */,
+				969D6076F36653C4BFA2BB0F /* LocalMatch.swift in Sources */,
 				7FE5A3333A0A6F4DCA0008E9 /* Localization.swift in Sources */,
 				FD60A2D9D5DD1B01F75EA586 /* MainMenuView.swift in Sources */,
 				3D3AF4DD6608C520CB604D18 /* Modals.swift in Sources */,
+				05E15C20AC9BC31E52816CB2 /* RiichiEngine.swift in Sources */,
+				B93E780860DC68BE17235B6B /* RiichiTiles.swift in Sources */,
 				A82A2B7A7AE8EDDB995F4348 /* RootView.swift in Sources */,
 				34EE828F78A639B948E2197D /* SaveStore.swift in Sources */,
+				D3C73730413A15945A54039F /* Scoring.swift in Sources */,
 				74CB00F5512F1FC32F71A25B /* SplashView.swift in Sources */,
 				0EDD9303C86A46A9E59E55EF /* Theme.swift in Sources */,
 				FF7FFD14CBFD6034539A4881 /* Tile.swift in Sources */,
 				A705F82256FAA509FD6CC668 /* TileFaceView.swift in Sources */,
 				804C1C0EA3D18F40241E4A93 /* TileType.swift in Sources */,
 				8533D1A35D6AF043D353768C /* TileView.swift in Sources */,
+				CB27F6079BF170F2218A014A /* TraditionalModeSelectView.swift in Sources */,
+				5D9E1B657CC51CC738A9E4E1 /* TraditionalSetupView.swift in Sources */,
+				3D617E160A5D362BC07A4759 /* TraditionalTableView.swift in Sources */,
+				6BE94E3B24470027C7B2F507 /* Yaku.swift in Sources */,
 				4F957A0B859692261A03C7E0 /* iMahjongApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,21 +324,31 @@
 			files = (
 				4B33AF21DF5C92D9C7B8CDF7 /* BackgroundGlow.swift in Sources */,
 				C51796F6CC172E31D7C60C55 /* BoardGeometry.swift in Sources */,
+				4537105BB4E1A188F9F9EC9A /* Bot.swift in Sources */,
 				B0B70C9F8B3FD36A2DEA0DDB /* GameEngine.swift in Sources */,
 				26D3747F45AB2DC5F9CC0392 /* GameView.swift in Sources */,
+				71165DA8F16246BF389CD3DF /* HandEval.swift in Sources */,
 				870E7A78FE1AD99933DC8E84 /* HowToPlayView.swift in Sources */,
 				EE486604A710F344141F90C9 /* Layout.swift in Sources */,
+				C117E961809BF14CED5D2E4D /* LocalMatch.swift in Sources */,
 				C2966FABE7432907D20C66C5 /* Localization.swift in Sources */,
 				E43983FA3E9F9DCA0EFE480C /* MainMenuView.swift in Sources */,
 				4F0E81DA58EF6BE1C1E8570A /* Modals.swift in Sources */,
+				80F226D746B3039134D7726E /* RiichiEngine.swift in Sources */,
+				9D83E010E9C7DB48B92FEC06 /* RiichiTiles.swift in Sources */,
 				F7970F709E57571EE437F34E /* RootView.swift in Sources */,
 				D3D14C7217F8447F9A155306 /* SaveStore.swift in Sources */,
+				05ADD72D2C3A135E0BA4A03A /* Scoring.swift in Sources */,
 				116A539F792206AD5CB22755 /* SplashView.swift in Sources */,
 				422885A47F9E784CB93E0C40 /* Theme.swift in Sources */,
 				B5CC69C0E5C99E6916289185 /* Tile.swift in Sources */,
 				87758A4E39EC125A140F3C0C /* TileFaceView.swift in Sources */,
 				5B3750ED6A23E3BD5C443C94 /* TileType.swift in Sources */,
 				8FA3F7CB42242F486EEF7B9C /* TileView.swift in Sources */,
+				9ABE048BDA4249B234780FF3 /* TraditionalModeSelectView.swift in Sources */,
+				6A5043499BAED0DAB380BCF8 /* TraditionalSetupView.swift in Sources */,
+				AEB87B671ADB772819EAE2FF /* TraditionalTableView.swift in Sources */,
+				14FC6E4E840BAEBFDFC386D7 /* Yaku.swift in Sources */,
 				81424A16C0C0D3B043BF4C16 /* iMahjongApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S769436W24;
 				INFOPLIST_FILE = "Generated/Info-iOS.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -315,6 +384,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S769436W24;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Generated/Info-macOS.plist";
@@ -336,6 +406,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S769436W24;
 				INFOPLIST_FILE = "Generated/Info-iOS.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -417,6 +488,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S769436W24;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Generated/Info-macOS.plist";
