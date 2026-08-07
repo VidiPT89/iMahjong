@@ -32,10 +32,9 @@ func countInHand(_ hand: [String], _ type: String) -> Int { hand.filter { $0 == 
 final class RiichiSeat {
     let seatIndex: Int
     var wind: String
-    var isBot: Bool
     var hand: [String]
     var melds: [Meld] = []
-    var discards: [(tile: String, calledAway: Bool)] = []
+    var discards: [String] = []
     var riichi = false
     var doubleRiichi = false
     var ippatsuActive = false
@@ -43,10 +42,9 @@ final class RiichiSeat {
     var furitenUntilNextDraw = false
     var points: Int
 
-    init(seatIndex: Int, wind: String, isBot: Bool, hand: [String], points: Int) {
+    init(seatIndex: Int, wind: String, hand: [String], points: Int) {
         self.seatIndex = seatIndex
         self.wind = wind
-        self.isBot = isBot
         self.hand = hand.sorted()
         self.points = points
     }
@@ -117,7 +115,7 @@ final class RiichiEngine {
     private var chankanTile: String?
     private var chankanSeat: Int?
 
-    init(dealerSeat: Int = 0, roundWind: String = "wE", seatWinds: [String]? = nil, isBot: [Bool] = [false, true, true, true], points: [Int]? = nil) {
+    init(dealerSeat: Int = 0, roundWind: String = "wE", seatWinds: [String]? = nil, points: [Int]? = nil) {
         let dealt = dealWall()
         self.liveWall = dealt.liveWall
         self.deadWall = dealt.deadWall
@@ -130,7 +128,6 @@ final class RiichiEngine {
             RiichiSeat(
                 seatIndex: i,
                 wind: winds[i],
-                isBot: isBot[i],
                 hand: dealt.hands[i].map { $0.typeId },
                 points: points?[i] ?? 25000
             )
@@ -255,7 +252,7 @@ final class RiichiEngine {
         let s = seats[seatIndex]
         guard let last = lastDiscard, last.seat != seatIndex else { return false }
         let tile = last.tile
-        if s.discards.contains(where: { $0.tile == tile }) { return false } // permanent furiten
+        if s.discards.contains(tile) { return false } // permanent furiten
         if s.furitenUntilNextDraw { return false }
         let wc = checkWin(s.hand + [tile], s.melds)
         guard wc.win else { return false }
@@ -267,7 +264,7 @@ final class RiichiEngine {
         let s = activeSeat()
         guard let idx = s.hand.firstIndex(of: tile) else { fatalError("Tile \(tile) not in hand") }
         s.hand.remove(at: idx)
-        s.discards.append((tile: tile, calledAway: false))
+        s.discards.append(tile)
         lastDiscard = (seat: currentSeat, tile: tile)
         isRinshanDraw = false
         turnDrawnTile = nil
@@ -358,7 +355,7 @@ final class RiichiEngine {
 
     /// Physically removes the just-made discard from the pile — it moves into a meld.
     @discardableResult
-    private func takeLastDiscardIntoMeld() -> (tile: String, calledAway: Bool)? {
+    private func takeLastDiscardIntoMeld() -> String? {
         let discarder = seats[lastDiscard!.seat]
         return discarder.discards.popLast()
     }
@@ -369,7 +366,7 @@ final class RiichiEngine {
         for t in usingTiles {
             if let idx = s.hand.firstIndex(of: t) { s.hand.remove(at: idx) }
         }
-        s.melds.append(Meld(kind: .chi, tiles: (usingTiles + [tile]).sorted(), concealed: false, calledFrom: lastDiscard!.seat))
+        s.melds.append(Meld(kind: .chi, tiles: (usingTiles + [tile]).sorted(), concealed: false))
         takeLastDiscardIntoMeld()
         currentSeat = seatIndex
         phase = .discard
@@ -381,7 +378,7 @@ final class RiichiEngine {
         let s = seats[seatIndex]
         let tile = lastDiscard!.tile
         for _ in 0..<2 { if let idx = s.hand.firstIndex(of: tile) { s.hand.remove(at: idx) } }
-        s.melds.append(Meld(kind: .pon, tiles: [tile, tile, tile], concealed: false, calledFrom: lastDiscard!.seat))
+        s.melds.append(Meld(kind: .pon, tiles: [tile, tile, tile], concealed: false))
         takeLastDiscardIntoMeld()
         currentSeat = seatIndex
         phase = .discard
@@ -394,7 +391,7 @@ final class RiichiEngine {
         let s = seats[seatIndex]
         let tile = lastDiscard!.tile
         for _ in 0..<3 { if let idx = s.hand.firstIndex(of: tile) { s.hand.remove(at: idx) } }
-        s.melds.append(Meld(kind: .kan, tiles: [tile, tile, tile, tile], concealed: false, calledFrom: lastDiscard!.seat))
+        s.melds.append(Meld(kind: .kan, tiles: [tile, tile, tile, tile], concealed: false))
         takeLastDiscardIntoMeld()
         kanCount += 1
         doraRevealedCount += 1
@@ -420,7 +417,7 @@ final class RiichiEngine {
         guard canAnkan(seatIndex).contains(type) else { return nil }
         let s = seats[seatIndex]
         for _ in 0..<4 { if let idx = s.hand.firstIndex(of: type) { s.hand.remove(at: idx) } }
-        s.melds.append(Meld(kind: .kan, tiles: [type, type, type, type], concealed: true, calledFrom: nil))
+        s.melds.append(Meld(kind: .kan, tiles: [type, type, type, type], concealed: true))
         kanCount += 1
         doraRevealedCount += 1
         isRinshanDraw = true

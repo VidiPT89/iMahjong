@@ -156,7 +156,7 @@ struct TraditionalTableView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 2) {
                         ForEach(Array(seat.discards.enumerated()), id: \.offset) { _, d in
-                            MiniTileChip(typeId: d.tile)
+                            MiniTileChip(typeId: d)
                         }
                     }
                     .padding(.horizontal, 12)
@@ -287,7 +287,7 @@ private struct OpponentPanel: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 2) {
                         ForEach(Array(seat.discards.suffix(8).enumerated()), id: \.offset) { _, d in
-                            MiniTileChip(typeId: d.tile)
+                            MiniTileChip(typeId: d)
                         }
                     }
                 }

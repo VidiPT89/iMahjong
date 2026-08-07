@@ -10,7 +10,6 @@ struct Meld {
     var kind: MeldKind
     var tiles: [String]
     var concealed: Bool
-    var calledFrom: Int?
 }
 
 struct HandGroup {

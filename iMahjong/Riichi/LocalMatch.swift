@@ -85,7 +85,6 @@ final class LocalMatch: ObservableObject {
         engine = RiichiEngine(
             dealerSeat: dealerSeat,
             roundWind: roundWind,
-            isBot: isHuman.map { !$0 },
             points: points
         )
         emit(.handStart)
