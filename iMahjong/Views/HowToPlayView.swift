@@ -110,6 +110,15 @@ struct HowToPlayView: View {
                             toolRow(loc.t("shuffle"), loc.t("htpShuffleBody"))
                             toolRow(loc.t("undo"), loc.t("htpUndoBody"))
                         }
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(loc.t("htpRiichiTitle")).font(.system(size: 16, weight: .bold)).foregroundColor(Theme.accent)
+                            Text(loc.t("htpRiichiIntro")).font(.system(size: 14)).foregroundColor(Theme.textDim)
+                            Text(loc.t("htpRiichiTurnBody")).font(.system(size: 14)).foregroundColor(Theme.textDim)
+                            Text(loc.t("htpRiichiCallsBody")).font(.system(size: 14)).foregroundColor(Theme.textDim)
+                            toolRow(loc.t("htpRiichiRiichiTitle"), loc.t("htpRiichiRiichiBody"))
+                            toolRow(loc.t("htpRiichiWinTitle"), loc.t("htpRiichiWinBody"))
+                        }
                     }
                     .padding(20)
                 }
