@@ -28,6 +28,7 @@ struct TraditionalTableView: View {
                 Spacer(minLength: 4).frame(maxHeight: 40)
                 humanPanel
             }
+            .frame(maxHeight: .infinity, alignment: .top)
 
             if match.awaitingHumanReaction, match.pendingHumanSeats.contains(displaySeat) {
                 reactionModal

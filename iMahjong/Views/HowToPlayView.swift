@@ -50,7 +50,7 @@ struct HowToPlayView: View {
                     Spacer()
                     Text(loc.t("htpTitle")).font(.system(size: 17, weight: .semibold)).foregroundColor(Theme.text)
                     Spacer()
-                    Color.clear.frame(width: 36)
+                    Color.clear.frame(width: 36, height: 36)
                 }
                 .padding()
 

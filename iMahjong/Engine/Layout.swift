@@ -51,20 +51,17 @@ func buildTurtleLayout() -> [BoardPosition] {
     return positions
 }
 
-/// Easy — the turtle's flat base silhouette alone, no flippers, no upper
-/// layers. Nothing is ever covered, so only the left/right "blocked" rule
-/// applies; combined with a suits-only tile pool (no honor/bonus tiles to
-/// memorize), this is a much gentler introduction than the full spread.
+/// Easy — a 9x12 rectangular grid (108 tiles, single layer, nothing ever covered so only
+/// the left/right "blocked" rule applies). Deliberately not the turtle's flat base
+/// silhouette (15 columns wide, nearly twice as wide as tall) — that shape forces a much
+/// smaller on-screen scale on a portrait phone. This one's proportions are close to a
+/// phone's usable board area, so tiles render substantially larger.
 func buildEasyLayout() -> [BoardPosition] {
     var positions: [BoardPosition] = []
     func push(_ x: Int, _ y: Int, _ z: Int) { positions.append(BoardPosition(x: x, y: y, z: z)) }
 
-    let baseRows: [(y: Int, x0: Int, x1: Int)] = [
-        (0, 2, 12), (1, 1, 13), (2, 0, 14), (3, 0, 14),
-        (4, 0, 14), (5, 0, 14), (6, 1, 13), (7, 2, 12),
-    ]
-    for row in baseRows {
-        for x in row.x0...row.x1 { push(x, row.y, 0) }
+    for y in 0..<12 {
+        for x in 0..<9 { push(x, y, 0) }
     }
     return positions
 }
