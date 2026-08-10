@@ -6,6 +6,12 @@ private enum ModalKind {
 
 private let maxHints = 5
 
+private extension Comparable {
+    func clamped(to range: ClosedRange<Self>) -> Self {
+        min(max(self, range.lowerBound), range.upperBound)
+    }
+}
+
 struct GameView: View {
     @EnvironmentObject var loc: Localization
     @ObservedObject var engine: GameEngine
@@ -16,6 +22,18 @@ struct GameView: View {
     @State private var hintedIds: Set<Int> = []
     @State private var shakeTokens: [Int: Int] = [:]
     @State private var lastMoveDealOrder: [Int: Double] = [:]
+
+    // Pinch-to-zoom / pan on top of the auto-fit scale. `userZoom`/`panOffset` are the
+    // committed values; the `@GestureState` pair track the in-flight gesture and reset to
+    // their identity automatically when fingers lift, so committing only has to happen once
+    // in each gesture's `onEnded`.
+    @State private var userZoom: CGFloat = 1
+    @State private var panOffset: CGSize = .zero
+    @GestureState private var magnifyDelta: CGFloat = 1
+    @GestureState private var dragDelta: CGSize = .zero
+
+    private let minUserZoom: CGFloat = 1
+    private let maxUserZoom: CGFloat = 3
 
     var body: some View {
         ZStack {
@@ -146,11 +164,26 @@ struct GameView: View {
         let boardW = BoardGeometry.boardWidth(extents)
         let boardH = BoardGeometry.boardHeight(extents)
         return GeometryReader { outer in
-            let scale = min(
+            let fitScale = min(
                 outer.size.width / boardW,
                 outer.size.height / boardH,
                 1.5
             )
+            let zoom = (userZoom * magnifyDelta).clamped(to: minUserZoom...maxUserZoom)
+
+            let magnify = MagnificationGesture()
+                .updating($magnifyDelta) { value, state, _ in state = value }
+                .onEnded { value in
+                    userZoom = (userZoom * value).clamped(to: minUserZoom...maxUserZoom)
+                }
+
+            let pan = DragGesture()
+                .updating($dragDelta) { value, state, _ in state = value.translation }
+                .onEnded { value in
+                    panOffset.width += value.translation.width
+                    panOffset.height += value.translation.height
+                }
+
             ZStack {
                 ForEach(engine.tiles) { tile in
                     if !tile.removed {
@@ -177,8 +210,17 @@ struct GameView: View {
                 }
             }
             .frame(width: boardW, height: boardH)
-            .scaleEffect(scale)
+            .scaleEffect(fitScale * zoom)
+            .offset(x: panOffset.width + dragDelta.width, y: panOffset.height + dragDelta.height)
             .frame(width: outer.size.width, height: outer.size.height)
+            .contentShape(Rectangle())
+            .simultaneousGesture(magnify.simultaneously(with: pan))
+            .onTapGesture(count: 2) {
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                    userZoom = 1
+                    panOffset = .zero
+                }
+            }
         }
     }
 
@@ -195,17 +237,24 @@ struct GameView: View {
     private func handleTap(_ tile: GameTile) {
         let result = withAnimation(.easeOut(duration: 0.25)) { engine.select(tile.id) }
         switch result {
+        case .selected:
+            SoundManager.tilePick()
         case .matched(_, _, let won):
+            SoundManager.match()
             SaveStore.save(engine)
             if won {
                 SaveStore.clear()
+                Leaderboard.recordWin(difficulty: engine.difficulty, timeSeconds: engine.elapsedSeconds, moves: engine.moves)
+                SoundManager.win()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { modal = .win }
             } else if engine.isStuck() {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { modal = .stuck }
             }
         case .mismatch(let previous, _):
+            SoundManager.mismatch()
             triggerShake(previous.id)
         case .blocked(let t):
+            SoundManager.mismatch()
             triggerShake(t.id)
         default:
             break
@@ -234,6 +283,8 @@ struct GameView: View {
         SaveStore.clear()
         assignDealOrder()
         modal = .none
+        userZoom = 1
+        panOffset = .zero
     }
 
     private func performShuffle() {
@@ -261,7 +312,7 @@ struct GameView: View {
     }
 
     private var currentScore: Int {
-        let pairsCleared = (144 - engine.remaining()) / 2
+        let pairsCleared = (engine.tiles.count - engine.remaining()) / 2
         return max(0, pairsCleared * 100 - engine.hintsUsed * 30)
     }
 
