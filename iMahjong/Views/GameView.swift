@@ -23,14 +23,12 @@ struct GameView: View {
     @State private var shakeTokens: [Int: Int] = [:]
     @State private var lastMoveDealOrder: [Int: Double] = [:]
 
-    // Pinch-to-zoom / pan on top of the auto-fit scale. `userZoom`/`panOffset` are the
-    // committed values; the `@GestureState` pair track the in-flight gesture and reset to
-    // their identity automatically when fingers lift, so committing only has to happen once
-    // in each gesture's `onEnded`.
+    // Pinch-to-zoom only (no panning — the board always stays centered and fully visible,
+    // it just scales up/down) on top of the auto-fit scale. `userZoom` is the committed
+    // value; `magnifyDelta` tracks the in-flight gesture and resets to 1 automatically when
+    // fingers lift, so committing only has to happen once in `onEnded`.
     @State private var userZoom: CGFloat = 1
-    @State private var panOffset: CGSize = .zero
     @GestureState private var magnifyDelta: CGFloat = 1
-    @GestureState private var dragDelta: CGSize = .zero
 
     private let minUserZoom: CGFloat = 1
     private let maxUserZoom: CGFloat = 3
@@ -177,13 +175,6 @@ struct GameView: View {
                     userZoom = (userZoom * value).clamped(to: minUserZoom...maxUserZoom)
                 }
 
-            let pan = DragGesture()
-                .updating($dragDelta) { value, state, _ in state = value.translation }
-                .onEnded { value in
-                    panOffset.width += value.translation.width
-                    panOffset.height += value.translation.height
-                }
-
             ZStack {
                 ForEach(engine.tiles) { tile in
                     if !tile.removed {
@@ -211,14 +202,12 @@ struct GameView: View {
             }
             .frame(width: boardW, height: boardH)
             .scaleEffect(fitScale * zoom)
-            .offset(x: panOffset.width + dragDelta.width, y: panOffset.height + dragDelta.height)
             .frame(width: outer.size.width, height: outer.size.height)
             .contentShape(Rectangle())
-            .simultaneousGesture(magnify.simultaneously(with: pan))
+            .simultaneousGesture(magnify)
             .onTapGesture(count: 2) {
                 withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
                     userZoom = 1
-                    panOffset = .zero
                 }
             }
         }
@@ -226,9 +215,21 @@ struct GameView: View {
 
     // MARK: - Actions
 
+    /// Deals tiles from the center of the board outward, so the pyramid appears to build up
+    /// from the middle rather than from its edges.
     private func assignDealOrder() {
+        let extents = BoardExtents(tiles: engine.tiles)
+        let centerX = Double(extents.minX + extents.maxX) / 2
+        let centerY = Double(extents.minY + extents.maxY) / 2
+
+        let sorted = engine.tiles.sorted { a, b in
+            let da = pow(Double(a.x) - centerX, 2) + pow(Double(a.y) - centerY, 2)
+            let db = pow(Double(b.x) - centerX, 2) + pow(Double(b.y) - centerY, 2)
+            return da < db
+        }
+
         var order: [Int: Double] = [:]
-        for (i, tile) in engine.tiles.shuffled().enumerated() {
+        for (i, tile) in sorted.enumerated() {
             order[tile.id] = Double(i) * 0.006
         }
         lastMoveDealOrder = order
@@ -284,7 +285,6 @@ struct GameView: View {
         assignDealOrder()
         modal = .none
         userZoom = 1
-        panOffset = .zero
     }
 
     private func performShuffle() {
