@@ -94,6 +94,10 @@ final class GameEngine: ObservableObject {
     private(set) var provenSolveOrder: [(Int, Int)] = []
     private(set) var difficulty: Difficulty
 
+    /// Only meaningful for `.infinite`: the level currently being played, driving the board
+    /// size via buildInfiniteLayout. Ignored for the fixed difficulties.
+    @Published private(set) var level = 1
+
     init(difficulty: Difficulty = .medium) {
         self.difficulty = difficulty
         reset()
@@ -101,7 +105,9 @@ final class GameEngine: ObservableObject {
 
     func reset(difficulty newDifficulty: Difficulty? = nil) {
         if let newDifficulty { difficulty = newDifficulty }
-        tiles = difficulty.layout.enumerated().map { i, pos in
+        level = 1
+        let layout = difficulty.layout ?? buildInfiniteLayout(1)
+        tiles = layout.enumerated().map { i, pos in
             GameTile(id: i, x: pos.x, y: pos.y, z: pos.z, removed: false, typeId: nil)
         }
 
@@ -109,7 +115,7 @@ final class GameEngine: ObservableObject {
         guard let pairing = try? computeSolvablePairingWithRetry(refPositions) else {
             fatalError("Could not compute a solvable pairing for the turtle layout")
         }
-        let units = buildPairUnits(for: difficulty)
+        let units = difficulty == .infinite ? buildInfinitePairUnits(totalTiles: tiles.count) : buildPairUnits(for: difficulty)
 
         for (idx, pair) in pairing.enumerated() {
             let (typeA, typeB) = units[idx]
@@ -123,6 +129,34 @@ final class GameEngine: ObservableObject {
         moves = 0
         hintsUsed = 0
         startedAt = Date()
+    }
+
+    /// Infinite mode only: deals the next (bigger) level's board in place, keeping the run's
+    /// cumulative moves/score/timer going rather than resetting them like `reset` does for a
+    /// brand new game. The undo history does reset — undoing across a level boundary back
+    /// into an already-cleared board doesn't make sense.
+    func dealNextInfiniteLevel() {
+        level += 1
+        let layout = buildInfiniteLayout(level)
+        tiles = layout.enumerated().map { i, pos in
+            GameTile(id: i, x: pos.x, y: pos.y, z: pos.z, removed: false, typeId: nil)
+        }
+
+        let refPositions = tiles.map { RefPosition(refId: $0.id, x: $0.x, y: $0.y, z: $0.z) }
+        guard let pairing = try? computeSolvablePairingWithRetry(refPositions) else {
+            fatalError("Could not compute a solvable pairing for the infinite layout")
+        }
+        let units = buildInfinitePairUnits(totalTiles: tiles.count)
+
+        for (idx, pair) in pairing.enumerated() {
+            let (typeA, typeB) = units[idx]
+            setTypeId(typeA, forTileId: pair.0)
+            setTypeId(typeB, forTileId: pair.1)
+        }
+        provenSolveOrder = pairing
+
+        selectedId = nil
+        history = []
     }
 
     private func setTypeId(_ typeId: String, forTileId id: Int) {
@@ -285,12 +319,14 @@ final class GameEngine: ObservableObject {
             historyPairs: history.map { [$0.a, $0.b] },
             moves: moves,
             hintsUsed: hintsUsed,
-            elapsedSeconds: elapsedSeconds
+            elapsedSeconds: elapsedSeconds,
+            level: level
         )
     }
 
     func restore(from snapshot: GameSnapshot) {
         difficulty = Difficulty(rawValue: snapshot.difficulty) ?? .medium
+        level = snapshot.level
         tiles = snapshot.tiles
         selectedId = snapshot.selectedId
         history = snapshot.historyPairs.map { (a: $0[0], b: $0[1]) }
@@ -309,4 +345,5 @@ struct GameSnapshot: Codable {
     var moves: Int
     var hintsUsed: Int
     var elapsedSeconds: Double
+    var level: Int = 1
 }

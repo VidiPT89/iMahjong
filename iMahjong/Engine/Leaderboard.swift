@@ -57,4 +57,19 @@ enum Leaderboard {
     static func clear() {
         UserDefaults.standard.removeObject(forKey: key)
     }
+
+    private static let infiniteBestLevelKey = "imahjong-leaderboard-infinite-bestLevel"
+
+    /// Infinite mode has no fixed board to compare times/moves against (it grows every
+    /// level), so its only record is the highest level ever reached.
+    static func infiniteBestLevel() -> Int {
+        UserDefaults.standard.integer(forKey: infiniteBestLevelKey)
+    }
+
+    @discardableResult
+    static func recordInfiniteLevel(_ level: Int) -> Bool {
+        let isNewRecord = level > infiniteBestLevel()
+        if isNewRecord { UserDefaults.standard.set(level, forKey: infiniteBestLevelKey) }
+        return isNewRecord
+    }
 }

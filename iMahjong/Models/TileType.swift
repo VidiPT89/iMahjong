@@ -110,6 +110,21 @@ func buildPairUnits(for difficulty: Difficulty) -> [(String, String)] {
     difficulty == .easy ? buildEasyPairUnits() : buildShuffledPairUnits()
 }
 
+/// Infinite mode's pool: unlike the fixed difficulties (which deal from one real 144-tile
+/// set), the board can grow past 144 tiles, so this just cycles through the 34 non-bonus
+/// types as many times as needed to produce exactly `pairsNeeded` pairs — there's no "only
+/// 4 copies of each tile" constraint to honor here, it's an extended variant, not a real set.
+func buildInfinitePairUnits(totalTiles: Int) -> [(String, String)] {
+    let pairsNeeded = totalTiles / 2
+    let types = TILE_TYPES.filter { $0.category != .flower && $0.category != .season }.map { $0.id }
+    var units = (0..<pairsNeeded).map { i -> (String, String) in
+        let id = types[i % types.count]
+        return (id, id)
+    }
+    units.shuffle()
+    return units.map { Bool.random() ? ($0.1, $0.0) : $0 }
+}
+
 /// Builds matching pair-units from whatever type inventory is passed in (e.g. the types
 /// still on the board when reshuffling mid-game).
 func buildPairUnitsFromInventory(_ typeCounts: [String: Int]) -> [(String, String)] {

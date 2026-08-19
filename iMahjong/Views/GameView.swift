@@ -100,6 +100,10 @@ struct GameView: View {
             .padding(.top, 10)
 
             HStack(spacing: 0) {
+                if engine.difficulty == .infinite {
+                    statGroup(loc.t("level")) { Text("\(engine.level)") }
+                    statDivider()
+                }
                 statGroup(loc.t("time")) {
                     TimelineView(.periodic(from: .now, by: 1)) { _ in
                         Text(formattedTime(engine.elapsedSeconds))
@@ -242,10 +246,14 @@ struct GameView: View {
             SoundManager.match()
             SaveStore.save(engine)
             if won {
-                SaveStore.clear()
-                Leaderboard.recordWin(difficulty: engine.difficulty, timeSeconds: engine.elapsedSeconds, moves: engine.moves)
-                SoundManager.win()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { modal = .win }
+                if engine.difficulty == .infinite {
+                    handleInfiniteLevelCleared()
+                } else {
+                    SaveStore.clear()
+                    Leaderboard.recordWin(difficulty: engine.difficulty, timeSeconds: engine.elapsedSeconds, moves: engine.moves)
+                    SoundManager.win()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { modal = .win }
+                }
             } else if engine.isStuck() {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { modal = .stuck }
             }
@@ -262,6 +270,25 @@ struct GameView: View {
 
     private func triggerShake(_ id: Int) {
         shakeTokens[id, default: 0] += 1
+    }
+
+    /// Infinite mode never shows the win modal — clearing a level just chains straight into
+    /// the next (bigger) one, so the run keeps going instead of stopping. Progress (the
+    /// highest level reached) is saved after every level, not just when the player
+    /// eventually quits, so it survives the app being killed mid-run.
+    private func handleInfiniteLevelCleared() {
+        let clearedLevel = engine.level
+        let isNewRecord = Leaderboard.recordInfiniteLevel(clearedLevel)
+        SoundManager.win()
+        showToast(
+            (isNewRecord ? loc.t("newRecordLevel") : loc.t("levelCleared"))
+                .replacingOccurrences(of: "{level}", with: "\(clearedLevel)")
+        )
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            engine.dealNextInfiniteLevel()
+            assignDealOrder()
+            SaveStore.save(engine)
+        }
     }
 
     private func performHint() {

@@ -47,18 +47,26 @@ struct DifficultyPicker: View {
                 option(.easy, label: loc.t("difficultyEasy"))
                 option(.medium, label: loc.t("difficultyMedium"))
                 option(.hard, label: loc.t("difficultyHard"))
+                option(.infinite, label: loc.t("difficultyInfinite"))
             }
             .padding(3)
             .background(Capsule().fill(Theme.bgPanel).overlay(Capsule().stroke(Theme.border, lineWidth: 1)))
+
+            let bestLevel = Leaderboard.infiniteBestLevel()
+            if bestLevel > 0 {
+                Text(loc.t("infiniteBestLabel").replacingOccurrences(of: "{level}", with: "\(bestLevel)"))
+                    .font(.system(size: 11))
+                    .foregroundColor(Theme.textFaint)
+            }
         }
     }
 
     private func option(_ value: Difficulty, label: String) -> some View {
         Button(action: { selected = value }) {
             Text(label)
-                .font(.system(size: 13, weight: .bold))
+                .font(.system(size: 12, weight: .bold))
                 .foregroundColor(selected == value ? Theme.bg : Theme.textFaint)
-                .padding(.horizontal, 14)
+                .padding(.horizontal, 11)
                 .padding(.vertical, 8)
                 .background(Capsule().fill(selected == value ? Theme.accent : Color.clear))
         }

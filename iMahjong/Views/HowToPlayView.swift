@@ -138,6 +138,7 @@ struct HowToPlayView: View {
                             }
 
                             HTPSection(loc.t("htpScoreTitle"), loc.t("htpScoreBody"))
+                            HTPSection(loc.t("htpInfiniteTitle"), loc.t("htpInfiniteBody"))
                         } else {
                             Text(loc.t("htpRiichiIntro"))
                                 .font(.system(size: 15))

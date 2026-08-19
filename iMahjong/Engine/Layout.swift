@@ -103,14 +103,51 @@ let TURTLE_LAYOUT = buildTurtleLayout()
 let EASY_LAYOUT = buildEasyLayout()
 let HARD_LAYOUT = buildHardLayout()
 
-enum Difficulty: String, CaseIterable {
-    case easy, medium, hard
+/// Procedural layout for the "Infinite" mode: a flat base rectangle that grows wider and
+/// taller every couple of levels, with a shrinking stack of centered layers on top whose
+/// count also grows with the level. Base width/height are always kept even, so every
+/// layer's area stays even too, meaning the board never needs an odd tile discarded to
+/// stay pairable.
+///
+/// Layers always shrink by 2 in each dimension and stop at 2x2 (same "never a lone
+/// unpaired tile at the peak" rule as the hand-authored layouts above), so this feeds the
+/// exact same computeSolvablePairingWithRetry() used everywhere else without any
+/// special-casing.
+func buildInfiniteLayout(_ level: Int) -> [BoardPosition] {
+    var positions: [BoardPosition] = []
+    func push(_ x: Int, _ y: Int, _ z: Int) { positions.append(BoardPosition(x: x, y: y, z: z)) }
 
-    var layout: [BoardPosition] {
+    let baseW = 10 + 2 * ((level - 1) / 2)
+    let baseH = 6 + 2 * ((level - 1) / 3)
+    for y in 0..<baseH { for x in 0..<baseW { push(x, y, 0) } }
+
+    let maxLayers = 1 + level / 2
+    var w = baseW - 4
+    var h = baseH - 2
+    var z = 1
+    while w >= 2 && h >= 2 && z <= maxLayers {
+        let xOff = (baseW - w) / 2
+        let yOff = (baseH - h) / 2
+        for yy in 0..<h { for xx in 0..<w { push(xOff + xx, yOff + yy, z) } }
+        w -= 2
+        h -= 2
+        z += 1
+    }
+
+    return positions
+}
+
+enum Difficulty: String, CaseIterable {
+    case easy, medium, hard, infinite
+
+    /// nil for `.infinite`, which has no fixed layout — its board depends on the current
+    /// level (see buildInfiniteLayout), sized separately in GameEngine.
+    var layout: [BoardPosition]? {
         switch self {
         case .easy: return EASY_LAYOUT
         case .medium: return TURTLE_LAYOUT
         case .hard: return HARD_LAYOUT
+        case .infinite: return nil
         }
     }
 }
