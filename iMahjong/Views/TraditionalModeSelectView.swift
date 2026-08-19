@@ -4,6 +4,7 @@ struct TraditionalModeSelectView: View {
     @EnvironmentObject var loc: Localization
     let onBack: () -> Void
     let onLocal: () -> Void
+    let onOnline: () -> Void
 
     var body: some View {
         ZStack {
@@ -36,6 +37,8 @@ struct TraditionalModeSelectView: View {
                 VStack(spacing: 12) {
                     Button(loc.t("playLocal"), action: onLocal)
                         .buttonStyle(PrimaryButtonStyle())
+                    Button(loc.t("playOnline"), action: onOnline)
+                        .buttonStyle(SecondaryButtonStyle())
                     Button(loc.t("back"), action: onBack)
                         .buttonStyle(GhostButtonStyle())
                 }

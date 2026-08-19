@@ -27,13 +27,18 @@
 		4DC497F213C7B061975548A2 /* HandEvalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE0B2D416F5C1129EF8587 /* HandEvalTests.swift */; };
 		4F0E81DA58EF6BE1C1E8570A /* Modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52A4FD1DFB01CF14234E961 /* Modals.swift */; };
 		4F957A0B859692261A03C7E0 /* iMahjongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51775D10F3776DD569F463B7 /* iMahjongApp.swift */; };
+		53334E3F15209B77C5C75D2F /* OnlineLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7F15C51995EAB2B15E6D31 /* OnlineLobbyView.swift */; };
+		53E5945BE584D7133558C4CB /* OnlineClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BC535168E1763209B7811 /* OnlineClientIntegrationTests.swift */; };
 		5B3750ED6A23E3BD5C443C94 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1B20B0499F947631D1B8D /* TileType.swift */; };
 		5D9E1B657CC51CC738A9E4E1 /* TraditionalSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95482FE4C920FC9CA7FA953 /* TraditionalSetupView.swift */; };
 		6A5043499BAED0DAB380BCF8 /* TraditionalSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95482FE4C920FC9CA7FA953 /* TraditionalSetupView.swift */; };
 		6BE94E3B24470027C7B2F507 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95CF3E4605BE42D64C8623F /* Yaku.swift */; };
+		70DDC0B36062838A34070FAF /* OnlineLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7F15C51995EAB2B15E6D31 /* OnlineLobbyView.swift */; };
 		71165DA8F16246BF389CD3DF /* HandEval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */; };
+		71597F0AFE06DC767165526F /* OnlineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA035FD7077E7D9DD311598E /* OnlineTableView.swift */; };
 		74CB00F5512F1FC32F71A25B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */; };
 		763B89E028FE4B311B3205C9 /* YakuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFFAE7AD57FF676BE210559 /* YakuTests.swift */; };
+		7D503DA8B2A8988BEEEE328A /* OnlineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC908C5CAD2B23609F1ED65 /* OnlineClient.swift */; };
 		7FE5A3333A0A6F4DCA0008E9 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2E7F120A28CBCE82595382 /* Localization.swift */; };
 		804C1C0EA3D18F40241E4A93 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1B20B0499F947631D1B8D /* TileType.swift */; };
 		80F226D746B3039134D7726E /* RiichiEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */; };
@@ -41,6 +46,7 @@
 		8533D1A35D6AF043D353768C /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2EEC002D016505DFF54E4 /* TileView.swift */; };
 		870E7A78FE1AD99933DC8E84 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */; };
 		87758A4E39EC125A140F3C0C /* TileFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB067CA09EAFA7EB95FF31CB /* TileFaceView.swift */; };
+		89599522EF05829F4E322007 /* OnlineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA035FD7077E7D9DD311598E /* OnlineTableView.swift */; };
 		8FA3F7CB42242F486EEF7B9C /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2EEC002D016505DFF54E4 /* TileView.swift */; };
 		969D6076F36653C4BFA2BB0F /* LocalMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */; };
 		9ABE048BDA4249B234780FF3 /* TraditionalModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792280898DFEE7E3F888E62C /* TraditionalModeSelectView.swift */; };
@@ -52,6 +58,7 @@
 		B10E6CD5EAA2C677D57B792B /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E28D73B7655CC8179843E45 /* SoundManager.swift */; };
 		B52E0B0C5A4239FDD32BB569 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24ED9BB3B9E0E16744E9B08 /* Leaderboard.swift */; };
 		B5CC69C0E5C99E6916289185 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E060BC81A86AB3A5958C372 /* Tile.swift */; };
+		B5F24AE435553F55B51889E9 /* OnlineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC908C5CAD2B23609F1ED65 /* OnlineClient.swift */; };
 		B93E780860DC68BE17235B6B /* RiichiTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB987BAB003106FB4DBA40A /* RiichiTiles.swift */; };
 		BF7A2910176DE60B91213FBF /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D5292734539FE7BA8399DE /* Bot.swift */; };
 		C117E961809BF14CED5D2E4D /* LocalMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */; };
@@ -97,6 +104,7 @@
 		30A166F71035441B9CA9F191 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		336DD92F4BACCE825F145135 /* BoardGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGeometry.swift; sourceTree = "<group>"; };
 		40741EE1DCF68B1806A0E854 /* iMahjong-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "iMahjong-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		445BC535168E1763209B7811 /* OnlineClientIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineClientIntegrationTests.swift; sourceTree = "<group>"; };
 		4DFE0B2D416F5C1129EF8587 /* HandEvalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandEvalTests.swift; sourceTree = "<group>"; };
 		4EFFAE7AD57FF676BE210559 /* YakuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakuTests.swift; sourceTree = "<group>"; };
 		50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMatch.swift; sourceTree = "<group>"; };
@@ -118,10 +126,13 @@
 		CCD2A7F45E380579D8E23A3A /* Scoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scoring.swift; sourceTree = "<group>"; };
 		D24ED9BB3B9E0E16744E9B08 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		D3B1B20B0499F947631D1B8D /* TileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileType.swift; sourceTree = "<group>"; };
+		DA035FD7077E7D9DD311598E /* OnlineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineTableView.swift; sourceTree = "<group>"; };
 		DCECC0EA90F1B64957BDEF87 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		DD7F15C51995EAB2B15E6D31 /* OnlineLobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineLobbyView.swift; sourceTree = "<group>"; };
 		DFFF7A88598298F5F31EDFD0 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E7B2EEC002D016505DFF54E4 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		E95482FE4C920FC9CA7FA953 /* TraditionalSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalSetupView.swift; sourceTree = "<group>"; };
+		EAC908C5CAD2B23609F1ED65 /* OnlineClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineClient.swift; sourceTree = "<group>"; };
 		EB067CA09EAFA7EB95FF31CB /* TileFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileFaceView.swift; sourceTree = "<group>"; };
 		ED2B3BA9B29816955B126332 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +147,8 @@
 				5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */,
 				30A166F71035441B9CA9F191 /* MainMenuView.swift */,
 				C52A4FD1DFB01CF14234E961 /* Modals.swift */,
+				DD7F15C51995EAB2B15E6D31 /* OnlineLobbyView.swift */,
+				DA035FD7077E7D9DD311598E /* OnlineTableView.swift */,
 				DCECC0EA90F1B64957BDEF87 /* RootView.swift */,
 				2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */,
 				EB067CA09EAFA7EB95FF31CB /* TileFaceView.swift */,
@@ -153,6 +166,7 @@
 				BBDF2A5D05819CB9BE75E10D /* GameEngineTests.swift */,
 				4DFE0B2D416F5C1129EF8587 /* HandEvalTests.swift */,
 				87FCBF7B1BAC12921A56E07E /* InfiniteModeTests.swift */,
+				445BC535168E1763209B7811 /* OnlineClientIntegrationTests.swift */,
 				4EFFAE7AD57FF676BE210559 /* YakuTests.swift */,
 			);
 			path = iMahjongTests;
@@ -219,6 +233,7 @@
 				89D5292734539FE7BA8399DE /* Bot.swift */,
 				146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */,
 				50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */,
+				EAC908C5CAD2B23609F1ED65 /* OnlineClient.swift */,
 				69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */,
 				6EB987BAB003106FB4DBA40A /* RiichiTiles.swift */,
 				CCD2A7F45E380579D8E23A3A /* Scoring.swift */,
@@ -352,6 +367,7 @@
 				2F6A9D6D7E0B9C3B1C0B499B /* GameEngineTests.swift in Sources */,
 				4DC497F213C7B061975548A2 /* HandEvalTests.swift in Sources */,
 				C99C98501BA2EE538769961D /* InfiniteModeTests.swift in Sources */,
+				53E5945BE584D7133558C4CB /* OnlineClientIntegrationTests.swift in Sources */,
 				763B89E028FE4B311B3205C9 /* YakuTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +389,9 @@
 				7FE5A3333A0A6F4DCA0008E9 /* Localization.swift in Sources */,
 				FD60A2D9D5DD1B01F75EA586 /* MainMenuView.swift in Sources */,
 				3D3AF4DD6608C520CB604D18 /* Modals.swift in Sources */,
+				B5F24AE435553F55B51889E9 /* OnlineClient.swift in Sources */,
+				53334E3F15209B77C5C75D2F /* OnlineLobbyView.swift in Sources */,
+				89599522EF05829F4E322007 /* OnlineTableView.swift in Sources */,
 				05E15C20AC9BC31E52816CB2 /* RiichiEngine.swift in Sources */,
 				B93E780860DC68BE17235B6B /* RiichiTiles.swift in Sources */,
 				A82A2B7A7AE8EDDB995F4348 /* RootView.swift in Sources */,
@@ -410,6 +429,9 @@
 				C2966FABE7432907D20C66C5 /* Localization.swift in Sources */,
 				E43983FA3E9F9DCA0EFE480C /* MainMenuView.swift in Sources */,
 				4F0E81DA58EF6BE1C1E8570A /* Modals.swift in Sources */,
+				7D503DA8B2A8988BEEEE328A /* OnlineClient.swift in Sources */,
+				70DDC0B36062838A34070FAF /* OnlineLobbyView.swift in Sources */,
+				71597F0AFE06DC767165526F /* OnlineTableView.swift in Sources */,
 				80F226D746B3039134D7726E /* RiichiEngine.swift in Sources */,
 				9D83E010E9C7DB48B92FEC06 /* RiichiTiles.swift in Sources */,
 				F7970F709E57571EE437F34E /* RootView.swift in Sources */,

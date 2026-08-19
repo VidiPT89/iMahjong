@@ -3,6 +3,7 @@ import SwiftUI
 enum AppScreen {
     case splash, menu, howToPlay, game
     case traditionalModeSelect, traditionalSetup, traditionalTable
+    case onlineLobby, onlineTable
 }
 
 final class DifficultyStore: ObservableObject {
@@ -27,6 +28,7 @@ struct RootView: View {
     @State private var hasSave = SaveStore.hasSave()
     @State private var humanSeats: [Bool] = [true, false, false, false]
     @State private var localMatch: LocalMatch?
+    @StateObject private var onlineClient = OnlineClient()
 
     var body: some View {
         ZStack {
@@ -53,7 +55,8 @@ struct RootView: View {
             case .traditionalModeSelect:
                 TraditionalModeSelectView(
                     onBack: { withAnimation(Theme.ease) { screen = .menu } },
-                    onLocal: { withAnimation(Theme.ease) { screen = .traditionalSetup } }
+                    onLocal: { withAnimation(Theme.ease) { screen = .traditionalSetup } },
+                    onOnline: { withAnimation(Theme.ease) { screen = .onlineLobby } }
                 )
             case .traditionalSetup:
                 TraditionalSetupView(
@@ -74,6 +77,20 @@ struct RootView: View {
                         withAnimation(Theme.ease) { screen = .traditionalModeSelect }
                     })
                 }
+            case .onlineLobby:
+                OnlineLobbyView(
+                    client: onlineClient,
+                    onBack: {
+                        onlineClient.disconnect()
+                        withAnimation(Theme.ease) { screen = .traditionalModeSelect }
+                    },
+                    onStarted: { withAnimation(Theme.ease) { screen = .onlineTable } }
+                )
+            case .onlineTable:
+                OnlineTableView(client: onlineClient, onExit: {
+                    onlineClient.disconnect()
+                    withAnimation(Theme.ease) { screen = .traditionalModeSelect }
+                })
             }
         }
         .environmentObject(loc)
