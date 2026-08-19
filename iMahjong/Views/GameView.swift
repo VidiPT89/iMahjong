@@ -4,8 +4,6 @@ private enum ModalKind {
     case none, win, stuck, confirmRestart
 }
 
-private let maxHints = 5
-
 private extension Comparable {
     func clamped(to range: ClosedRange<Self>) -> Self {
         min(max(self, range.lowerBound), range.upperBound)
@@ -93,7 +91,7 @@ struct GameView: View {
 
                 Spacer(minLength: 4)
 
-                actionIcon("lightbulb", tip: loc.t("hint"), badge: maxHints - engine.hintsUsed, action: performHint)
+                actionIcon("lightbulb", tip: loc.t("hint"), badge: nil, action: performHint)
                 actionIcon("shuffle", tip: loc.t("shuffle"), action: performShuffle)
                 actionIcon("arrow.uturn.backward", tip: loc.t("undo"), action: performUndo)
                 actionIcon("arrow.clockwise", tip: loc.t("restart"), action: { modal = .confirmRestart })
@@ -267,10 +265,6 @@ struct GameView: View {
     }
 
     private func performHint() {
-        guard engine.hintsUsed < maxHints else {
-            showToast(loc.t("noHintsLeft"))
-            return
-        }
         guard let (a, b) = engine.findHint() else { return }
         engine.useHint()
         hintedIds = [a.id, b.id]
