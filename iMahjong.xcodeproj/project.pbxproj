@@ -15,6 +15,7 @@
 		1E02422A42C910B3FC58BE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02665AE9CB42448F1ACF71D0 /* Assets.xcassets */; };
 		1F5B30E364222F7870B02D72 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674FFD847215C28EFBAB070 /* Layout.swift */; };
 		26D3747F45AB2DC5F9CC0392 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D40E9AAE5C868DF6A4C74 /* GameView.swift */; };
+		2F6A9D6D7E0B9C3B1C0B499B /* GameEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF2A5D05819CB9BE75E10D /* GameEngineTests.swift */; };
 		2FB389B3B110E393116F74CC /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B3BA9B29816955B126332 /* GameEngine.swift */; };
 		34EE828F78A639B948E2197D /* SaveStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD96AE5EA782E611267A454B /* SaveStore.swift */; };
 		3D3AF4DD6608C520CB604D18 /* Modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52A4FD1DFB01CF14234E961 /* Modals.swift */; };
@@ -23,6 +24,7 @@
 		4537105BB4E1A188F9F9EC9A /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D5292734539FE7BA8399DE /* Bot.swift */; };
 		4B33AF21DF5C92D9C7B8CDF7 /* BackgroundGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306FEA07AC223BAA496E5AC /* BackgroundGlow.swift */; };
 		4B404085E69DA2007C987DE0 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E28D73B7655CC8179843E45 /* SoundManager.swift */; };
+		4DC497F213C7B061975548A2 /* HandEvalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE0B2D416F5C1129EF8587 /* HandEvalTests.swift */; };
 		4F0E81DA58EF6BE1C1E8570A /* Modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52A4FD1DFB01CF14234E961 /* Modals.swift */; };
 		4F957A0B859692261A03C7E0 /* iMahjongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51775D10F3776DD569F463B7 /* iMahjongApp.swift */; };
 		5B3750ED6A23E3BD5C443C94 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1B20B0499F947631D1B8D /* TileType.swift */; };
@@ -31,6 +33,7 @@
 		6BE94E3B24470027C7B2F507 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95CF3E4605BE42D64C8623F /* Yaku.swift */; };
 		71165DA8F16246BF389CD3DF /* HandEval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */; };
 		74CB00F5512F1FC32F71A25B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */; };
+		763B89E028FE4B311B3205C9 /* YakuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFFAE7AD57FF676BE210559 /* YakuTests.swift */; };
 		7FE5A3333A0A6F4DCA0008E9 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2E7F120A28CBCE82595382 /* Localization.swift */; };
 		804C1C0EA3D18F40241E4A93 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1B20B0499F947631D1B8D /* TileType.swift */; };
 		80F226D746B3039134D7726E /* RiichiEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */; };
@@ -71,6 +74,16 @@
 		FF7FFD14CBFD6034539A4881 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E060BC81A86AB3A5958C372 /* Tile.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BEC67E1130954DD5D1960B00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB506774EB314387FB3FFEB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE859C82A053EEDA921EC8EC;
+			remoteInfo = "iMahjong-macOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		02665AE9CB42448F1ACF71D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07C5E324696D8019F85AFA7D /* iMahjong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iMahjong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,16 +96,20 @@
 		30A166F71035441B9CA9F191 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		336DD92F4BACCE825F145135 /* BoardGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGeometry.swift; sourceTree = "<group>"; };
 		40741EE1DCF68B1806A0E854 /* iMahjong-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "iMahjong-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DFE0B2D416F5C1129EF8587 /* HandEvalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandEvalTests.swift; sourceTree = "<group>"; };
+		4EFFAE7AD57FF676BE210559 /* YakuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakuTests.swift; sourceTree = "<group>"; };
 		50A2C843670ED244F8ADB6B7 /* LocalMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMatch.swift; sourceTree = "<group>"; };
 		51775D10F3776DD569F463B7 /* iMahjongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMahjongApp.swift; sourceTree = "<group>"; };
 		5674FFD847215C28EFBAB070 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		5E28D73B7655CC8179843E45 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		644E6D6B456C7FB5CDCA7A2D /* iMahjongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMahjongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69AA2AC92C7FA6720E53A0C2 /* RiichiEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiichiEngine.swift; sourceTree = "<group>"; };
 		6EB987BAB003106FB4DBA40A /* RiichiTiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiichiTiles.swift; sourceTree = "<group>"; };
 		792280898DFEE7E3F888E62C /* TraditionalModeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalModeSelectView.swift; sourceTree = "<group>"; };
 		89D5292734539FE7BA8399DE /* Bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bot.swift; sourceTree = "<group>"; };
 		9C2E7F120A28CBCE82595382 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		BBDF2A5D05819CB9BE75E10D /* GameEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngineTests.swift; sourceTree = "<group>"; };
 		BD96AE5EA782E611267A454B /* SaveStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStore.swift; sourceTree = "<group>"; };
 		C52A4FD1DFB01CF14234E961 /* Modals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modals.swift; sourceTree = "<group>"; };
 		C95CF3E4605BE42D64C8623F /* Yaku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yaku.swift; sourceTree = "<group>"; };
@@ -128,11 +145,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		627F8ABE513FFD8F7CB53109 /* iMahjongTests */ = {
+			isa = PBXGroup;
+			children = (
+				BBDF2A5D05819CB9BE75E10D /* GameEngineTests.swift */,
+				4DFE0B2D416F5C1129EF8587 /* HandEvalTests.swift */,
+				4EFFAE7AD57FF676BE210559 /* YakuTests.swift */,
+			);
+			path = iMahjongTests;
+			sourceTree = "<group>";
+		};
 		718069C5BBC16E428F234E89 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				40741EE1DCF68B1806A0E854 /* iMahjong-iOS.app */,
 				07C5E324696D8019F85AFA7D /* iMahjong-macOS.app */,
+				644E6D6B456C7FB5CDCA7A2D /* iMahjongTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				99BEE238A6B61673D22EB25E /* iMahjong */,
+				627F8ABE513FFD8F7CB53109 /* iMahjongTests */,
 				718069C5BBC16E428F234E89 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -198,6 +227,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		751F711BE3DDA0B9EE59EE73 /* iMahjongTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F52E1EAA1B3B4F4E3157B469 /* Build configuration list for PBXNativeTarget "iMahjongTests" */;
+			buildPhases = (
+				0399B7261182D8F996C44D5E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DD8480967664B0F54F10B70 /* PBXTargetDependency */,
+			);
+			name = iMahjongTests;
+			packageProductDependencies = (
+			);
+			productName = iMahjongTests;
+			productReference = 644E6D6B456C7FB5CDCA7A2D /* iMahjongTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D981277FDB1918C5E20C9A56 /* iMahjong-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DD68A6F02702434E848E25B /* Build configuration list for PBXNativeTarget "iMahjong-iOS" */;
@@ -243,6 +290,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					751F711BE3DDA0B9EE59EE73 = {
+						ProvisioningStyle = Automatic;
+					};
 					D981277FDB1918C5E20C9A56 = {
 						ProvisioningStyle = Automatic;
 					};
@@ -267,6 +317,7 @@
 			targets = (
 				D981277FDB1918C5E20C9A56 /* iMahjong-iOS */,
 				FE859C82A053EEDA921EC8EC /* iMahjong-macOS */,
+				751F711BE3DDA0B9EE59EE73 /* iMahjongTests */,
 			);
 		};
 /* End PBXProject section */
@@ -291,6 +342,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0399B7261182D8F996C44D5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F6A9D6D7E0B9C3B1C0B499B /* GameEngineTests.swift in Sources */,
+				4DC497F213C7B061975548A2 /* HandEvalTests.swift in Sources */,
+				763B89E028FE4B311B3205C9 /* YakuTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		301CEA455E14FD4DDBB28511 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -367,6 +428,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2DD8480967664B0F54F10B70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE859C82A053EEDA921EC8EC /* iMahjong-macOS */;
+			targetProxy = BEC67E1130954DD5D1960B00 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		1334D0588BAFC1E22AA160E6 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -404,6 +473,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjong;
+				PRODUCT_MODULE_NAME = iMahjong;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -506,10 +576,51 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjong;
+				PRODUCT_MODULE_NAME = iMahjong;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
+		};
+		DEEB5EC8EFE13A02A4C53609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjongTests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMahjong-macOS.app/Contents/MacOS/iMahjong-macOS";
+			};
+			name = Release;
+		};
+		F56914337FE41EC0FD719EB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjongTests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMahjong-macOS.app/Contents/MacOS/iMahjong-macOS";
+			};
+			name = Debug;
 		};
 		F842F734A6A7615E62118101 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -591,6 +702,15 @@
 			buildConfigurations = (
 				8392770E3590C6BA47F1398C /* Debug */,
 				1334D0588BAFC1E22AA160E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F52E1EAA1B3B4F4E3157B469 /* Build configuration list for PBXNativeTarget "iMahjongTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F56914337FE41EC0FD719EB1 /* Debug */,
+				DEEB5EC8EFE13A02A4C53609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

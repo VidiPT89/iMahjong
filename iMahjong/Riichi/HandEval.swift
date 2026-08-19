@@ -23,7 +23,7 @@ struct Decomposition {
     var groups: [HandGroup]
 }
 
-enum HandKind { case standard, chiitoitsu, kokushi }
+enum HandKind: Equatable { case standard, chiitoitsu, kokushi }
 
 struct WinCheck {
     var win: Bool
