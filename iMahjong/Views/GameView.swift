@@ -164,6 +164,10 @@ struct GameView: View {
         let extents = BoardExtents(tiles: engine.tiles)
         let boardW = BoardGeometry.boardWidth(extents)
         let boardH = BoardGeometry.boardHeight(extents)
+        // Computed once per body evaluation (not once per tile) — see freeTileIds()'s doc
+        // comment for why calling engine.isFree(tile) inside the ForEach below was the real
+        // source of the tap/match lag: it turned every redraw into an O(n²) scan.
+        let freeIds = engine.freeTileIds()
         return GeometryReader { outer in
             let fitScale = min(
                 outer.size.width / boardW,
@@ -186,7 +190,7 @@ struct GameView: View {
                             tile: tile,
                             width: BoardGeometry.tileW,
                             height: BoardGeometry.tileH,
-                            isFree: engine.isFree(tile),
+                            isFree: freeIds.contains(tile.id),
                             isSelected: engine.selectedId == tile.id,
                             isHinted: hintedIds.contains(tile.id),
                             shakeToken: shakeTokens[tile.id] ?? 0,

@@ -230,6 +230,38 @@ final class GameEngine: ObservableObject {
         active().filter(isFree)
     }
 
+    /// Same result as calling `isFree` once per tile, but O(active tiles) total instead of
+    /// O(n²) — `isFree`/`isCovered`/`isOpenLeft`/`isOpenRight` each linear-scan the whole
+    /// board, which is fine for a single lookup (a tap, a hint) but far too slow to call once
+    /// per rendered tile every time the board redraws: SwiftUI re-evaluates the board's body
+    /// many times over the course of a single match/mismatch animation, so an O(n²) scan per
+    /// frame was the actual source of the tap/match "lag" reported on iOS. Used by the render
+    /// loop; the per-tile methods above stay as the simple, correct reference implementation
+    /// for one-off queries elsewhere (select, findHint, isStuck).
+    func freeTileIds() -> Set<Int> {
+        struct Cell: Hashable { let x: Int; let y: Int; let z: Int }
+        struct Column: Hashable { let x: Int; let y: Int }
+
+        let activeTiles = active()
+        var occupied = Set<Cell>()
+        var maxZInColumn: [Column: Int] = [:]
+        for t in activeTiles {
+            occupied.insert(Cell(x: t.x, y: t.y, z: t.z))
+            let col = Column(x: t.x, y: t.y)
+            maxZInColumn[col] = max(maxZInColumn[col] ?? t.z, t.z)
+        }
+
+        var result = Set<Int>()
+        for t in activeTiles {
+            let covered = (maxZInColumn[Column(x: t.x, y: t.y)] ?? t.z) > t.z
+            if covered { continue }
+            let openLeft = !occupied.contains(Cell(x: t.x - 1, y: t.y, z: t.z))
+            let openRight = !occupied.contains(Cell(x: t.x + 1, y: t.y, z: t.z))
+            if openLeft || openRight { result.insert(t.id) }
+        }
+        return result
+    }
+
     /// Attempts to select a tile; returns what happened so the UI can animate/react.
     @discardableResult
     func select(_ id: Int) -> SelectResult {
