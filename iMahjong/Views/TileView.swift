@@ -31,6 +31,13 @@ struct TileView: View {
                 )
             )
             .overlay(
+                RadialGradient(
+                    colors: [Theme.tileHighlight, Theme.tileHighlight.opacity(0)],
+                    center: .init(x: 0.28, y: 0.15), startRadius: 0, endRadius: width * 0.9
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+            )
+            .overlay(
                 RoundedRectangle(cornerRadius: 6)
                     .stroke(borderColor, lineWidth: isSelected || isHinted ? 2.5 : 1)
             )
@@ -47,7 +54,15 @@ struct TileView: View {
                 RoundedRectangle(cornerRadius: 6)
                     .fill(Color.black.opacity(isFree ? 0 : 0.38))
             )
+            // Base "riser" layer gives the tile a sense of physical thickness.
+            .background(
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Theme.tileRiser)
+                    .frame(width: width, height: height)
+                    .offset(y: isSelected ? 5 : 3)
+            )
             .shadow(color: glowColor, radius: (isSelected || isHinted) ? 10 : 2, y: isSelected ? 0 : 1.5)
+            .shadow(color: Color.black.opacity(0.35), radius: isSelected ? 12 : 5, y: isSelected ? 10 : 5)
             .scaleEffect(isSelected ? 1.08 : (dealt ? 1 : 0.4))
             .offset(y: isSelected ? -6 : 0)
             .opacity(dealt ? 1 : 0)

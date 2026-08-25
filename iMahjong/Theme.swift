@@ -27,9 +27,11 @@ enum Theme {
     static let dragonGreen = Color(red: 0x1f / 255.0, green: 0x7a / 255.0, blue: 0x4d / 255.0)
     static let bonusPink = Color(red: 0xd1 / 255.0, green: 0x47 / 255.0, blue: 0x7a / 255.0)
     static let bonusBlue = Color(red: 0x1d / 255.0, green: 0x5f / 255.0, blue: 0xa8 / 255.0)
-    static let tileFace = Color(red: 0.96, green: 0.94, blue: 0.88)
+    static let tileFace = Color(red: 0.996, green: 0.98, blue: 0.94)
     static let tileFaceShade = Color(red: 0.88, green: 0.85, blue: 0.78)
     static let tileEdge = Color(red: 0.55, green: 0.50, blue: 0.40)
+    static let tileHighlight = Color.white.opacity(0.55)
+    static let tileRiser = Color(red: 0.66, green: 0.58, blue: 0.42)
 
     static let radius: CGFloat = 10
     static let ease: Animation = .timingCurve(0.22, 1, 0.36, 1, duration: 0.35)
