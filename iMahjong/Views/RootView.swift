@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum AppScreen {
-    case splash, menu, howToPlay, game
+    case splash, menu, howToPlay, game, levelSelect
     case traditionalModeSelect, traditionalSetup, traditionalTable
     case onlineLobby, onlineTable
 }
@@ -41,15 +41,20 @@ struct RootView: View {
                     selectedDifficulty: $difficultyStore.value,
                     onPlay: { startNewGame() },
                     onContinue: { continueGame() },
+                    onLevels: { withAnimation(Theme.ease) { screen = .levelSelect } },
                     onHowToPlay: { withAnimation(Theme.ease) { screen = .howToPlay } },
                     onTraditionalMode: { withAnimation(Theme.ease) { screen = .traditionalModeSelect } }
                 )
             case .howToPlay:
                 HowToPlayView(onClose: { withAnimation(Theme.ease) { screen = .menu } })
+            case .levelSelect:
+                LevelSelectView(
+                    onBack: { withAnimation(Theme.ease) { screen = .menu } },
+                    onSelectLevel: { level in startLevel(level) }
+                )
             case .game:
                 GameView(engine: engine, onExit: {
-                    SaveStore.save(engine)
-                    hasSave = true
+                    hasSave = SaveStore.hasSave()
                     withAnimation(Theme.ease) { screen = .menu }
                 })
             case .traditionalModeSelect:
@@ -103,6 +108,13 @@ struct RootView: View {
 
     private func startNewGame() {
         engine.reset(difficulty: difficultyStore.value)
+        SaveStore.clear()
+        hasSave = false
+        withAnimation(Theme.ease) { screen = .game }
+    }
+
+    private func startLevel(_ level: Int) {
+        engine.startLevel(level)
         SaveStore.clear()
         hasSave = false
         withAnimation(Theme.ease) { screen = .game }

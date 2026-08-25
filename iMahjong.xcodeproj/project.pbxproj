@@ -13,6 +13,7 @@
 		116A539F792206AD5CB22755 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DC2CB75DB44AEA7BA1B74 /* SplashView.swift */; };
 		14FC6E4E840BAEBFDFC386D7 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95CF3E4605BE42D64C8623F /* Yaku.swift */; };
 		1E02422A42C910B3FC58BE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02665AE9CB42448F1ACF71D0 /* Assets.xcassets */; };
+		1EB10B4089772356EF9E341A /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB95738313280B079989F5 /* LevelSelectView.swift */; };
 		1F5B30E364222F7870B02D72 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674FFD847215C28EFBAB070 /* Layout.swift */; };
 		26D3747F45AB2DC5F9CC0392 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D40E9AAE5C868DF6A4C74 /* GameView.swift */; };
 		2F6A9D6D7E0B9C3B1C0B499B /* GameEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF2A5D05819CB9BE75E10D /* GameEngineTests.swift */; };
@@ -69,6 +70,7 @@
 		CB27F6079BF170F2218A014A /* TraditionalModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792280898DFEE7E3F888E62C /* TraditionalModeSelectView.swift */; };
 		D3C73730413A15945A54039F /* Scoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD2A7F45E380579D8E23A3A /* Scoring.swift */; };
 		D3D14C7217F8447F9A155306 /* SaveStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD96AE5EA782E611267A454B /* SaveStore.swift */; };
+		D558FA98979B7D613B09A4E7 /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB95738313280B079989F5 /* LevelSelectView.swift */; };
 		D5ABF2063D8C40FA6F2C13CF /* BackgroundGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306FEA07AC223BAA496E5AC /* BackgroundGlow.swift */; };
 		DBB89F82CF73E0D8A20B0747 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */; };
 		DC46D598C6EF5E8F676C7EE2 /* HandEval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */; };
@@ -96,6 +98,7 @@
 		02665AE9CB42448F1ACF71D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07C5E324696D8019F85AFA7D /* iMahjong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iMahjong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FD71D7F9EB696814598C96 /* TraditionalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalTableView.swift; sourceTree = "<group>"; };
+		11DB95738313280B079989F5 /* LevelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectView.swift; sourceTree = "<group>"; };
 		146F4AF6E8135D77DCE3D7B8 /* HandEval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandEval.swift; sourceTree = "<group>"; };
 		1E060BC81A86AB3A5958C372 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		2306FEA07AC223BAA496E5AC /* BackgroundGlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGlow.swift; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 				336DD92F4BACCE825F145135 /* BoardGeometry.swift */,
 				270D40E9AAE5C868DF6A4C74 /* GameView.swift */,
 				5F1A6A449BE12AD07E6C8F9F /* HowToPlayView.swift */,
+				11DB95738313280B079989F5 /* LevelSelectView.swift */,
 				30A166F71035441B9CA9F191 /* MainMenuView.swift */,
 				C52A4FD1DFB01CF14234E961 /* Modals.swift */,
 				DD7F15C51995EAB2B15E6D31 /* OnlineLobbyView.swift */,
@@ -385,6 +389,7 @@
 				DBB89F82CF73E0D8A20B0747 /* HowToPlayView.swift in Sources */,
 				1F5B30E364222F7870B02D72 /* Layout.swift in Sources */,
 				E21C0FD234A4A0543720D3C6 /* Leaderboard.swift in Sources */,
+				D558FA98979B7D613B09A4E7 /* LevelSelectView.swift in Sources */,
 				969D6076F36653C4BFA2BB0F /* LocalMatch.swift in Sources */,
 				7FE5A3333A0A6F4DCA0008E9 /* Localization.swift in Sources */,
 				FD60A2D9D5DD1B01F75EA586 /* MainMenuView.swift in Sources */,
@@ -425,6 +430,7 @@
 				870E7A78FE1AD99933DC8E84 /* HowToPlayView.swift in Sources */,
 				EE486604A710F344141F90C9 /* Layout.swift in Sources */,
 				B52E0B0C5A4239FDD32BB569 /* Leaderboard.swift in Sources */,
+				1EB10B4089772356EF9E341A /* LevelSelectView.swift in Sources */,
 				C117E961809BF14CED5D2E4D /* LocalMatch.swift in Sources */,
 				C2966FABE7432907D20C66C5 /* Localization.swift in Sources */,
 				E43983FA3E9F9DCA0EFE480C /* MainMenuView.swift in Sources */,

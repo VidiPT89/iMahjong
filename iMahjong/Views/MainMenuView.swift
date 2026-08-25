@@ -47,17 +47,9 @@ struct DifficultyPicker: View {
                 option(.easy, label: loc.t("difficultyEasy"))
                 option(.medium, label: loc.t("difficultyMedium"))
                 option(.hard, label: loc.t("difficultyHard"))
-                option(.infinite, label: loc.t("difficultyInfinite"))
             }
             .padding(3)
             .background(Capsule().fill(Theme.bgPanel).overlay(Capsule().stroke(Theme.border, lineWidth: 1)))
-
-            let bestLevel = Leaderboard.infiniteBestLevel()
-            if bestLevel > 0 {
-                Text(loc.t("infiniteBestLabel").replacingOccurrences(of: "{level}", with: "\(bestLevel)"))
-                    .font(.system(size: 11))
-                    .foregroundColor(Theme.textFaint)
-            }
         }
     }
 
@@ -80,6 +72,7 @@ struct MainMenuView: View {
     @Binding var selectedDifficulty: Difficulty
     let onPlay: () -> Void
     let onContinue: () -> Void
+    let onLevels: () -> Void
     let onHowToPlay: () -> Void
     let onTraditionalMode: () -> Void
 
@@ -119,6 +112,8 @@ struct MainMenuView: View {
                     }
                     Button(loc.t("play"), action: onPlay)
                         .buttonStyle(PrimaryButtonStyle())
+                    Button(loc.t("levelsMode"), action: onLevels)
+                        .buttonStyle(SecondaryButtonStyle())
                     Button(loc.t("traditionalMode"), action: onTraditionalMode)
                         .buttonStyle(SecondaryButtonStyle())
                     Button(loc.t("howToPlay"), action: onHowToPlay)

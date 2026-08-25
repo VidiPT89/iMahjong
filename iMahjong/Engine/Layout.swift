@@ -137,6 +137,29 @@ func buildInfiniteLayout(_ level: Int) -> [BoardPosition] {
     return positions
 }
 
+/// Levels mode (formerly "Infinite") is capped at a fixed run instead of growing forever,
+/// so it reads as a finite ladder of objectives rather than an endless mode. The same
+/// procedural board growth (buildInfiniteLayout) still drives the difficulty curve; only
+/// the ceiling and the tier labels shown in level select are new.
+let LEVELS_MAX_LEVEL = 15
+
+enum LevelTier: CaseIterable, Hashable {
+    case easy, medium, hard
+
+    var range: ClosedRange<Int> {
+        switch self {
+        case .easy: return 1...5
+        case .medium: return 6...10
+        case .hard: return 11...15
+        }
+    }
+
+    static func of(_ level: Int) -> LevelTier {
+        for tier in allCases where tier.range.contains(level) { return tier }
+        return .hard
+    }
+}
+
 enum Difficulty: String, CaseIterable {
     case easy, medium, hard, infinite
 

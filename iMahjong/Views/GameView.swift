@@ -54,6 +54,7 @@ struct GameView: View {
                     time: formattedTime(engine.elapsedSeconds),
                     moves: engine.moves,
                     score: currentScore,
+                    subtitle: engine.difficulty == .infinite ? loc.t("allLevelsComplete") : nil,
                     onPlayAgain: { restartGame() },
                     onMenu: { SaveStore.clear(); onExit() }
                 ).zIndex(600)
@@ -61,7 +62,7 @@ struct GameView: View {
                 StuckModalView(
                     onShuffle: { performShuffle(); modal = .none },
                     onUndo: { performUndo(); modal = .none },
-                    onMenu: onExit
+                    onMenu: { SaveStore.clear(); onExit() }
                 ).zIndex(600)
             case .confirmRestart:
                 ConfirmModalView(
@@ -197,7 +198,12 @@ struct GameView: View {
                             insertion: .identity,
                             removal: .scale(scale: 0.6).combined(with: .opacity)
                         ))
-                        .onTapGesture { handleTap(tile) }
+                        // highPriorityGesture, not onTapGesture: the board container below
+                        // also recognizes a double-tap (to reset zoom), and a plain single-tap
+                        // gesture anywhere in the same hierarchy as a double-tap gesture has to
+                        // wait out iOS's ~0.3s double-tap window before it's allowed to fire.
+                        // Giving the tile's tap priority skips that wait entirely.
+                        .highPriorityGesture(TapGesture().onEnded { handleTap(tile) })
                         .id(tile.id)
                     }
                 }
@@ -272,14 +278,22 @@ struct GameView: View {
         shakeTokens[id, default: 0] += 1
     }
 
-    /// Infinite mode never shows the win modal — clearing a level just chains straight into
-    /// the next (bigger) one, so the run keeps going instead of stopping. Progress (the
-    /// highest level reached) is saved after every level, not just when the player
-    /// eventually quits, so it survives the app being killed mid-run.
+    /// Levels mode shows the win modal only once the whole ladder (LEVELS_MAX_LEVEL) is
+    /// cleared — before that, clearing a level just chains straight into the next (bigger)
+    /// one, so a run keeps going instead of stopping at every step. Progress (the highest
+    /// level reached) is saved after every level, not just when the player eventually
+    /// quits, so it survives the app being killed mid-run.
     private func handleInfiniteLevelCleared() {
         let clearedLevel = engine.level
         let isNewRecord = Leaderboard.recordInfiniteLevel(clearedLevel)
         SoundManager.win()
+
+        if clearedLevel >= LEVELS_MAX_LEVEL {
+            SaveStore.clear()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { modal = .win }
+            return
+        }
+
         showToast(
             (isNewRecord ? loc.t("newRecordLevel") : loc.t("levelCleared"))
                 .replacingOccurrences(of: "{level}", with: "\(clearedLevel)")

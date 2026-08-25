@@ -28,6 +28,7 @@ struct WinModalView: View {
     let time: String
     let moves: Int
     let score: Int
+    var subtitle: String? = nil
     let onPlayAgain: () -> Void
     let onMenu: () -> Void
 
@@ -35,7 +36,7 @@ struct WinModalView: View {
         ModalOverlay {
             Text("🎉").font(.system(size: 44))
             Text(loc.t("winTitle")).font(.system(size: 24, weight: .bold)).foregroundColor(Theme.text)
-            Text(loc.t("winSubtitle")).font(.system(size: 14)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
+            Text(subtitle ?? loc.t("winSubtitle")).font(.system(size: 14)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
 
             HStack(spacing: 20) {
                 statBlock(loc.t("finalTime"), time)

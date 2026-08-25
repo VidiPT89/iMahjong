@@ -131,10 +131,41 @@ final class GameEngine: ObservableObject {
         startedAt = Date()
     }
 
-    /// Infinite mode only: deals the next (bigger) level's board in place, keeping the run's
+    /// Levels mode only: starts play directly at a chosen level (used by level select),
+    /// rather than always beginning at level 1 like `reset` does.
+    func startLevel(_ startAt: Int) {
+        difficulty = .infinite
+        level = startAt
+        let layout = buildInfiniteLayout(level)
+        tiles = layout.enumerated().map { i, pos in
+            GameTile(id: i, x: pos.x, y: pos.y, z: pos.z, removed: false, typeId: nil)
+        }
+
+        let refPositions = tiles.map { RefPosition(refId: $0.id, x: $0.x, y: $0.y, z: $0.z) }
+        guard let pairing = try? computeSolvablePairingWithRetry(refPositions) else {
+            fatalError("Could not compute a solvable pairing for the levels layout")
+        }
+        let units = buildInfinitePairUnits(totalTiles: tiles.count)
+
+        for (idx, pair) in pairing.enumerated() {
+            let (typeA, typeB) = units[idx]
+            setTypeId(typeA, forTileId: pair.0)
+            setTypeId(typeB, forTileId: pair.1)
+        }
+        provenSolveOrder = pairing
+
+        selectedId = nil
+        history = []
+        moves = 0
+        hintsUsed = 0
+        startedAt = Date()
+    }
+
+    /// Levels mode only: deals the next (bigger) level's board in place, keeping the run's
     /// cumulative moves/score/timer going rather than resetting them like `reset` does for a
     /// brand new game. The undo history does reset — undoing across a level boundary back
-    /// into an already-cleared board doesn't make sense.
+    /// into an already-cleared board doesn't make sense. Never called past LEVELS_MAX_LEVEL —
+    /// clearing the last level ends the run instead (see GameView.handleInfiniteLevelCleared).
     func dealNextInfiniteLevel() {
         level += 1
         let layout = buildInfiniteLayout(level)

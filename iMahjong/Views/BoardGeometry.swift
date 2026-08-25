@@ -27,14 +27,19 @@ enum BoardGeometry {
     static let stepY: CGFloat = tileH * 0.82
     static let layerNudge: CGFloat = 5
 
+    /// Must match the span `point(for:in:)` actually produces — an extra `+1` row/column
+    /// here (beyond what `point` places tiles across) would pad only the trailing edge,
+    /// since `point` anchors its leftmost/topmost content at exactly `maxLayer * layerNudge`
+    /// with no matching margin reserved on the near side, making the board visibly lean
+    /// toward the top-left inside its own frame.
     static func boardWidth(_ extents: BoardExtents) -> CGFloat {
         let maxLayer = CGFloat(extents.maxZ)
-        return (CGFloat(extents.maxX - extents.minX) + 1) * stepX + tileW + maxLayer * layerNudge * 2
+        return CGFloat(extents.maxX - extents.minX) * stepX + tileW + maxLayer * layerNudge * 2
     }
 
     static func boardHeight(_ extents: BoardExtents) -> CGFloat {
         let maxLayer = CGFloat(extents.maxZ)
-        return (CGFloat(extents.maxY - extents.minY) + 1) * stepY + tileH + maxLayer * layerNudge * 2
+        return CGFloat(extents.maxY - extents.minY) * stepY + tileH + maxLayer * layerNudge * 2
     }
 
     static func point(for tile: GameTile, in extents: BoardExtents) -> CGPoint {
