@@ -44,7 +44,6 @@ final class Localization: ObservableObject {
             "difficultyEasy": "Fácil",
             "difficultyMedium": "Médio",
             "difficultyHard": "Difícil",
-            "infiniteBestLabel": "Melhor nível: {level}",
             "levelCleared": "Nível {level} completo!",
             "newRecordLevel": "🏆 Novo recorde: nível {level}",
             "levelsMode": "Níveis",
@@ -53,7 +52,6 @@ final class Localization: ObservableObject {
             "tierEasy": "Fácil",
             "tierMedium": "Médio",
             "tierHard": "Difícil",
-            "levelLocked": "Bloqueado",
             "allLevelsComplete": "Completaste todos os níveis! 🎉",
 
             "tradSetupTitle": "4 Jogadores — Riichi",
@@ -193,7 +191,6 @@ final class Localization: ObservableObject {
             "difficultyEasy": "Easy",
             "difficultyMedium": "Medium",
             "difficultyHard": "Hard",
-            "infiniteBestLabel": "Best level: {level}",
             "levelCleared": "Level {level} cleared!",
             "newRecordLevel": "🏆 New record: level {level}",
             "levelsMode": "Levels",
@@ -202,7 +199,6 @@ final class Localization: ObservableObject {
             "tierEasy": "Easy",
             "tierMedium": "Medium",
             "tierHard": "Hard",
-            "levelLocked": "Locked",
             "allLevelsComplete": "You cleared every level! 🎉",
 
             "tradSetupTitle": "4-Player — Riichi",
