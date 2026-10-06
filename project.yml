@@ -4,6 +4,9 @@ options:
 configs:
   Debug: debug
   Release: release
+settings:
+  base:
+    DEVELOPMENT_TEAM: S769436W24
 targets:
   iMahjong-iOS:
     type: application
