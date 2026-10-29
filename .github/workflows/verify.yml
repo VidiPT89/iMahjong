@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '22'
       - run: node --test Server/test/core.test.js
-      - run: npm install --ignore-scripts
+      - run: npm ci --ignore-scripts
         working-directory: Server
       - run: npm test
         working-directory: Server

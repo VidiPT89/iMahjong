@@ -49,7 +49,7 @@ final class GameEngineTests: XCTestCase {
     func testMismatchedFreeTilesAreNotRemoved() {
         let engine = GameEngine(difficulty: .medium)
         let free = engine.freeTiles()
-        guard let a = free.first, let b = free.first(where: { !tilesMatch($0.typeId ?? "", a.typeId ?? "") }) else {
+        guard let a = free.first, let b = free.first(where: { $0.id != a.id && !tilesMatch($0.typeId ?? "", a.typeId ?? "") }) else {
             return XCTFail("expected two free tiles of different types on a fresh board")
         }
 
