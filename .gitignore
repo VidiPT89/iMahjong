@@ -14,3 +14,7 @@ xcuserdata/
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
+
+.build/
+.swiftpm/
+Server/node_modules/

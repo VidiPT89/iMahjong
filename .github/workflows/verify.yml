@@ -1,0 +1,24 @@
+name: Verify Apple app and server
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  apple:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift test
+      - run: xcodebuild -project iVidiMahjong.xcodeproj -scheme iVidiMahjong-macOS -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test
+      - run: xcodebuild -project iVidiMahjong.xcodeproj -scheme iVidiMahjong-iOS -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test Server/test/core.test.js
+      - run: npm install --ignore-scripts
+        working-directory: Server
+      - run: npm test
+        working-directory: Server
