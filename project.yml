@@ -65,6 +65,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: dev.ividi.ividimahjong
+        PRODUCT_NAME: iVidiMahjong
         PRODUCT_MODULE_NAME: iVidiMahjong
         SWIFT_VERSION: "5.0"
         MACOSX_DEPLOYMENT_TARGET: "13.0"
@@ -89,7 +90,7 @@ targets:
         CODE_SIGN_STYLE: Automatic
         GENERATE_INFOPLIST_FILE: true
         PRODUCT_BUNDLE_IDENTIFIER: dev.ividi.ividimahjong.tests
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/iVidiMahjong-macOS.app/Contents/MacOS/iVidiMahjong-macOS"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/iVidiMahjong.app/Contents/MacOS/iVidiMahjong"
         BUNDLE_LOADER: "$(TEST_HOST)"
 
   iVidiMahjongUITests:

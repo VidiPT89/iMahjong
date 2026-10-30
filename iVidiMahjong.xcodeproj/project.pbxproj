@@ -664,6 +664,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong;
 				PRODUCT_MODULE_NAME = iVidiMahjong;
+				PRODUCT_NAME = iVidiMahjong;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -742,7 +743,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.tests;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iVidiMahjong-macOS.app/Contents/MacOS/iVidiMahjong-macOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iVidiMahjong.app/Contents/MacOS/iVidiMahjong";
 			};
 			name = Release;
 		};
@@ -764,6 +765,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong;
 				PRODUCT_MODULE_NAME = iVidiMahjong;
+				PRODUCT_NAME = iVidiMahjong;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -825,7 +827,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.tests;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iVidiMahjong-macOS.app/Contents/MacOS/iVidiMahjong-macOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iVidiMahjong.app/Contents/MacOS/iVidiMahjong";
 			};
 			name = Debug;
 		};
