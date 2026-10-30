@@ -1,7 +1,7 @@
 import Foundation
 
 enum SaveStore {
-    private static let key = "imahjong-save"
+    private static let key = "ividimahjong-save"
 
     static func save(_ engine: GameEngine) {
         if engine.isWon() && (engine.difficulty != .infinite || engine.level >= LEVELS_MAX_LEVEL) {

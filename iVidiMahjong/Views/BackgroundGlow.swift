@@ -27,14 +27,12 @@ struct BrandLogo: View {
     var size: CGFloat = 40
 
     var body: some View {
-        HStack(spacing: 0) {
-            Text("iVidi")
-                .font(.system(size: size, weight: .bold, design: .rounded))
-                .foregroundColor(Theme.text)
-            Text("Mahjong")
-                .font(.system(size: size, weight: .bold, design: .rounded))
-                .foregroundColor(Theme.accent)
-        }
+        Text("iVidiMahjong")
+            .font(.system(size: size, weight: .bold, design: .rounded))
+            .foregroundColor(Theme.accent)
+            .lineLimit(1)
+            .minimumScaleFactor(0.6)
+            .accessibilityLabel("iVidiMahjong")
     }
 }
 

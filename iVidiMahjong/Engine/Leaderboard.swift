@@ -10,7 +10,7 @@ struct LeaderboardEntry: Codable, Equatable {
 }
 
 enum Leaderboard {
-    private static let key = "imahjong-leaderboard"
+    private static let key = "ividimahjong-leaderboard"
 
     private static func loadAll() -> [String: LeaderboardEntry] {
         guard let data = UserDefaults.standard.data(forKey: key),
@@ -62,7 +62,7 @@ enum Leaderboard {
         UserDefaults.standard.removeObject(forKey: infiniteBestLevelKey)
     }
 
-    private static let infiniteBestLevelKey = "imahjong-leaderboard-infinite-bestLevel"
+    private static let infiniteBestLevelKey = "ividimahjong-leaderboard-infinite-bestLevel"
 
     /// Infinite mode has no fixed board to compare times/moves against (it grows every
     /// level), so its only record is the highest level ever reached.

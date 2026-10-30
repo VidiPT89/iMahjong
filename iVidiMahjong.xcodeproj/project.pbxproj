@@ -557,7 +557,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjong;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong;
 				PRODUCT_MODULE_NAME = iVidiMahjong;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -632,7 +632,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iVidiMahjongTests;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.tests;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iVidiMahjong-macOS.app/Contents/MacOS/iVidiMahjong-macOS";
@@ -654,7 +654,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjong;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong;
 				PRODUCT_MODULE_NAME = iVidiMahjong;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -674,7 +674,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjong;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -694,7 +694,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iVidiMahjongTests;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.tests;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iVidiMahjong-macOS.app/Contents/MacOS/iVidiMahjong-macOS";
@@ -714,7 +714,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vidi.iMahjong;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

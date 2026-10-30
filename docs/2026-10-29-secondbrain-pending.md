@@ -41,3 +41,11 @@ Revisão geral do Mahjong, correção de problemas, remoção de código morto e
 - Validar WebSocket real, reconexão e vários clientes.
 - Concluir pushes e renomeação GitHub quando houver rede.
 - Integrar este registo no vault quando houver permissão de escrita. Melhorias futuras propostas: passagem privada de mãos, regras Riichi completas e sons próprios.
+
+## Correção posterior de nomenclatura
+
+Por indicação explícita do utilizador, nome visível uniformizado para iVidiMahjong, incluindo logótipo e textos de menu/ajuda. Bundle ID alterado para dev.ividi.ividimahjong e preferências para ividimahjong-*. Esta decisão substitui a opção anterior de manter identificadores antigos.
+
+## 2026-10-30: conclusão da uniformização do nome
+
+Tarefa: substituir o nome antigo pelo nome exato iVidiMahjong. Logótipo, menu e ajuda PT/EN atualizados; bundle ID dev.ividi.ividimahjong, testes dev.ividi.ividimahjong.tests e preferências ividimahjong-*. Projeto Xcode regenerado. Os testes da alteração passaram: 36 testes Swift, 1 integração omitida, zero falhas. Parser Swift passou; pesquisa final não encontrou nomes antigos ativos. O ficheiro novo iVidiMahjong_logo.jpeg já estava presente ao retomar e não foi alterado nem incluído no commit. Rename remoto novamente bloqueado pela rede. Próximo passo: push/rename GitHub e validação visual quando o ambiente permitir.

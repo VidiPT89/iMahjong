@@ -1,6 +1,6 @@
 # iVidiMahjong
 
-Native SwiftUI Mahjong for iPhone, iPad and Mac. Requires iOS/iPadOS 16+ or macOS 13+.
+Native SwiftUI iVidiMahjong for iPhone, iPad and Mac. Requires iOS/iPadOS 16+ or macOS 13+.
 
 - Solitaire: three difficulties, solvable initial deals and reshuffles, hints, undo, autosave, paused timer and local records.
 - Levels: 15 increasingly large boards, with progression saved on this device.
@@ -50,7 +50,7 @@ Rule reference used during review: [European Mahjong Association Riichi rules](h
 
 ## Compatibility and repository name
 
-The app, source directory, module, project and schemes are named **iVidiMahjong**. The legacy bundle identifier `com.vidi.iMahjong` and `imahjong-*` preferences intentionally remain stable so an update can retain existing saves, language and records.
+The app, source directory, module, project and schemes are named **iVidiMahjong**. The bundle identifier is `dev.ividi.ividimahjong`; preference keys use `ividimahjong-*`. This replaces the previous installation identity and preference namespace.
 
 The remote repository was originally `VidiPT89/iMahjong`. Its GitHub rename and pushes require network access; see the dated audit for the confirmed publication state.
 

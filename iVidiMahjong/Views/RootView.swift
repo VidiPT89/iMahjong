@@ -8,11 +8,11 @@ enum AppScreen {
 
 final class DifficultyStore: ObservableObject {
     @Published var value: Difficulty {
-        didSet { UserDefaults.standard.set(value.rawValue, forKey: "imahjong-difficulty") }
+        didSet { UserDefaults.standard.set(value.rawValue, forKey: "ividimahjong-difficulty") }
     }
 
     init() {
-        if let stored = UserDefaults.standard.string(forKey: "imahjong-difficulty"), let d = Difficulty(rawValue: stored) {
+        if let stored = UserDefaults.standard.string(forKey: "ividimahjong-difficulty"), let d = Difficulty(rawValue: stored) {
             value = d
         } else {
             value = .easy

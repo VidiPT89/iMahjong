@@ -30,7 +30,7 @@ targets:
         CFBundleDisplayName: "iVidiMahjong"
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.vidi.iMahjong
+        PRODUCT_BUNDLE_IDENTIFIER: dev.ividi.ividimahjong
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -51,7 +51,7 @@ targets:
         NSHumanReadableCopyright: "Copyright © 2026 David Arsénio Martins"
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.vidi.iMahjong
+        PRODUCT_BUNDLE_IDENTIFIER: dev.ividi.ividimahjong
         PRODUCT_MODULE_NAME: iVidiMahjong
         SWIFT_VERSION: "5.0"
         MACOSX_DEPLOYMENT_TARGET: "13.0"
@@ -75,5 +75,6 @@ targets:
         MACOSX_DEPLOYMENT_TARGET: "13.0"
         CODE_SIGN_STYLE: Automatic
         GENERATE_INFOPLIST_FILE: true
+        PRODUCT_BUNDLE_IDENTIFIER: dev.ividi.ividimahjong.tests
         TEST_HOST: "$(BUILT_PRODUCTS_DIR)/iVidiMahjong-macOS.app/Contents/MacOS/iVidiMahjong-macOS"
         BUNDLE_LOADER: "$(TEST_HOST)"

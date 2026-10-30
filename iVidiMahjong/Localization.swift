@@ -9,11 +9,11 @@ final class Localization: ObservableObject {
     static let shared = Localization()
 
     @Published var lang: Lang {
-        didSet { UserDefaults.standard.set(lang.rawValue, forKey: "imahjong-lang") }
+        didSet { UserDefaults.standard.set(lang.rawValue, forKey: "ividimahjong-lang") }
     }
 
     private init() {
-        if let stored = UserDefaults.standard.string(forKey: "imahjong-lang"), let l = Lang(rawValue: stored) {
+        if let stored = UserDefaults.standard.string(forKey: "ividimahjong-lang"), let l = Lang(rawValue: stored) {
             lang = l
         } else {
             lang = .pt
@@ -33,7 +33,7 @@ final class Localization: ObservableObject {
             "tapToContinue": "Toque para continuar",
             "developedBy": "Desenvolvido por",
 
-            "menuTag": "MAHJONG SOLITÁRIO",
+            "menuTag": "iVidiMahjong · Solitário",
             "bestRecord": "Recordes",
             "muteSound": "Desligar som",
             "enableSound": "Ligar som",
@@ -139,7 +139,7 @@ final class Localization: ObservableObject {
             "shuffleImpossible": "Não foi possível encontrar um baralhar resolúvel. Tenta desfazer.",
 
             "htpTitle": "Como Jogar",
-            "htpIntro": "O Mahjong Solitário joga-se com 144 fichas empilhadas em pirâmide. O objetivo é remover todas as fichas do tabuleiro, combinando-as duas a duas.",
+            "htpIntro": "O modo Solitário do iVidiMahjong joga-se com 144 fichas empilhadas em pirâmide. O objetivo é remover todas as fichas do tabuleiro, combinando-as duas a duas.",
             "htpFreeTitle": "1. A regra da ficha \"livre\"",
             "htpFreeBody": "Só podes selecionar uma ficha se ela estiver livre: nada por cima dela, e pelo menos um dos lados (esquerdo ou direito) completamente desimpedido.",
             "htpCoveredLabel": "Coberta",
@@ -160,7 +160,7 @@ final class Localization: ObservableObject {
             "htpInfiniteBody": "Ao lado de Fácil/Médio/Difícil há um quarto modo: Infinito. Começa no nível 1 e, de cada vez que limpas o tabuleiro, entra logo o nível seguinte, maior (mais fichas, mais camadas empilhadas) — sem fim. Tempo, jogadas e pontos acumulam-se ao longo de toda a corrida, e o nível mais alto que alcançares fica guardado como recorde neste dispositivo.",
             "htpModeSolitaire": "Solitário",
             "htpModeRiichi": "Riichi (4 Jogadores)",
-            "htpRiichiIntro": "O modo 4 Jogadores é o Mahjong Riichi tradicional: cada jogador tem uma mão de fichas e o objetivo é ser o primeiro a completar uma mão vencedora — 4 conjuntos de 3 fichas mais um par (ou uma das mãos especiais). Joga-se localmente contra bots, em pass-and-play com 1 a 4 pessoas no mesmo dispositivo. Este guia explica tudo passo a passo, mesmo que nunca tenhas jogado Riichi antes.",
+            "htpRiichiIntro": "O modo 4 Jogadores é o Riichi tradicional do iVidiMahjong: cada jogador tem uma mão de fichas e o objetivo é ser o primeiro a completar uma mão vencedora — 4 conjuntos de 3 fichas mais um par (ou uma das mãos especiais). Joga-se localmente contra bots, em pass-and-play com 1 a 4 pessoas no mesmo dispositivo. Este guia explica tudo passo a passo, mesmo que nunca tenhas jogado Riichi antes.",
             "htpRiichiTableTitle": "1. A mesa e as fichas",
             "htpRiichiTableBody": "Sentam-se quatro jogadores à volta de uma mesa (tu e, consoante a configuração escolhida, bots a preencher os lugares vazios). Cada jogador começa com 25000 pontos e uma mão de 13 fichas — o dealer (o jogador \"Este\") começa com 14. As fichas vêm de uma parede de 136: números 1 a 9 em três naipes (Carateres, Bambus, Círculos, 4 de cada), 4 ventos (Este, Sul, Oeste, Norte) e 3 dragões (Vermelho, Verde, Branco). O vento da rodada e o vento de cada jogador mudam consoante quem é o dealer nessa mão, e isso afeta que ventos valem pontos extra (yakuhai).",
             "htpRiichiTurnTitle": "2. Como se joga um turno",
@@ -183,7 +183,7 @@ final class Localization: ObservableObject {
             "tapToContinue": "Tap to continue",
             "developedBy": "Developed by",
 
-            "menuTag": "MAHJONG SOLITAIRE",
+            "menuTag": "iVidiMahjong · Solitaire",
             "bestRecord": "Best records",
             "muteSound": "Mute sound",
             "enableSound": "Enable sound",
@@ -289,7 +289,7 @@ final class Localization: ObservableObject {
             "shuffleImpossible": "Couldn't find a solvable shuffle. Try undo instead.",
 
             "htpTitle": "How to Play",
-            "htpIntro": "Mahjong Solitaire is played with 144 tiles stacked into a pyramid. The goal is to clear the whole board by matching tiles two at a time.",
+            "htpIntro": "iVidiMahjong Solitaire is played with 144 tiles stacked into a pyramid. The goal is to clear the whole board by matching tiles two at a time.",
             "htpFreeTitle": "1. The \"free tile\" rule",
             "htpFreeBody": "You can only select a tile if it is free: nothing on top of it, and at least one side (left or right) completely open.",
             "htpCoveredLabel": "Covered",
@@ -310,7 +310,7 @@ final class Localization: ObservableObject {
             "htpInfiniteBody": "Alongside Easy/Medium/Hard there's a fourth mode: Infinite. It starts at level 1, and every time you clear the board the next, bigger level (more tiles, more stacked layers) starts right away, with no end. Time, moves and score keep accumulating for the whole run, and the highest level you reach is saved as a record on this device.",
             "htpModeSolitaire": "Solitaire",
             "htpModeRiichi": "Riichi (4 Players)",
-            "htpRiichiIntro": "The 4 Players mode is traditional Riichi Mahjong: each player holds a hand of tiles and the goal is to be the first to complete a winning hand — 4 sets of 3 tiles plus a pair (or one of the special hand shapes). It's played locally against bots, pass-and-play with 1-4 people on the same device. This guide walks through everything step by step, even if you've never played Riichi before.",
+            "htpRiichiIntro": "The 4 Players mode is traditional Riichi in iVidiMahjong: each player holds a hand of tiles and the goal is to be the first to complete a winning hand — 4 sets of 3 tiles plus a pair (or one of the special hand shapes). It's played locally against bots, pass-and-play with 1-4 people on the same device. This guide walks through everything step by step, even if you've never played Riichi before.",
             "htpRiichiTableTitle": "1. The table and the tiles",
             "htpRiichiTableBody": "Four players sit around a table (you plus, depending on the setup you pick, bots filling any empty seats). Each player starts with 25000 points and a hand of 13 tiles, the dealer (the \"East\" seat) starts with 14. Tiles come from a wall of 136: numbers 1 through 9 in three suits (Characters, Bamboo, Circles, 4 of each), 4 winds (East, South, West, North) and 3 dragons (Red, Green, White). The round wind and each player's seat wind change depending on who is dealer for that hand, and that affects which winds are worth bonus points (yakuhai).",
             "htpRiichiTurnTitle": "2. Playing a turn",

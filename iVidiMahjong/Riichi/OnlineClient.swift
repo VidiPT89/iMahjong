@@ -1,7 +1,7 @@
 import Foundation
 
 /// WebSocket client for the traditional 4-player Riichi online mode. Talks to the same
-/// authoritative Node server used by the web port (see MahjongWeb/server/index.js's protocol
+/// authoritative Node server used by the web port (see Server/index.js's protocol
 /// comment) -- the server owns all game rules and just pushes down a fully-resolved "state"
 /// after every change, so this client is intentionally a thin, mostly untyped relay rather
 /// than a second implementation of the rules: messages are decoded with JSONSerialization
@@ -27,15 +27,15 @@ final class OnlineClient: NSObject, ObservableObject {
     let playerId: String = OnlineClient.loadOrCreatePlayerId()
 
     private static func loadOrCreatePlayerId() -> String {
-        let key = "imahjong-player-id"
+        let key = "ividimahjong-player-id"
         if let existing = UserDefaults.standard.string(forKey: key) { return existing }
         let id = "p-" + UUID().uuidString.lowercased()
         UserDefaults.standard.set(id, forKey: key)
         return id
     }
 
-    static func storedServerURL() -> String { UserDefaults.standard.string(forKey: "imahjong-server-url") ?? "" }
-    static func storeServerURL(_ url: String) { UserDefaults.standard.set(url, forKey: "imahjong-server-url") }
+    static func storedServerURL() -> String { UserDefaults.standard.string(forKey: "ividimahjong-server-url") ?? "" }
+    static func storeServerURL(_ url: String) { UserDefaults.standard.set(url, forKey: "ividimahjong-server-url") }
 
     /// Opens the socket and waits for the connection to actually establish (or fail) before
     /// returning, so callers can show a connecting/error state instead of firing messages at
