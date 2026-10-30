@@ -2,8 +2,7 @@ import SwiftUI
 
 enum AppScreen {
     case splash, menu, howToPlay, game, levelSelect
-    case traditionalModeSelect, traditionalSetup, traditionalTable
-    case onlineLobby, onlineTable
+    case traditionalSetup, traditionalTable
 }
 
 final class DifficultyStore: ObservableObject {
@@ -28,7 +27,6 @@ struct RootView: View {
     @State private var hasSave = SaveStore.hasSave()
     @State private var humanSeats: [Bool] = [true, false, false, false]
     @State private var localMatch: LocalMatch?
-    @StateObject private var onlineClient = OnlineClient()
 
     var body: some View {
         ZStack {
@@ -43,7 +41,7 @@ struct RootView: View {
                     onContinue: { continueGame() },
                     onLevels: { withAnimation(Theme.ease) { screen = .levelSelect } },
                     onHowToPlay: { withAnimation(Theme.ease) { screen = .howToPlay } },
-                    onTraditionalMode: { withAnimation(Theme.ease) { screen = .traditionalModeSelect } }
+                    onTraditionalMode: { withAnimation(Theme.ease) { screen = .traditionalSetup } }
                 )
             case .howToPlay:
                 HowToPlayView(onClose: { withAnimation(Theme.ease) { screen = .menu } })
@@ -57,16 +55,10 @@ struct RootView: View {
                     hasSave = SaveStore.hasSave()
                     withAnimation(Theme.ease) { screen = .menu }
                 })
-            case .traditionalModeSelect:
-                TraditionalModeSelectView(
-                    onBack: { withAnimation(Theme.ease) { screen = .menu } },
-                    onLocal: { withAnimation(Theme.ease) { screen = .traditionalSetup } },
-                    onOnline: { withAnimation(Theme.ease) { screen = .onlineLobby } }
-                )
             case .traditionalSetup:
                 TraditionalSetupView(
                     humanSeats: $humanSeats,
-                    onBack: { withAnimation(Theme.ease) { screen = .traditionalModeSelect } },
+                    onBack: { withAnimation(Theme.ease) { screen = .menu } },
                     onStart: {
                         let match = LocalMatch(isHuman: humanSeats)
                         localMatch = match
@@ -79,23 +71,9 @@ struct RootView: View {
                     TraditionalTableView(match: localMatch, onExit: {
                         localMatch.stop()
                         self.localMatch = nil
-                        withAnimation(Theme.ease) { screen = .traditionalModeSelect }
+                        withAnimation(Theme.ease) { screen = .traditionalSetup }
                     })
                 }
-            case .onlineLobby:
-                OnlineLobbyView(
-                    client: onlineClient,
-                    onBack: {
-                        onlineClient.disconnect()
-                        withAnimation(Theme.ease) { screen = .traditionalModeSelect }
-                    },
-                    onStarted: { withAnimation(Theme.ease) { screen = .onlineTable } }
-                )
-            case .onlineTable:
-                OnlineTableView(client: onlineClient, onExit: {
-                    onlineClient.disconnect()
-                    withAnimation(Theme.ease) { screen = .traditionalModeSelect }
-                })
             }
         }
         .environmentObject(loc)

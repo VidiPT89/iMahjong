@@ -41,7 +41,22 @@ struct MiniTileChip: View {
 struct TileFaceView: View {
     let typeId: String
 
+    /// Glyph sizes are tuned for the Solitaire tile face (34x50 pt). Every other size draws
+    /// the face at that reference size and scales it, so small chips in the Riichi rivers
+    /// shrink the glyphs instead of letting them spill outside the tile.
+    private static let referenceSize = CGSize(width: 34, height: 50)
+
     var body: some View {
+        GeometryReader { geo in
+            let ref = Self.referenceSize
+            face
+                .frame(width: ref.width, height: ref.height)
+                .scaleEffect(min(geo.size.width / ref.width, geo.size.height / ref.height))
+                .frame(width: geo.size.width, height: geo.size.height)
+        }
+    }
+
+    private var face: some View {
         guard let type = TILE_TYPES_BY_ID[typeId] else { return AnyView(EmptyView()) }
         switch type.category {
         case .suit:

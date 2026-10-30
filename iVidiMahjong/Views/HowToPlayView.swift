@@ -138,7 +138,7 @@ struct HowToPlayView: View {
                             }
 
                             HTPSection(loc.t("htpScoreTitle"), loc.t("htpScoreBody"))
-                            HTPSection(loc.t("htpInfiniteTitle"), loc.t("htpInfiniteBody"))
+                            HTPSection(loc.t("htpLevelsTitle"), loc.t("htpLevelsBody"))
                         } else {
                             Text(loc.t("htpRiichiIntro"))
                                 .font(.system(size: 15))
@@ -155,6 +155,8 @@ struct HowToPlayView: View {
                         }
                     }
                     .padding(20)
+                    .frame(maxWidth: 720)
+                    .frame(maxWidth: .infinity)
                 }
 
                 Button(loc.t("htpCloseButton"), action: onClose)

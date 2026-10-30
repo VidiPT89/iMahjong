@@ -305,8 +305,7 @@ final class RiichiEngine {
     /// Applies standard priority: ron > pon/kan > chi > nothing.
     func resolveReactions(_ responses: [Int: ReactionResponse]) -> ReactionResolution {
         // Re-validate every claimed action against freshly-computed legality — never
-        // trust `responses` at face value (it may come from an untrusted network client
-        // in online play).
+        // trust `responses` at face value.
         let summary = getReactionSummary()
 
         let ronSeats = responses.keys.sorted().filter { summary[$0]?.ron == true && responses[$0] == .ron }

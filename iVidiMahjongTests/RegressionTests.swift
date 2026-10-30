@@ -159,32 +159,6 @@ final class RegressionTests: XCTestCase {
         }
     }
 
-    func testDisconnectClearsLobbyAndMatchState() {
-        let client = OnlineClient()
-        client.seat = 2
-        client.roomCode = "ABCDE"
-        client.state = ["type": "state"]
-        client.stateVersion = 10
-        client.connectionLost = true
-        client.disconnect()
-        XCTAssertNil(client.roomCode)
-        XCTAssertNil(client.seat)
-        XCTAssertNil(client.state)
-        XCTAssertEqual(client.stateVersion, 0)
-        XCTAssertFalse(client.connectionLost)
-    }
-
-    func testInvalidSocketURLFailsImmediately() {
-        let client = OnlineClient()
-        var completed = false
-        client.connect(url: "https://example.com") { success in
-            XCTAssertFalse(success)
-            completed = true
-        }
-        XCTAssertTrue(completed)
-        XCTAssertFalse(client.isConnected)
-    }
-
     func testCurrentHandRiichiDepositPaidToWinnerExactlyOnce() {
         let match = LocalMatch(isHuman: [true, true, true, true])
         defer { match.stop() }

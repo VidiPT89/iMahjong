@@ -8,7 +8,7 @@ let package = Package(
     products: [.library(name: "iVidiMahjong", targets: ["iVidiMahjong"])],
     targets: [
         .target(name: "iVidiMahjong", path: "iVidiMahjong",
-                exclude: ["Views", "Assets.xcassets", "Theme.swift", "Localization.swift", "iVidiMahjongApp.swift", "Engine/SoundManager.swift"]),
+                exclude: ["Views", "Assets.xcassets", "Theme.swift", "Localization.swift", "iVidiMahjongApp.swift", "Engine/SoundManager.swift", "PrivacyInfo.xcprivacy"]),
         .testTarget(name: "iVidiMahjongTests", dependencies: ["iVidiMahjong"], path: "iVidiMahjongTests")
     ]
 )

@@ -184,7 +184,7 @@ struct GameView: View {
             let fitScale = min(
                 outer.size.width / boardW,
                 outer.size.height / boardH,
-                1.5
+                3
             )
             let zoom = (userZoom * magnifyDelta).clamped(to: minUserZoom...maxUserZoom)
 

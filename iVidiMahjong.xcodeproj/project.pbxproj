@@ -22,8 +22,6 @@
 		391E9FE4A58637596BEB8632 /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F6670B28037CFE43CC44B /* Bot.swift */; };
 		3BB469560612F4E844D2FB58 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FDF3E6077F26567496F30 /* GameView.swift */; };
 		40C8D02C5DCCC24AB98B858A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172385CDCCF7C13E079AEC6D /* Localization.swift */; };
-		4299DBEB1CD903318FB92863 /* OnlineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837697EAFB220BA820808201 /* OnlineClient.swift */; };
-		49594EA8AF9187F9D0D2802A /* TraditionalModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F19579333B40325106169 /* TraditionalModeSelectView.swift */; };
 		4973C0647C2890D8B7F41139 /* BoardGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D798A400C378B9CCED69A8 /* BoardGeometry.swift */; };
 		4CF4500FEF2904BC7360CD73 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7CB06F3DCCFB4BF855780 /* TileType.swift */; };
 		4F02164472D28D9D9E4D4A62 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8083EF1D5C378BE877B5A1 /* GameEngine.swift */; };
@@ -41,14 +39,11 @@
 		7D303596A9CBEF7732242892 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC77DA626F1BBB670AFD45 /* Yaku.swift */; };
 		7DB87711D6FF7E1147575954 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFC6FA3490F049E2C79928 /* RootView.swift */; };
 		7F9C58457A52CFAE091A6A5D /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DE7CE04483CAB22D2447D /* MainMenuView.swift */; };
-		8023135D4BEF5263C34AA12C /* TraditionalModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F19579333B40325106169 /* TraditionalModeSelectView.swift */; };
 		831FB22795CDCB62BF651002 /* HandEvalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391FB461D599C497E921E06 /* HandEvalTests.swift */; };
 		83C694FDDFEFCD35BC12A078 /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B3E9DEE2EC1A3003EF9043 /* LevelSelectView.swift */; };
 		83DE97264C1E51E54EED2FBA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAA95CDD4EA9218A046D465 /* Theme.swift */; };
 		88B0975F3398342D6D06AFAB /* TileFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C48061D077F9186087204 /* TileFaceView.swift */; };
-		8C3592CE3CAB1176744F0BE5 /* OnlineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289A1C2A972811A609834E08 /* OnlineTableView.swift */; };
 		90292C5C885D29C585890193 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFC6FA3490F049E2C79928 /* RootView.swift */; };
-		9846C03EF0B9222F3B6DB41E /* OnlineLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0E998C4EB3C4C6A145399 /* OnlineLobbyView.swift */; };
 		98CD4B290E3BD6EF4F8776AC /* Modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19086FCCC4806E6A0486F267 /* Modals.swift */; };
 		9F9F96F18D0BFEB311ECB5D2 /* TraditionalSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FD18EB8F7B23FF80444038 /* TraditionalSetupView.swift */; };
 		A1B33D416CEDC59D42F93800 /* SaveStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D69E0F8E1CB57561BDF49F /* SaveStore.swift */; };
@@ -57,12 +52,11 @@
 		A73F71AC7961C124C277DC1A /* iVidiMahjongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D25DE427B304843B52542C0 /* iVidiMahjongApp.swift */; };
 		AA1D2DF3EFF4834C4187905F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270CA34E5B20FCD4B30AA544 /* SoundManager.swift */; };
 		B0B46FDBDEA9061CCC1CF58E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548127BC42B97D0C58872E4 /* Tile.swift */; };
+		B3710CC6105C6BE48CB662DF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0084061FF929A1D8D5AB8A7C /* PrivacyInfo.xcprivacy */; };
 		B66416809F541315D8003F4C /* Scoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE2A1AA764D87EECE0FB77 /* Scoring.swift */; };
 		BB7907E74C9F71106AA76D03 /* RiichiEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C129B3E2021A15F3C0BD6C /* RiichiEngine.swift */; };
 		BB83F975E9E3D3775889764F /* TileFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C48061D077F9186087204 /* TileFaceView.swift */; };
 		BE7FC75957676516ABAE7CA5 /* HandEval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241AD9E017CCE0B8FA98ED99 /* HandEval.swift */; };
-		C810C0CC65E19F51A2B59B27 /* OnlineLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0E998C4EB3C4C6A145399 /* OnlineLobbyView.swift */; };
-		C9DBBECCF7F9E96D0B5FF944 /* OnlineClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44686F7C3A457BA6C1E15939 /* OnlineClientIntegrationTests.swift */; };
 		CCEE739D8BCF2C9F70CAC25D /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7008DCDD66C61BA564943 /* TileView.swift */; };
 		CEBB97CCFDF8701C70F6627F /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DE7CE04483CAB22D2447D /* MainMenuView.swift */; };
 		CF57054752060B7F327A9F4B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAA95CDD4EA9218A046D465 /* Theme.swift */; };
@@ -74,7 +68,7 @@
 		E27F8C1EA5A78EB56459D65A /* RiichiTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE55027A67536384AF8570C /* RiichiTiles.swift */; };
 		E29CF64BE764745FB9E4A4E3 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FDF3E6077F26567496F30 /* GameView.swift */; };
 		E2ECCAEC8976763B4A6AB1C8 /* ScoringRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1124A4468C01CA23BF366 /* ScoringRegressionTests.swift */; };
-		E7763655AF3786EE22244A47 /* OnlineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289A1C2A972811A609834E08 /* OnlineTableView.swift */; };
+		E7319E272C613FCF2891F116 /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2CBDEC3E847F112456804 /* NavigationUITests.swift */; };
 		E8DFA1B692A22227000523BE /* YakuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322068ED74F04FD68B0A414 /* YakuTests.swift */; };
 		ECAC11C9D1C57BA478751FBC /* LocalMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F601F106F46C2E0DCB8963E7 /* LocalMatch.swift */; };
 		ECB443F2E9BAE29913DA3B55 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F638361A365B5FFA2794B2F4 /* Layout.swift */; };
@@ -82,8 +76,8 @@
 		F836D8BDE95D0B472CF60D94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24203D2B3343D1147D8615E8 /* Assets.xcassets */; };
 		F99A4432060E4198BAED2655 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172385CDCCF7C13E079AEC6D /* Localization.swift */; };
 		FA0BA8679CFA45AA32F9DA37 /* TraditionalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3B9D833FEAD0FCB9A20956 /* TraditionalTableView.swift */; };
+		FAA6D93D435687557107F515 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0084061FF929A1D8D5AB8A7C /* PrivacyInfo.xcprivacy */; };
 		FE6E399CD54CA9625733DE29 /* RegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C726B7E1F44EA10D292D1 /* RegressionTests.swift */; };
-		FEAC6D1A797A7241852ED2F6 /* OnlineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837697EAFB220BA820808201 /* OnlineClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,25 +88,31 @@
 			remoteGlobalIDString = 13563606BFFF17A39AA04689;
 			remoteInfo = "iVidiMahjong-macOS";
 		};
+		8AE9D10A6B2D63DFD7593E0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9F6C6969FE000EDE3869C34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5104F3633A410E1B901AD5B2;
+			remoteInfo = "iVidiMahjong-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0084061FF929A1D8D5AB8A7C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		0322068ED74F04FD68B0A414 /* YakuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakuTests.swift; sourceTree = "<group>"; };
 		0A6FDF3E6077F26567496F30 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		0FD0E998C4EB3C4C6A145399 /* OnlineLobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineLobbyView.swift; sourceTree = "<group>"; };
 		172385CDCCF7C13E079AEC6D /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		19086FCCC4806E6A0486F267 /* Modals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modals.swift; sourceTree = "<group>"; };
 		1C76199218F841B8619441CB /* GameEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngineTests.swift; sourceTree = "<group>"; };
 		241AD9E017CCE0B8FA98ED99 /* HandEval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandEval.swift; sourceTree = "<group>"; };
 		24203D2B3343D1147D8615E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		270CA34E5B20FCD4B30AA544 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		289A1C2A972811A609834E08 /* OnlineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineTableView.swift; sourceTree = "<group>"; };
 		28B3E9DEE2EC1A3003EF9043 /* LevelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectView.swift; sourceTree = "<group>"; };
 		2B8083EF1D5C378BE877B5A1 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		2DB7CB06F3DCCFB4BF855780 /* TileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileType.swift; sourceTree = "<group>"; };
+		33C2CBDEC3E847F112456804 /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
 		34FD18EB8F7B23FF80444038 /* TraditionalSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalSetupView.swift; sourceTree = "<group>"; };
 		3EA7008DCDD66C61BA564943 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
-		44686F7C3A457BA6C1E15939 /* OnlineClientIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineClientIntegrationTests.swift; sourceTree = "<group>"; };
 		4C6DE7CE04483CAB22D2447D /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		4D1C48061D077F9186087204 /* TileFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileFaceView.swift; sourceTree = "<group>"; };
 		4D25DE427B304843B52542C0 /* iVidiMahjongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iVidiMahjongApp.swift; sourceTree = "<group>"; };
@@ -122,12 +122,10 @@
 		6CE55027A67536384AF8570C /* RiichiTiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiichiTiles.swift; sourceTree = "<group>"; };
 		703F6670B28037CFE43CC44B /* Bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bot.swift; sourceTree = "<group>"; };
 		792B11CDB255EB2E4B2E9784 /* InfiniteModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteModeTests.swift; sourceTree = "<group>"; };
-		837697EAFB220BA820808201 /* OnlineClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineClient.swift; sourceTree = "<group>"; };
 		8391FB461D599C497E921E06 /* HandEvalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandEvalTests.swift; sourceTree = "<group>"; };
 		8AAC77DA626F1BBB670AFD45 /* Yaku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yaku.swift; sourceTree = "<group>"; };
 		8B4C726B7E1F44EA10D292D1 /* RegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegressionTests.swift; sourceTree = "<group>"; };
 		8FCC233AF4612D5856798F90 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		9A3F19579333B40325106169 /* TraditionalModeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalModeSelectView.swift; sourceTree = "<group>"; };
 		9B96B0A4697DDECA6B15768E /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		A4F576970F784566B0E98332 /* iVidiMahjong-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "iVidiMahjong-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2138F45C808AA217B221B26 /* iVidiMahjong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iVidiMahjong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +137,7 @@
 		BCF1124A4468C01CA23BF366 /* ScoringRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringRegressionTests.swift; sourceTree = "<group>"; };
 		DB3B9D833FEAD0FCB9A20956 /* TraditionalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalTableView.swift; sourceTree = "<group>"; };
 		DFAA95CDD4EA9218A046D465 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		E1BE887739D11D4A81731722 /* iVidiMahjongUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = iVidiMahjongUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CE2A1AA764D87EECE0FB77 /* Scoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scoring.swift; sourceTree = "<group>"; };
 		F601F106F46C2E0DCB8963E7 /* LocalMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMatch.swift; sourceTree = "<group>"; };
 		F638361A365B5FFA2794B2F4 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
@@ -163,6 +162,7 @@
 				A4F576970F784566B0E98332 /* iVidiMahjong-iOS.app */,
 				B2138F45C808AA217B221B26 /* iVidiMahjong-macOS.app */,
 				52F3A77DC3309B2BCA3C25B6 /* iVidiMahjongTests.xctest */,
+				E1BE887739D11D4A81731722 /* iVidiMahjongUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,13 +186,10 @@
 				28B3E9DEE2EC1A3003EF9043 /* LevelSelectView.swift */,
 				4C6DE7CE04483CAB22D2447D /* MainMenuView.swift */,
 				19086FCCC4806E6A0486F267 /* Modals.swift */,
-				0FD0E998C4EB3C4C6A145399 /* OnlineLobbyView.swift */,
-				289A1C2A972811A609834E08 /* OnlineTableView.swift */,
 				61BFC6FA3490F049E2C79928 /* RootView.swift */,
 				8FCC233AF4612D5856798F90 /* SplashView.swift */,
 				4D1C48061D077F9186087204 /* TileFaceView.swift */,
 				3EA7008DCDD66C61BA564943 /* TileView.swift */,
-				9A3F19579333B40325106169 /* TraditionalModeSelectView.swift */,
 				34FD18EB8F7B23FF80444038 /* TraditionalSetupView.swift */,
 				DB3B9D833FEAD0FCB9A20956 /* TraditionalTableView.swift */,
 			);
@@ -204,6 +201,7 @@
 			children = (
 				C3288AA27B29FB6443D39337 /* iVidiMahjong */,
 				DFF10640C5EEEDA362BBEF7E /* iVidiMahjongTests */,
+				D089FB68157E9571ECC14D2E /* iVidiMahjongUITests */,
 				46F72AD1A07218E1873AACB3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -214,6 +212,7 @@
 				24203D2B3343D1147D8615E8 /* Assets.xcassets */,
 				4D25DE427B304843B52542C0 /* iVidiMahjongApp.swift */,
 				172385CDCCF7C13E079AEC6D /* Localization.swift */,
+				0084061FF929A1D8D5AB8A7C /* PrivacyInfo.xcprivacy */,
 				DFAA95CDD4EA9218A046D465 /* Theme.swift */,
 				3E5C8D7F0DD11E16EE984310 /* Engine */,
 				7B8B495DCFE5E19C394A04DB /* Models */,
@@ -223,13 +222,20 @@
 			path = iVidiMahjong;
 			sourceTree = "<group>";
 		};
+		D089FB68157E9571ECC14D2E /* iVidiMahjongUITests */ = {
+			isa = PBXGroup;
+			children = (
+				33C2CBDEC3E847F112456804 /* NavigationUITests.swift */,
+			);
+			path = iVidiMahjongUITests;
+			sourceTree = "<group>";
+		};
 		D49CF50AB41CC25B749AB912 /* Riichi */ = {
 			isa = PBXGroup;
 			children = (
 				703F6670B28037CFE43CC44B /* Bot.swift */,
 				241AD9E017CCE0B8FA98ED99 /* HandEval.swift */,
 				F601F106F46C2E0DCB8963E7 /* LocalMatch.swift */,
-				837697EAFB220BA820808201 /* OnlineClient.swift */,
 				B5C129B3E2021A15F3C0BD6C /* RiichiEngine.swift */,
 				6CE55027A67536384AF8570C /* RiichiTiles.swift */,
 				E7CE2A1AA764D87EECE0FB77 /* Scoring.swift */,
@@ -244,7 +250,6 @@
 				1C76199218F841B8619441CB /* GameEngineTests.swift */,
 				8391FB461D599C497E921E06 /* HandEvalTests.swift */,
 				792B11CDB255EB2E4B2E9784 /* InfiniteModeTests.swift */,
-				44686F7C3A457BA6C1E15939 /* OnlineClientIntegrationTests.swift */,
 				8B4C726B7E1F44EA10D292D1 /* RegressionTests.swift */,
 				BCF1124A4468C01CA23BF366 /* ScoringRegressionTests.swift */,
 				0322068ED74F04FD68B0A414 /* YakuTests.swift */,
@@ -291,6 +296,24 @@
 			productReference = A4F576970F784566B0E98332 /* iVidiMahjong-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		71CA475B2906705483915605 /* iVidiMahjongUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28B2166116BB0AD01C9901C5 /* Build configuration list for PBXNativeTarget "iVidiMahjongUITests" */;
+			buildPhases = (
+				FF1BB674921D9C7D586FAB75 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22D633ADAEE64CD5DF5FD631 /* PBXTargetDependency */,
+			);
+			name = iVidiMahjongUITests;
+			packageProductDependencies = (
+			);
+			productName = iVidiMahjongUITests;
+			productReference = E1BE887739D11D4A81731722 /* iVidiMahjongUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D96FD168C3068051ED45A8D4 /* iVidiMahjongTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CB549DA922743CD5160E1CD /* Build configuration list for PBXNativeTarget "iVidiMahjongTests" */;
@@ -326,6 +349,11 @@
 						DevelopmentTeam = S769436W24;
 						ProvisioningStyle = Automatic;
 					};
+					71CA475B2906705483915605 = {
+						DevelopmentTeam = S769436W24;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5104F3633A410E1B901AD5B2;
+					};
 					D96FD168C3068051ED45A8D4 = {
 						DevelopmentTeam = S769436W24;
 						ProvisioningStyle = Automatic;
@@ -349,6 +377,7 @@
 				5104F3633A410E1B901AD5B2 /* iVidiMahjong-iOS */,
 				13563606BFFF17A39AA04689 /* iVidiMahjong-macOS */,
 				D96FD168C3068051ED45A8D4 /* iVidiMahjongTests */,
+				71CA475B2906705483915605 /* iVidiMahjongUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F836D8BDE95D0B472CF60D94 /* Assets.xcassets in Resources */,
+				FAA6D93D435687557107F515 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D29347F04D267EFF1FFD7D34 /* Assets.xcassets in Resources */,
+				B3710CC6105C6BE48CB662DF /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,9 +422,6 @@
 				F99A4432060E4198BAED2655 /* Localization.swift in Sources */,
 				7F9C58457A52CFAE091A6A5D /* MainMenuView.swift in Sources */,
 				98CD4B290E3BD6EF4F8776AC /* Modals.swift in Sources */,
-				FEAC6D1A797A7241852ED2F6 /* OnlineClient.swift in Sources */,
-				C810C0CC65E19F51A2B59B27 /* OnlineLobbyView.swift in Sources */,
-				8C3592CE3CAB1176744F0BE5 /* OnlineTableView.swift in Sources */,
 				BB7907E74C9F71106AA76D03 /* RiichiEngine.swift in Sources */,
 				077589360017CC7064A20A1A /* RiichiTiles.swift in Sources */,
 				90292C5C885D29C585890193 /* RootView.swift in Sources */,
@@ -406,7 +434,6 @@
 				88B0975F3398342D6D06AFAB /* TileFaceView.swift in Sources */,
 				73AF36120C1D59EA0BA2A103 /* TileType.swift in Sources */,
 				A2049A5287FE1AEC79F28948 /* TileView.swift in Sources */,
-				49594EA8AF9187F9D0D2802A /* TraditionalModeSelectView.swift in Sources */,
 				5FDD596B0BA90E6B8CCB601A /* TraditionalSetupView.swift in Sources */,
 				FA0BA8679CFA45AA32F9DA37 /* TraditionalTableView.swift in Sources */,
 				7D303596A9CBEF7732242892 /* Yaku.swift in Sources */,
@@ -432,9 +459,6 @@
 				40C8D02C5DCCC24AB98B858A /* Localization.swift in Sources */,
 				CEBB97CCFDF8701C70F6627F /* MainMenuView.swift in Sources */,
 				2CF6A382E2A717037FFE9B49 /* Modals.swift in Sources */,
-				4299DBEB1CD903318FB92863 /* OnlineClient.swift in Sources */,
-				9846C03EF0B9222F3B6DB41E /* OnlineLobbyView.swift in Sources */,
-				E7763655AF3786EE22244A47 /* OnlineTableView.swift in Sources */,
 				2E80D8DD3DDD8DF5980A3FDB /* RiichiEngine.swift in Sources */,
 				E27F8C1EA5A78EB56459D65A /* RiichiTiles.swift in Sources */,
 				7DB87711D6FF7E1147575954 /* RootView.swift in Sources */,
@@ -447,7 +471,6 @@
 				BB83F975E9E3D3775889764F /* TileFaceView.swift in Sources */,
 				4CF4500FEF2904BC7360CD73 /* TileType.swift in Sources */,
 				CCEE739D8BCF2C9F70CAC25D /* TileView.swift in Sources */,
-				8023135D4BEF5263C34AA12C /* TraditionalModeSelectView.swift in Sources */,
 				9F9F96F18D0BFEB311ECB5D2 /* TraditionalSetupView.swift in Sources */,
 				09BC22710E8BE08F4204EDBE /* TraditionalTableView.swift in Sources */,
 				5D3E7D2BF24763B4A6D71910 /* Yaku.swift in Sources */,
@@ -462,16 +485,28 @@
 				0EF6B35D5A88324D0B52FD47 /* GameEngineTests.swift in Sources */,
 				831FB22795CDCB62BF651002 /* HandEvalTests.swift in Sources */,
 				62550C27BA24E6E2509C6865 /* InfiniteModeTests.swift in Sources */,
-				C9DBBECCF7F9E96D0B5FF944 /* OnlineClientIntegrationTests.swift in Sources */,
 				FE6E399CD54CA9625733DE29 /* RegressionTests.swift in Sources */,
 				E2ECCAEC8976763B4A6AB1C8 /* ScoringRegressionTests.swift in Sources */,
 				E8DFA1B692A22227000523BE /* YakuTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF1BB674921D9C7D586FAB75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7319E272C613FCF2891F116 /* NavigationUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		22D633ADAEE64CD5DF5FD631 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5104F3633A410E1B901AD5B2 /* iVidiMahjong-iOS */;
+			targetProxy = 8AE9D10A6B2D63DFD7593E0B /* PBXContainerItemProxy */;
+		};
 		FF22ED3B7AEFB38CF1E27733 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 13563606BFFF17A39AA04689 /* iVidiMahjong-macOS */;
@@ -514,6 +549,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = S769436W24;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -532,6 +568,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -547,6 +584,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Generated/iVidiMahjong-macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -598,6 +636,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = S769436W24;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -610,6 +649,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -644,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Generated/iVidiMahjong-macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -681,6 +722,26 @@
 			};
 			name = Debug;
 		};
+		B0F724E6D21226941D89E91D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iVidiMahjong-iOS";
+			};
+			name = Release;
+		};
 		B16321E90B3547FD8CF1A844 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -698,6 +759,26 @@
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iVidiMahjong-macOS.app/Contents/MacOS/iVidiMahjong-macOS";
+			};
+			name = Debug;
+		};
+		C666C8CBA50091388D1DC028 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iVidiMahjong-iOS";
 			};
 			name = Debug;
 		};
@@ -724,6 +805,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		28B2166116BB0AD01C9901C5 /* Build configuration list for PBXNativeTarget "iVidiMahjongUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C666C8CBA50091388D1DC028 /* Debug */,
+				B0F724E6D21226941D89E91D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		712F2F62DFF5506BE70A108F /* Build configuration list for PBXNativeTarget "iVidiMahjong-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
