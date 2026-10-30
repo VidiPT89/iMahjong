@@ -34,9 +34,9 @@ struct WinModalView: View {
 
     var body: some View {
         ModalOverlay {
-            Text("🎉").font(.system(size: 44))
-            Text(loc.t("winTitle")).font(.system(size: 24, weight: .bold)).foregroundColor(Theme.text)
-            Text(subtitle ?? loc.t("winSubtitle")).font(.system(size: 14)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
+            Text("🎉").font(.system(size: 44, design: .rounded))
+            Text(loc.t("winTitle")).font(.system(size: 24, weight: .bold, design: .rounded)).foregroundColor(Theme.text)
+            Text(subtitle ?? loc.t("winSubtitle")).font(.system(size: 14, design: .rounded)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
 
             HStack(spacing: 20) {
                 statBlock(loc.t("finalTime"), time)
@@ -52,8 +52,8 @@ struct WinModalView: View {
 
     private func statBlock(_ label: String, _ value: String) -> some View {
         VStack(spacing: 4) {
-            Text(value).font(.system(size: 16, weight: .bold)).foregroundColor(Theme.accent)
-            Text(label).font(.system(size: 11)).foregroundColor(Theme.textFaint)
+            Text(value).font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(Theme.accent)
+            Text(label).font(.system(size: 11, design: .rounded)).foregroundColor(Theme.textFaint)
         }
     }
 }
@@ -66,9 +66,9 @@ struct StuckModalView: View {
 
     var body: some View {
         ModalOverlay {
-            Text("🀫").font(.system(size: 40))
-            Text(loc.t("stuckTitle")).font(.system(size: 22, weight: .bold)).foregroundColor(Theme.text)
-            Text(loc.t("stuckSubtitle")).font(.system(size: 14)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
+            Text("🀫").font(.system(size: 40, design: .rounded))
+            Text(loc.t("stuckTitle")).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundColor(Theme.text)
+            Text(loc.t("stuckSubtitle")).font(.system(size: 14, design: .rounded)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
 
             Button(loc.t("shuffle"), action: onShuffle).buttonStyle(PrimaryButtonStyle())
             Button(loc.t("undo"), action: onUndo).buttonStyle(SecondaryButtonStyle())
@@ -85,7 +85,7 @@ struct ConfirmModalView: View {
 
     var body: some View {
         ModalOverlay {
-            Text(message).font(.system(size: 15)).foregroundColor(Theme.text).multilineTextAlignment(.center)
+            Text(message).font(.system(size: 15, design: .rounded)).foregroundColor(Theme.text).multilineTextAlignment(.center)
             Button(loc.t("confirmYes"), action: onYes).buttonStyle(PrimaryButtonStyle())
             Button(loc.t("confirmNo"), action: onCancel).buttonStyle(GhostButtonStyle())
         }
@@ -97,7 +97,7 @@ struct ToastView: View {
 
     var body: some View {
         Text(message)
-            .font(.system(size: 13, weight: .medium))
+            .font(.system(size: 13, weight: .medium, design: .rounded))
             .foregroundColor(Theme.text)
             .padding(.horizontal, 16)
             .padding(.vertical, 10)

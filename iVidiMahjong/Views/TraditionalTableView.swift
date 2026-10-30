@@ -105,14 +105,14 @@ struct TraditionalTableView: View {
                     Text("· \(loc.t("wallLeft")): \(match.engine.liveWall.count)")
                 }
             }
-            .font(.system(size: 10, weight: .medium))
+            .font(.system(size: 10, weight: .medium, design: .rounded))
             .foregroundColor(Theme.textDim)
 
             Spacer()
 
             // Fixed width keeps the round info centered whether or not sticks are shown.
             Text(match.riichiSticksOnTable > 0 ? "\(loc.t("riichiSticksLabel")): \(match.riichiSticksOnTable)" : "")
-                .font(.system(size: 10, weight: .medium))
+                .font(.system(size: 10, weight: .medium, design: .rounded))
                 .foregroundColor(Theme.accent)
                 .multilineTextAlignment(.trailing)
                 .frame(width: 90, alignment: .trailing)
@@ -144,14 +144,14 @@ struct TraditionalTableView: View {
         return VStack(spacing: 8) {
             HStack(spacing: 8) {
                 Text(loc.t(windLabelKey(seat.wind)))
-                    .font(.system(size: 13, weight: .bold))
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
                     .foregroundColor(Theme.accent)
                 Text("\(loc.t("pointsLabel")): \(seat.points)")
-                    .font(.system(size: 12))
+                    .font(.system(size: 12, design: .rounded))
                     .foregroundColor(Theme.textDim)
                 if seat.riichi {
                     Text(loc.t("riichiBtn"))
-                        .font(.system(size: 10, weight: .bold))
+                        .font(.system(size: 10, weight: .bold, design: .rounded))
                         .padding(.horizontal, 8).padding(.vertical, 3)
                         .background(Capsule().fill(Theme.accent))
                         .foregroundColor(Theme.bg)
@@ -179,8 +179,12 @@ struct TraditionalTableView: View {
                     .padding(.horizontal, 12)
             }
 
+            if match.isHuman[displaySeat] {
+                CoachStrip(match: match, seatIndex: displaySeat, isMyDiscardTurn: isMyDiscardTurn)
+            }
+
             Text(turnHintText())
-                .font(.system(size: 12, weight: .medium))
+                .font(.system(size: 12, weight: .medium, design: .rounded))
                 .foregroundColor(Theme.accent)
                 .frame(minHeight: 16)
 
@@ -207,12 +211,7 @@ struct TraditionalTableView: View {
                 ForEach(Array(seat.hand.enumerated()), id: \.offset) { index, tile in
                     let enabled = isMyDiscardTurn && legal.contains(tile)
                     Button(action: { match.humanDiscard(tile) }) {
-                        TileFaceView(typeId: tile)
-                            .padding(2)
-                            .frame(width: tileW, height: tileW * 1.36)
-                            .background(RoundedRectangle(cornerRadius: 5).fill(Theme.tileFace))
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(index == drawnIndex ? Theme.ok : Theme.tileEdge, lineWidth: index == drawnIndex ? 2 : 1))
-                            .opacity(isMyDiscardTurn && !enabled ? 0.45 : 1)
+                        StudyTile(typeId: tile, width: tileW, outline: index == drawnIndex ? Theme.ok : nil, dimmed: isMyDiscardTurn && !enabled)
                     }
                     .buttonStyle(.plain)
                     // Not .disabled: macOS greys out disabled buttons, which made the whole
@@ -256,7 +255,7 @@ struct TraditionalTableView: View {
 
     private func actionButton(_ label: String, action: @escaping () -> Void) -> some View {
         Button(label, action: action)
-            .font(.system(size: 13, weight: .bold))
+            .font(.system(size: 13, weight: .bold, design: .rounded))
             .foregroundColor(Theme.bg)
             .padding(.horizontal, 16).padding(.vertical, 8)
             .background(Capsule().fill(Theme.accent))
@@ -269,13 +268,13 @@ struct TraditionalTableView: View {
             Theme.bg.ignoresSafeArea()
             VStack(spacing: 16) {
                 Image(systemName: "hand.raised.fill")
-                    .font(.system(size: 36))
+                    .font(.system(size: 36, design: .rounded))
                     .foregroundColor(Theme.accent)
                 Text(loc.t("handoffTitle"))
-                    .font(.system(size: 22, weight: .bold))
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
                     .foregroundColor(Theme.text)
                 Text(loc.t("handoffBody").replacingOccurrences(of: "{seat}", with: loc.t(windLabelKey(match.engine.seats[displaySeat].wind))))
-                    .font(.system(size: 15))
+                    .font(.system(size: 15, design: .rounded))
                     .foregroundColor(Theme.textDim)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
@@ -339,14 +338,14 @@ private struct OpponentPanel: View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text(loc.t(windLabelKey(seat.wind)))
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundColor(Theme.accent)
                 if seat.riichi {
                     Circle().fill(Theme.accent).frame(width: 6, height: 6)
                 }
                 Spacer()
                 Text("\(seat.points)")
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundColor(Theme.text)
             }
             if !seat.melds.isEmpty {
@@ -393,20 +392,17 @@ private struct HandResultModal: View {
             Color.black.opacity(0.6).ignoresSafeArea()
             VStack(spacing: 12) {
                 Text(title)
-                    .font(.system(size: 22, weight: .bold))
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
                     .foregroundColor(Theme.text)
 
                 ForEach(winEntries, id: \.seat) { entry in
                     VStack(spacing: 4) {
                         Text("\(loc.t(windLabelKey(match.engine.seats[entry.seat].wind))) — \(loc.t("hanLabel")) \(entry.win.han) / \(loc.t("fuLabel")) \(entry.win.fu)")
-                            .font(.system(size: 13, weight: .semibold))
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
                             .foregroundColor(Theme.accent)
-                        Text(entry.win.yakuList.map { "\($0.name) (\($0.han))" }.joined(separator: ", "))
-                            .font(.system(size: 11))
-                            .foregroundColor(Theme.textDim)
-                            .multilineTextAlignment(.center)
+                        YakuExplanationList(yakuList: entry.win.yakuList, lang: loc.lang)
                         Text("\(loc.t("totalPoints")): \(entry.win.total)")
-                            .font(.system(size: 13, weight: .bold))
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundColor(Theme.text)
                     }
                     .padding(.top, 4)
@@ -414,7 +410,7 @@ private struct HandResultModal: View {
 
                 if case .exhaustive = result.kind {
                     Text("\(loc.t("tenpaiLabel")): \(result.tenpaiSeats.count)")
-                        .font(.system(size: 13))
+                        .font(.system(size: 13, design: .rounded))
                         .foregroundColor(Theme.textDim)
                 }
 
@@ -455,17 +451,17 @@ private struct MatchEndModal: View {
         ZStack {
             Color.black.opacity(0.6).ignoresSafeArea()
             VStack(spacing: 12) {
-                Text(loc.t("matchEndTitle")).font(.system(size: 22, weight: .bold)).foregroundColor(Theme.text)
-                Text(loc.t("finalStandings")).font(.system(size: 13)).foregroundColor(Theme.textDim)
+                Text(loc.t("matchEndTitle")).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundColor(Theme.text)
+                Text(loc.t("finalStandings")).font(.system(size: 13, design: .rounded)).foregroundColor(Theme.textDim)
 
                 ForEach(rankedSeats, id: \.seat) { entry in
                     HStack {
                         Text(loc.t(windLabelKey(["wE", "wS", "wW", "wN"][entry.seat])))
-                            .font(.system(size: 14, weight: .bold))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundColor(Theme.text)
                         Spacer()
                         Text("\(entry.points)")
-                            .font(.system(size: 14, weight: .bold))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundColor(Theme.accent)
                     }
                     .padding(.horizontal, 20)

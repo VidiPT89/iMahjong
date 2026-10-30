@@ -95,6 +95,42 @@ final class RegressionTests: XCTestCase {
         XCTAssertFalse(checkWin(Array(repeating: "m1", count: 14), []).win)
     }
 
+    func testCompactEasyGameAndLegacySaveRemainPlayable() {
+        let game = GameEngine(difficulty: .easy)
+        XCTAssertEqual(game.remaining(), 48)
+        XCTAssertEqual(Set(game.tiles.compactMap(\.typeId)).count, 12)
+        XCTAssertEqual(game.tiles.filter { $0.z == 1 }.count, 12)
+        var old = game.makeSnapshot()
+        old.tiles = (0..<108).map { id in
+            GameTile(id: id, x: id % 9, y: id / 9, z: 0, removed: false, typeId: "p1")
+        }
+        XCTAssertTrue(game.restore(from: old))
+        XCTAssertEqual(game.remaining(), 108)
+        XCTAssertTrue(game.reshuffle())
+        for pair in game.provenSolveOrder {
+            game.select(pair.0)
+            game.select(pair.1)
+        }
+        XCTAssertTrue(game.isWon())
+        game.reset()
+        XCTAssertEqual(game.remaining(), 48)
+        var flat = game.makeSnapshot()
+        flat.tiles = (0..<48).map { id in
+            GameTile(id: id, x: id % 6, y: id / 6, z: 0, removed: false, typeId: "s1")
+        }
+        var terrace = game.makeSnapshot()
+        let oldPositions = (0..<6).flatMap { y in (0..<6).map { x in BoardPosition(x: x, y: y, z: 0) } }
+            + (1..<4).flatMap { y in (1..<5).map { x in BoardPosition(x: x, y: y, z: 1) } }
+        terrace.tiles = oldPositions.enumerated().map { id, p in
+            GameTile(id: id, x: p.x, y: p.y, z: p.z, removed: false, typeId: "p1")
+        }
+        XCTAssertTrue(game.restore(from: terrace))
+        XCTAssertTrue(game.reshuffle())
+        XCTAssertTrue(game.restore(from: flat))
+        XCTAssertEqual(game.remaining(), 48)
+        XCTAssertTrue(game.reshuffle())
+    }
+
     func testSnapshotRejectsInvalidHistoryAndDuplicateIDsWithoutMutatingGame() {
         let game = GameEngine(difficulty: .easy)
         let original = game.tiles

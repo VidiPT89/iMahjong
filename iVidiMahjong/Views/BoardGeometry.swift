@@ -23,8 +23,8 @@ struct BoardExtents {
 enum BoardGeometry {
     static let tileW: CGFloat = 44
     static let tileH: CGFloat = 60
-    static let stepX: CGFloat = tileW * 0.86
-    static let stepY: CGFloat = tileH * 0.82
+    static let stepX: CGFloat = tileW + 3
+    static let stepY: CGFloat = tileH + 4
     static let layerNudge: CGFloat = 5
 
     /// Must match the span `point(for:in:)` actually produces — an extra `+1` row/column

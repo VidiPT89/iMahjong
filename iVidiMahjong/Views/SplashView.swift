@@ -24,23 +24,23 @@ struct SplashView: View {
                     .offset(y: appeared ? 0 : 12)
 
                 Text(loc.t("menuSubtitle"))
-                    .font(.system(size: 16))
+                    .font(.system(size: 16, design: .rounded))
                     .foregroundColor(Theme.textDim)
                     .opacity(appeared ? 1 : 0)
 
                 VStack(spacing: 4) {
                     Text(loc.t("developedBy"))
-                        .font(.system(size: 13))
+                        .font(.system(size: 13, design: .rounded))
                         .foregroundColor(Theme.textFaint)
                     Text("David Arsénio Martins")
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.system(size: 15, weight: .semibold, design: .rounded))
                         .foregroundColor(Theme.text)
                     HStack(spacing: 6) {
                         Link("ividi.dev", destination: URL(string: "https://ividi.dev/")!)
                         Text("·").foregroundColor(Theme.textFaint)
                         Link("github.com/VidiPT89", destination: URL(string: "https://github.com/VidiPT89/")!)
                     }
-                    .font(.system(size: 13))
+                    .font(.system(size: 13, design: .rounded))
                     .foregroundColor(Theme.accent)
                 }
                 .padding(.top, 18)
@@ -49,7 +49,7 @@ struct SplashView: View {
                 Spacer()
 
                 Text(loc.t(Self.continueKey))
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.system(size: 13, weight: .medium, design: .rounded))
                     .foregroundColor(Theme.textFaint)
                     .padding(.bottom, 30)
                     .opacity(appeared ? 0.8 : 0)

@@ -152,7 +152,8 @@ final class RiichiEngine {
             let idx = order.firstIndex(of: indicator)!
             return order[(idx + 1) % 4]
         }
-        let order = ["dR", "dG", "dW"]
+        // White → green → red → white (haku, hatsu, chun).
+        let order = ["dW", "dG", "dR"]
         let idx = order.firstIndex(of: indicator)!
         return order[(idx + 1) % 3]
     }

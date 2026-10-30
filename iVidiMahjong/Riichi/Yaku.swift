@@ -283,7 +283,7 @@ func bestYakuResult(_ winCheck: WinCheck, _ concealedTiles: [String], _ ctx: Win
     return best
 }
 
-private func compareResults(_ a: YakuResult, _ b: YakuResult) -> Int {
+func compareResults(_ a: YakuResult, _ b: YakuResult) -> Int {
     if a.yakuman != b.yakuman { return a.yakuman ? 1 : -1 }
     if a.yakuman { return a.yakumanCount - b.yakumanCount }
     let scoreDifference = baseScoreFromHanFu(a.han, a.fu, false, 0) - baseScoreFromHanFu(b.han, b.fu, false, 0)

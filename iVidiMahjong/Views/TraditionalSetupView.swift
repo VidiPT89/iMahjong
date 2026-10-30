@@ -16,30 +16,30 @@ struct TraditionalSetupView: View {
                 Spacer()
 
                 Text(loc.t("tradSetupTitle"))
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
                     .tracking(2)
                     .foregroundColor(Theme.accent)
 
                 BrandLogo(size: 40)
 
                 Text(loc.t("tradSetupSubtitle"))
-                    .font(.system(size: 15))
+                    .font(.system(size: 15, design: .rounded))
                     .foregroundColor(Theme.textDim)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
 
                 VStack(spacing: 10) {
                     Text(loc.t("humanPlayers"))
-                        .font(.system(size: 13))
+                        .font(.system(size: 13, design: .rounded))
                         .foregroundColor(Theme.textDim)
 
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                         ForEach(0..<4, id: \.self) { i in
                             Button(action: { humanSeats[i].toggle() }) {
                                 VStack(spacing: 2) {
-                                    Text(loc.t(windKeys[i])).font(.system(size: 15, weight: .bold))
+                                    Text(loc.t(windKeys[i])).font(.system(size: 15, weight: .bold, design: .rounded))
                                     if !humanSeats[i] {
-                                        Text("(\(loc.t("bot")))").font(.system(size: 11)).opacity(0.7)
+                                        Text("(\(loc.t("bot")))").font(.system(size: 11, design: .rounded)).opacity(0.7)
                                     }
                                 }
                                 .frame(maxWidth: .infinity)

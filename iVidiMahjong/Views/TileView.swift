@@ -10,6 +10,7 @@ struct ShakeEffect: GeometryEffect {
 }
 
 struct TileView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let tile: GameTile
     let width: CGFloat
     let height: CGFloat
@@ -52,7 +53,7 @@ struct TileView: View {
             .frame(width: width, height: height)
             .overlay(
                 RoundedRectangle(cornerRadius: 6)
-                    .fill(Color.black.opacity(isFree ? 0 : 0.38))
+                    .fill(Color(red: 0.10, green: 0.23, blue: 0.19).opacity(isFree ? 0 : 0.25))
             )
             // Base "riser" layer gives the tile a sense of physical thickness.
             .background(
@@ -63,9 +64,9 @@ struct TileView: View {
             )
             .shadow(color: glowColor, radius: (isSelected || isHinted) ? 10 : 2, y: isSelected ? 0 : 1.5)
             .shadow(color: Color.black.opacity(0.35), radius: isSelected ? 12 : 5, y: isSelected ? 10 : 5)
-            .scaleEffect(isSelected ? 1.08 : (dealt ? 1 : 0.4))
+            .scaleEffect(isSelected ? 1.04 : (dealt || reduceMotion ? 1 : 0.85))
             .offset(y: isSelected ? -6 : 0)
-            .opacity(dealt ? 1 : 0)
+            .opacity(dealt || reduceMotion ? 1 : 0)
             .modifier(ShakeEffect(animatableData: shakeProgress))
             .animation(.spring(response: 0.28, dampingFraction: 0.6), value: isSelected)
             .onChange(of: shakeToken) { _ in
@@ -73,6 +74,7 @@ struct TileView: View {
                 withAnimation(.linear(duration: 0.4)) { shakeProgress = 1 }
             }
             .onAppear {
+                if reduceMotion { dealt = true; return }
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.72).delay(dealDelay)) {
                     dealt = true
                 }
@@ -82,7 +84,7 @@ struct TileView: View {
     private var borderColor: Color {
         if isSelected { return Theme.accent }
         if isHinted { return Theme.ok }
-        return Theme.tileEdge
+        return isFree ? Color.white : Theme.tileEdge
     }
 
     private var glowColor: Color {

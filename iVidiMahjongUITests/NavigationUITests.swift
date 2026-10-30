@@ -14,48 +14,70 @@ final class NavigationUITests: XCTestCase {
     private func walkMainScreens(lang: String) {
         let en = lang == "en"
         let app = XCUIApplication()
-        app.launchArguments = ["-ividimahjong-lang", lang, "-ividimahjong-difficulty", "medium"]
+        app.launchArguments = ["-ividimahjong-lang", lang, "-ividimahjong-difficulty", "medium", "-ividimahjong-coach", "YES"]
         app.launch()
 
-        let menuPlay = app.buttons[en ? "Play" : "Jogar"]
-        #if os(macOS)
-        app.staticTexts[en ? "Click to continue" : "Clica para continuar"].press()
-        #else
-        app.staticTexts[en ? "Tap to continue" : "Toca para continuar"].press()
-        #endif
-        XCTAssertTrue(menuPlay.waitForExistence(timeout: 5))
+        let academy = app.buttons["academy"]
+        XCTAssertTrue(academy.waitForExistence(timeout: 5))
         snapshot("1-menu", lang)
 
-        menuPlay.press()
-        let hint = app.buttons[en ? "Hint" : "Dica"]
-        XCTAssertTrue(hint.waitForExistence(timeout: 5))
-        sleep(2) // let the deal animation finish
-        hint.press()
+        academy.press()
+        let waitsDrill = app.buttons["drill-waits"]
+        XCTAssertTrue(app.buttons["lesson-tiles"].waitForExistence(timeout: 5))
+        snapshot("2-academy", lang)
+
+        app.buttons["lesson-waits"].press()
         sleep(1)
-        snapshot("2-solitaire", lang)
+        snapshot("3-lesson", lang)
         app.buttons["back"].press()
 
-        app.buttons[en ? "Levels" : "Níveis"].press()
-        XCTAssertTrue(app.buttons["1"].waitForExistence(timeout: 5))
-        snapshot("3-levels", lang)
-        app.buttons["1"].press()
-        XCTAssertTrue(hint.waitForExistence(timeout: 5))
-        sleep(2)
-        snapshot("4-level-1", lang)
+        waitsDrill.press()
+        let choices = app.buttons.matching(identifier: "wait-choice")
+        XCTAssertTrue(choices.firstMatch.waitForExistence(timeout: 5))
+        choices.element(boundBy: 0).press()
+        choices.element(boundBy: 2).press()
+        app.buttons["check"].press()
+        sleep(1)
+        snapshot("4-waits", lang)
         app.buttons["back"].press()
 
-        app.buttons[en ? "4-Player (Riichi)" : "4 Jogadores (Riichi)"].press()
+        app.buttons["drill-discard"].press()
+        let tiles = app.buttons.matching(identifier: "drill-tile")
+        XCTAssertTrue(tiles.firstMatch.waitForExistence(timeout: 5))
+        tiles.element(boundBy: tiles.count - 1).press()
+        sleep(1)
+        snapshot("5-discard", lang)
+        app.buttons["back"].press()
+
+        app.buttons["drill-score"].press()
+        let answers = app.buttons.matching(identifier: "score-choice")
+        XCTAssertTrue(answers.firstMatch.waitForExistence(timeout: 5))
+        answers.element(boundBy: 1).press()
+        sleep(1)
+        snapshot("6-score", lang)
+        app.buttons["back"].press()
+        XCTAssertTrue(app.buttons["drill-score"].waitForExistence(timeout: 5))
+        app.buttons["back"].press()
+
+        XCTAssertTrue(app.buttons["riichiTable"].waitForExistence(timeout: 5))
+        sleep(1) // let the screen transition settle before tapping
+        app.buttons["riichiTable"].press()
         let start = app.buttons[en ? "Start Match" : "Começar Partida"]
         XCTAssertTrue(start.waitForExistence(timeout: 5))
         start.press()
         playSomeRiichiTurns(app, en: en)
-        snapshot("5-riichi", lang)
+        snapshot("7-coached-table", lang)
         app.buttons["back"].press()
         app.buttons[en ? "Back" : "Voltar"].press()
 
-        app.buttons[en ? "How to Play" : "Como Jogar"].press()
+        XCTAssertTrue(app.buttons["solitaire"].waitForExistence(timeout: 5))
         sleep(1)
-        snapshot("6-how-to-play", lang)
+        app.buttons["solitaire"].press()
+        let hint = app.buttons[en ? "Hint" : "Dica"]
+        XCTAssertTrue(hint.waitForExistence(timeout: 20))
+        sleep(2) // let the deal animation finish
+        snapshot("8-solitaire", lang)
+        app.buttons["back"].press()
     }
 
     /// Discards the right-most tile for a few turns (passing on any call offer) so the

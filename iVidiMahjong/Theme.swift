@@ -1,17 +1,17 @@
 import SwiftUI
 
 enum Theme {
-    static let bg = Color(red: 0x0a / 255.0, green: 0x0a / 255.0, blue: 0x0f / 255.0)
-    static let bgPanel = Color(red: 0x0d / 255.0, green: 0x0d / 255.0, blue: 0x18 / 255.0)
-    static let bgPanel2 = Color(red: 0x12 / 255.0, green: 0x12 / 255.0, blue: 0x1f / 255.0)
+    static let bg = Color(red: 0x1b / 255.0, green: 0x17 / 255.0, blue: 0x13 / 255.0)
+    static let bgPanel = Color(red: 0x25 / 255.0, green: 0x20 / 255.0, blue: 0x19 / 255.0)
+    static let bgPanel2 = Color(red: 0x36 / 255.0, green: 0x2e / 255.0, blue: 0x24 / 255.0)
     static let border = Color(red: 226 / 255.0, green: 232 / 255.0, blue: 240 / 255.0).opacity(0.10)
     static let borderStrong = Color(red: 226 / 255.0, green: 232 / 255.0, blue: 240 / 255.0).opacity(0.18)
     static let text = Color(red: 0xe2 / 255.0, green: 0xe8 / 255.0, blue: 0xf0 / 255.0)
     static let textDim = Color(red: 0x94 / 255.0, green: 0xa3 / 255.0, blue: 0xb8 / 255.0)
-    static let textFaint = Color(red: 0x5b / 255.0, green: 0x64 / 255.0, blue: 0x74 / 255.0)
-    static let accent = Color(red: 0xf5 / 255.0, green: 0x9e / 255.0, blue: 0x0b / 255.0)
-    static let accentLight = Color(red: 0xfb / 255.0, green: 0xbf / 255.0, blue: 0x24 / 255.0)
-    static let accentGlow = Color(red: 0xf5 / 255.0, green: 0x9e / 255.0, blue: 0x0b / 255.0).opacity(0.35)
+    static let textFaint = Color(red: 0x9a / 255.0, green: 0xb3 / 255.0, blue: 0xa8 / 255.0)
+    static let accent = Color(red: 0xe5 / 255.0, green: 0xc4 / 255.0, blue: 0x87 / 255.0)
+    static let accentLight = Color(red: 0xf0 / 255.0, green: 0xd8 / 255.0, blue: 0xac / 255.0)
+    static let accentGlow = Color(red: 0xe5 / 255.0, green: 0xc4 / 255.0, blue: 0x87 / 255.0).opacity(0.35)
     static let danger = Color(red: 0xef / 255.0, green: 0x44 / 255.0, blue: 0x44 / 255.0)
     static let ok = Color(red: 0x22 / 255.0, green: 0xc5 / 255.0, blue: 0x5e / 255.0)
 

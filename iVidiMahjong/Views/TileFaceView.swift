@@ -50,6 +50,13 @@ struct TileFaceView: View {
         GeometryReader { geo in
             let ref = Self.referenceSize
             face
+                .overlay(alignment: .topLeading) {
+                    if let type = TILE_TYPES_BY_ID[typeId], type.category == .suit, type.suit != .characters, let rank = type.rank {
+                        Text("\(rank)").font(.system(size: 8, weight: .heavy, design: .rounded))
+                            .foregroundColor(Theme.glyphDark)
+                            .padding(1).background(Theme.tileFace).cornerRadius(2)
+                    }
+                }
                 .frame(width: ref.width, height: ref.height)
                 .scaleEffect(min(geo.size.width / ref.width, geo.size.height / ref.height))
                 .frame(width: geo.size.width, height: geo.size.height)
@@ -84,7 +91,7 @@ struct TileFaceView: View {
 
     private func charactersFace(rank: Int) -> some View {
         VStack(spacing: 0) {
-            Text(numerals[rank])
+            Text("\(rank)")
                 .font(.system(size: 15, weight: .bold))
                 .foregroundColor(Theme.charInk)
             Text("萬")

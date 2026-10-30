@@ -23,8 +23,8 @@ private struct HTPExample: View {
     var body: some View {
         VStack(spacing: 8) {
             diagram.frame(height: 60)
-            Text(label).font(.system(size: 14, weight: .semibold)).foregroundColor(Theme.text)
-            Text(desc).font(.system(size: 12)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
+            Text(label).font(.system(size: 14, weight: .semibold, design: .rounded)).foregroundColor(Theme.text)
+            Text(desc).font(.system(size: 12, design: .rounded)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
     }
@@ -41,8 +41,8 @@ private struct HTPSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title).font(.system(size: 16, weight: .bold)).foregroundColor(Theme.accent)
-            Text(body_).font(.system(size: 14)).foregroundColor(Theme.textDim)
+            Text(title).font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(Theme.accent)
+            Text(body_).font(.system(size: 14, design: .rounded)).foregroundColor(Theme.textDim)
         }
     }
 }
@@ -61,7 +61,7 @@ struct HowToPlayView: View {
                 HStack {
                     BackButton(action: onClose)
                     Spacer()
-                    Text(loc.t("htpTitle")).font(.system(size: 17, weight: .semibold)).foregroundColor(Theme.text)
+                    Text(loc.t("htpTitle")).font(.system(size: 17, weight: .semibold, design: .rounded)).foregroundColor(Theme.text)
                     Spacer()
                     Color.clear.frame(width: 36, height: 36)
                 }
@@ -77,12 +77,19 @@ struct HowToPlayView: View {
                     VStack(alignment: .leading, spacing: 26) {
                         if !riichiTab {
                             Text(loc.t("htpIntro"))
-                                .font(.system(size: 15))
+                                .font(.system(size: 15, design: .rounded))
                                 .foregroundColor(Theme.textDim)
 
+                            HTPSection(
+                                loc.lang == .pt ? "A tua mesa 3D" : "Your 3D table",
+                                loc.lang == .pt
+                                    ? "Junta duas peças tradicionais iguais. Afasta dois dedos para ampliar até 3× e arrasta para explorar a mesa ampliada. O botão no canto repõe a vista inteira. Sem zoom, arrasta para rodar ligeiramente. Na paleta podes alternar entre perspetiva e vista de cima. Uma peça levantada é a tua seleção; as bases iluminadas mostram os pares disponíveis."
+                                    : "Match two identical traditional tiles. Pinch out to zoom up to 3× and drag to explore the enlarged table. The corner button restores the whole view. Without zoom, drag to turn it slightly. Use the palette to switch between perspective and top view. A lifted tile is your selection; illuminated bases show available matches."
+                            )
+
                             VStack(alignment: .leading, spacing: 10) {
-                                Text(loc.t("htpFreeTitle")).font(.system(size: 16, weight: .bold)).foregroundColor(Theme.accent)
-                                Text(loc.t("htpFreeBody")).font(.system(size: 14)).foregroundColor(Theme.textDim)
+                                Text(loc.t("htpFreeTitle")).font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(Theme.accent)
+                                Text(loc.t("htpFreeBody")).font(.system(size: 14, design: .rounded)).foregroundColor(Theme.textDim)
 
                                 HStack(alignment: .top, spacing: 16) {
                                     HTPExample(
@@ -120,12 +127,12 @@ struct HowToPlayView: View {
                             }
 
                             VStack(alignment: .leading, spacing: 10) {
-                                Text(loc.t("htpMatchTitle")).font(.system(size: 16, weight: .bold)).foregroundColor(Theme.accent)
-                                Text(loc.t("htpMatchBody")).font(.system(size: 14)).foregroundColor(Theme.textDim)
+                                Text(loc.t("htpMatchTitle")).font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(Theme.accent)
+                                Text(loc.t("htpMatchBody")).font(.system(size: 14, design: .rounded)).foregroundColor(Theme.textDim)
                             }
 
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(loc.t("htpToolsTitle")).font(.system(size: 16, weight: .bold)).foregroundColor(Theme.accent)
+                                Text(loc.t("htpToolsTitle")).font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(Theme.accent)
                                 toolRow(loc.t("hint"), loc.t("htpHintBody"))
                                 toolRow(loc.t("shuffle"), loc.t("htpShuffleBody"))
                                 toolRow(loc.t("undo"), loc.t("htpUndoBody"))
@@ -135,7 +142,7 @@ struct HowToPlayView: View {
                             HTPSection(loc.t("htpLevelsTitle"), loc.t("htpLevelsBody"))
                         } else {
                             Text(loc.t("htpRiichiIntro"))
-                                .font(.system(size: 15))
+                                .font(.system(size: 15, design: .rounded))
                                 .foregroundColor(Theme.textDim)
 
                             HTPSection(loc.t("htpRiichiTableTitle"), loc.t("htpRiichiTableBody"))
@@ -164,7 +171,7 @@ struct HowToPlayView: View {
         Button(action: action) {
             VStack(spacing: 6) {
                 Text(label)
-                    .font(.system(size: 13, weight: .bold))
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
                     .foregroundColor(selected ? Theme.accent : Theme.textDim)
                 Rectangle()
                     .fill(selected ? Theme.accent : Color.clear)
@@ -178,8 +185,8 @@ struct HowToPlayView: View {
 
     private func toolRow(_ title: String, _ body: String) -> some View {
         HStack(alignment: .top, spacing: 6) {
-            Text(title).font(.system(size: 14, weight: .bold)).foregroundColor(Theme.text)
-            Text("— " + body).font(.system(size: 14)).foregroundColor(Theme.textDim)
+            Text(title).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundColor(Theme.text)
+            Text("— " + body).font(.system(size: 14, design: .rounded)).foregroundColor(Theme.textDim)
         }
     }
 }

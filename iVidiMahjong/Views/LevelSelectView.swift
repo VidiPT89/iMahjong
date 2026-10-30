@@ -18,11 +18,11 @@ private struct LevelTile: View {
 
                 if unlocked {
                     Text("\(level)")
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(cleared ? Theme.accent : Theme.text)
                 } else {
                     Image(systemName: "lock.fill")
-                        .font(.system(size: 13))
+                        .font(.system(size: 13, design: .rounded))
                         .foregroundColor(Theme.textFaint)
                 }
             }
@@ -52,7 +52,7 @@ private struct LevelTierSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: 12, weight: .bold, design: .rounded))
                 .tracking(1.5)
                 .textCase(.uppercase)
                 .foregroundColor(Theme.textFaint)
@@ -86,14 +86,14 @@ struct LevelSelectView: View {
                 HStack {
                     BackButton(action: onBack)
                     Spacer()
-                    Text(loc.t("levelsSelectTitle")).font(.system(size: 17, weight: .semibold)).foregroundColor(Theme.text)
+                    Text(loc.t("levelsSelectTitle")).font(.system(size: 17, weight: .semibold, design: .rounded)).foregroundColor(Theme.text)
                     Spacer()
                     Color.clear.frame(width: 44, height: 44)
                 }
                 .padding()
 
                 Text(loc.t("levelsSelectSubtitle"))
-                    .font(.system(size: 13))
+                    .font(.system(size: 13, design: .rounded))
                     .foregroundColor(Theme.textDim)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
@@ -101,7 +101,7 @@ struct LevelSelectView: View {
 
                 if bestLevel >= LEVELS_MAX_LEVEL {
                     Text(loc.t("allLevelsComplete"))
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold, design: .rounded))
                         .foregroundColor(Theme.accent)
                         .padding(.bottom, 10)
                 }

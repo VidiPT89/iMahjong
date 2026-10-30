@@ -11,7 +11,7 @@ struct LangToggle: View {
                 Text("EN")
                     .foregroundColor(loc.lang == .en ? Theme.bg : Theme.textDim)
             }
-            .font(.system(size: 12, weight: .bold))
+            .font(.system(size: 12, weight: .bold, design: .rounded))
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
             .background(
@@ -38,7 +38,7 @@ struct DifficultyPicker: View {
     var body: some View {
         VStack(spacing: 6) {
             Text(loc.t("difficultyLabel"))
-                .font(.system(size: 10, weight: .semibold))
+                .font(.system(size: 10, weight: .semibold, design: .rounded))
                 .tracking(1.5)
                 .foregroundColor(Theme.textFaint)
                 .textCase(.uppercase)
@@ -56,7 +56,7 @@ struct DifficultyPicker: View {
     private func option(_ value: Difficulty, label: String) -> some View {
         Button(action: { selected = value }) {
             Text(label)
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: 12, weight: .bold, design: .rounded))
                 .foregroundColor(selected == value ? Theme.bg : Theme.textFaint)
                 .padding(.horizontal, 11)
                 .padding(.vertical, 8)
@@ -76,70 +76,77 @@ struct MainMenuView: View {
     let onLevels: () -> Void
     let onHowToPlay: () -> Void
     let onTraditionalMode: () -> Void
+    let onAcademy: () -> Void
+    let lessonsDone: Int
 
     var body: some View {
+        let pt = loc.lang == .pt
         ZStack {
             BackgroundGlow()
-
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(action: { soundEnabled.toggle() }) {
-                        Image(systemName: soundEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
-                            .frame(width: 44, height: 44)
+            ScrollView {
+                VStack(spacing: 24) {
+                    HStack {
+                        Text("iVidiMahjong").font(.system(.headline, design: .rounded)).foregroundColor(Theme.textDim)
+                        Spacer()
+                        Button(action: { soundEnabled.toggle() }) {
+                            Image(systemName: soundEnabled ? "speaker.wave.2" : "speaker.slash")
+                                .frame(width: 44, height: 44)
+                        }.buttonStyle(.plain).foregroundColor(Theme.text)
+                            .accessibilityLabel(loc.t(soundEnabled ? "muteSound" : "enableSound"))
+                        LangToggle()
                     }
-                    .buttonStyle(.plain)
-                    .foregroundColor(Theme.accent)
-                    .accessibilityLabel(loc.t(soundEnabled ? "muteSound" : "enableSound"))
-                    LangToggle().padding(.trailing, 18)
-                }
-                Spacer()
-            }
-
-            VStack(spacing: 16) {
-                Spacer()
-
-                Text(loc.t("menuTag"))
-                    .font(.system(size: 12, weight: .bold))
-                    .tracking(2)
-                    .foregroundColor(Theme.accent)
-
-                BrandLogo(size: 44)
-
-                Text(loc.t("menuSubtitle"))
-                    .font(.system(size: 15))
-                    .foregroundColor(Theme.textDim)
-
-                DifficultyPicker(selected: $selectedDifficulty)
-                    .padding(.top, 6)
-
-                let record = Leaderboard.entry(for: selectedDifficulty)
-                if let time = record.bestTimeSeconds, let moves = record.bestMoves {
-                    Text("\(loc.t("bestRecord")): \(Int(time) / 60):\(String(format: "%02d", Int(time) % 60)) · \(moves) \(loc.t("moves"))")
-                        .font(.system(size: 12))
-                        .foregroundColor(Theme.textDim)
-                }
-
-                VStack(spacing: 12) {
-                    if hasSave {
-                        Button(loc.t("continueGame"), action: onContinue)
+                    HStack(spacing: 14) {
+                        menuTile("p3", angle: -14)
+                        menuTile("s2", angle: 0).offset(y: -12)
+                        menuTile("m1", angle: 14)
+                    }.padding(.top, 24).padding(.bottom, 6).accessibilityHidden(true)
+                    VStack(spacing: 10) {
+                        Text(pt ? "Aprende Riichi Mahjong" : "Learn Riichi Mahjong")
+                            .font(.system(size: 32, weight: .semibold, design: .rounded))
+                            .foregroundColor(Theme.text).multilineTextAlignment(.center)
+                        Text(pt ? "Lições curtas, treinos sem fim e uma mesa com treinador que explica cada jogada."
+                                : "Short lessons, endless drills and a coached table that explains every move.")
+                            .font(.system(.body, design: .rounded)).foregroundColor(Theme.textDim).multilineTextAlignment(.center)
+                    }
+                    VStack(spacing: 14) {
+                        Button(lessonsDone == 0 ? (pt ? "Começar a Academia" : "Start the Academy") : (pt ? "Academia Riichi" : "Riichi Academy"), action: onAcademy)
+                            .buttonStyle(PrimaryButtonStyle())
+                            .accessibilityIdentifier("academy")
+                        if lessonsDone > 0 {
+                            Text(pt ? "\(lessonsDone) de \(ACADEMY_LESSONS.count) lições feitas" : "\(lessonsDone) of \(ACADEMY_LESSONS.count) lessons done")
+                                .font(.system(.caption, design: .rounded)).foregroundColor(Theme.accent)
+                        }
+                        Button(pt ? "Mesa Riichi com treinador" : "Coached Riichi table", action: onTraditionalMode)
                             .buttonStyle(SecondaryButtonStyle())
+                            .accessibilityIdentifier("riichiTable")
                     }
-                    Button(loc.t("play"), action: onPlay)
-                        .buttonStyle(PrimaryButtonStyle())
-                    Button(loc.t("levelsMode"), action: onLevels)
-                        .buttonStyle(SecondaryButtonStyle())
-                    Button(loc.t("traditionalMode"), action: onTraditionalMode)
-                        .buttonStyle(SecondaryButtonStyle())
-                    Button(loc.t("howToPlay"), action: onHowToPlay)
-                        .buttonStyle(GhostButtonStyle())
+                    Divider().overlay(Theme.border)
+                    VStack(spacing: 12) {
+                        SectionLabel(text: pt ? "Para descansar: Solitário" : "Unwind: Solitaire")
+                        if hasSave {
+                            Button(loc.t("continueGame"), action: onContinue).buttonStyle(SecondaryButtonStyle())
+                        }
+                        HStack(spacing: 12) {
+                            Button(hasSave ? (pt ? "Nova partida" : "New game") : (pt ? "Solitário" : "Solitaire"), action: onPlay)
+                                .buttonStyle(SecondaryButtonStyle())
+                                .accessibilityIdentifier("solitaire")
+                            Button(loc.t("levelsMode"), action: onLevels).buttonStyle(SecondaryButtonStyle())
+                        }
+                        DifficultyPicker(selected: $selectedDifficulty)
+                    }
+                    Button(loc.t("howToPlay"), action: onHowToPlay).buttonStyle(GhostButtonStyle())
                 }
-                .padding(.top, 10)
-
-                Spacer()
-                FooterCredits()
+                .frame(maxWidth: 480).padding(24).frame(maxWidth: .infinity)
             }
-            .padding(.top, 24)
         }
     }
+    private func menuTile(_ type: String, angle: Double) -> some View {
+        TraditionalTileArtwork(typeID: type)
+            .scaleEffect(0.36).frame(width: 69, height: 92)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 0.54, green: 0.32, blue: 0.12)).offset(y: 8))
+            .rotation3DEffect(.degrees(22), axis: (x: 1, y: 0, z: 0))
+            .rotationEffect(.degrees(angle))
+            .shadow(color: .black.opacity(0.4), radius: 12, y: 16)
+    }
+
 }

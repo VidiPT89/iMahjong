@@ -389,7 +389,18 @@ extension GameSnapshot {
         guard let difficulty = Difficulty(rawValue: difficulty),
               (1...LEVELS_MAX_LEVEL).contains(level), moves >= 0, hintsUsed >= 0,
               elapsedSeconds.isFinite, elapsedSeconds >= 0, elapsedSeconds < 1_000_000_000 else { return false }
-        let layout = difficulty.layout ?? buildInfiniteLayout(level)
+        let layout: [BoardPosition]
+        if difficulty == .easy && tiles.count == 108 {
+            layout = (0..<12).flatMap { y in (0..<9).map { x in BoardPosition(x: x, y: y, z: 0) } }
+        } else if difficulty == .easy && tiles.count == 48 && tiles.allSatisfy({ $0.z == 0 }) {
+            layout = (0..<8).flatMap { y in (0..<6).map { x in BoardPosition(x: x, y: y, z: 0) } }
+        } else if difficulty == .easy && tiles.count == 48 && tiles.first(where: { $0.id == 0 })?.x == 0 {
+            let base = (0..<6).flatMap { y in (0..<6).map { x in BoardPosition(x: x, y: y, z: 0) } }
+            let terrace = (1..<4).flatMap { y in (1..<5).map { x in BoardPosition(x: x, y: y, z: 1) } }
+            layout = base + terrace
+        } else {
+            layout = difficulty.layout ?? buildInfiniteLayout(level)
+        }
         guard tiles.count == layout.count, Set(tiles.map(\.id)).count == tiles.count else { return false }
         let byID = Dictionary(uniqueKeysWithValues: tiles.map { ($0.id, $0) })
         for (id, position) in layout.enumerated() {

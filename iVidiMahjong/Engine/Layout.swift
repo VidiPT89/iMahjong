@@ -54,19 +54,14 @@ func buildTurtleLayout() -> [BoardPosition] {
     return positions
 }
 
-/// Easy — a 9x12 rectangular grid (108 tiles, single layer, nothing ever covered so only
-/// the left/right "blocked" rule applies). Deliberately not the turtle's flat base
-/// silhouette (15 columns wide, nearly twice as wide as tall) — that shape forces a much
-/// smaller on-screen scale on a portrait phone. This one's proportions are close to a
-/// phone's usable board area, so tiles render substantially larger.
+/// Introductory miniature: 36 base tiles and 12 on a shallow upper terrace.
 func buildEasyLayout() -> [BoardPosition] {
-    var positions: [BoardPosition] = []
-    func push(_ x: Int, _ y: Int, _ z: Int) { positions.append(BoardPosition(x: x, y: y, z: z)) }
-
-    for y in 0..<12 {
-        for x in 0..<9 { push(x, y, 0) }
+    let widths = [4, 6, 8, 8, 6, 4]
+    let base = widths.enumerated().flatMap { y, width in
+        (0..<width).map { x in BoardPosition(x: x + (8 - width) / 2, y: y, z: 0) }
     }
-    return positions
+    let terrace = (1..<4).flatMap { y in (2..<6).map { x in BoardPosition(x: x, y: y, z: 1) } }
+    return base + terrace
 }
 
 /// Hard — the same 144-tile footprint as Medium's reshaped base, but the 32 tiles above

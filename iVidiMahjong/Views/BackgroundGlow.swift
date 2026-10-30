@@ -52,7 +52,7 @@ struct FooterCredits: View {
             Link("GitHub", destination: URL(string: "https://github.com/VidiPT89/")!)
                 .foregroundColor(Theme.accent)
         }
-        .font(.system(size: 12))
+        .font(.system(size: 12, design: .rounded))
         .padding(.bottom, 14)
     }
 }
@@ -80,7 +80,7 @@ struct BackButton: View {
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 16, weight: .semibold))
+            .font(.system(size: 16, weight: .semibold, design: .rounded))
             .foregroundColor(Theme.bg)
             .frame(maxWidth: 340)
             .padding(.vertical, 14)
@@ -97,7 +97,7 @@ struct PrimaryButtonStyle: ButtonStyle {
 struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 16, weight: .semibold))
+            .font(.system(size: 16, weight: .semibold, design: .rounded))
             .foregroundColor(Theme.text)
             .frame(maxWidth: 340)
             .padding(.vertical, 14)
@@ -114,7 +114,7 @@ struct SecondaryButtonStyle: ButtonStyle {
 struct GhostButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 15, weight: .medium))
+            .font(.system(size: 15, weight: .medium, design: .rounded))
             .foregroundColor(Theme.textDim)
             .frame(maxWidth: 340)
             .padding(.vertical, 12)
