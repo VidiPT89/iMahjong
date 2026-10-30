@@ -78,7 +78,30 @@ struct RootView: View {
         }
         .environmentObject(loc)
         .transition(.opacity)
+        #if DEBUG
+        .onAppear(perform: openDebugScreen)
+        #endif
     }
+
+    #if DEBUG
+    /// Debug builds only: `-ividimahjong-debug-screen <solitaire|levels|level1|riichi|howto>`
+    /// opens that screen directly, so store screenshots can be captured on the Mac without
+    /// UI automation. Riichi runs with four bots so the table fills up on its own.
+    private func openDebugScreen() {
+        switch UserDefaults.standard.string(forKey: "ividimahjong-debug-screen") {
+        case "solitaire": startNewGame()
+        case "levels": screen = .levelSelect
+        case "level1": startLevel(1)
+        case "howto": screen = .howToPlay
+        case "riichi":
+            let match = LocalMatch(isHuman: [false, false, false, false])
+            localMatch = match
+            match.startHand()
+            screen = .traditionalTable
+        default: break
+        }
+    }
+    #endif
 
     private func goToMenu() {
         withAnimation(.easeOut(duration: 0.5)) { screen = .menu }

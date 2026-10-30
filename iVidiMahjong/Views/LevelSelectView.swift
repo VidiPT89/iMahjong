@@ -84,13 +84,7 @@ struct LevelSelectView: View {
 
             VStack(spacing: 0) {
                 HStack {
-                    Button(action: onBack) {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Theme.text)
-                            .frame(width: 44, height: 44)
-                            .background(Circle().fill(Theme.bgPanel2))
-                    }
-                    .buttonStyle(.plain)
+                    BackButton(action: onBack)
                     Spacer()
                     Text(loc.t("levelsSelectTitle")).font(.system(size: 17, weight: .semibold)).foregroundColor(Theme.text)
                     Spacer()

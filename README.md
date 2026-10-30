@@ -26,6 +26,8 @@ xcodebuild -project iVidiMahjong.xcodeproj -scheme iVidiMahjong-iOS \
   -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
 ```
 
+UI tests (`iVidiMahjongUITests` on iOS, `iVidiMahjongMacUITests` on the Mac) walk the main screens; with `TEST_RUNNER_STORE_SHOTS=1` they keep a screenshot per screen. The Mac runner needs UI automation enabled on that machine. Debug builds also accept `-ividimahjong-debug-screen solitaire|levels|level1|riichi|howto` to open a screen directly.
+
 ## Rules and limits
 
 This is a casual Riichi implementation, not a certified tournament ruleset. Both engines implement common yaku, seven pairs, thirteen orphans, dora/ura-dora, chi/pon/open and concealed kan, riichi discard locking, furiten and han/fu payments. Winning decompositions and winning-tile placements are evaluated for the highest score.

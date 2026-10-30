@@ -57,6 +57,26 @@ struct FooterCredits: View {
     }
 }
 
+/// Round chevron button used at the top-left of every inner screen. Escape triggers it on
+/// the Mac, and the "back" identifier lets UI tests find it among the window's own buttons.
+struct BackButton: View {
+    @EnvironmentObject var loc: Localization
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "chevron.left")
+                .foregroundColor(Theme.text)
+                .frame(width: 44, height: 44)
+                .background(Circle().fill(Theme.bgPanel2))
+        }
+        .buttonStyle(.plain)
+        .keyboardShortcut(.cancelAction)
+        .accessibilityLabel(loc.t("back"))
+        .accessibilityIdentifier("back")
+    }
+}
+
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

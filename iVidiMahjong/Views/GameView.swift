@@ -104,13 +104,7 @@ struct GameView: View {
     private var header: some View {
         VStack(spacing: 8) {
             HStack(spacing: 6) {
-                Button(action: { SaveStore.save(engine); onExit() }) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Theme.text)
-                        .frame(width: 44, height: 44)
-                        .background(Circle().fill(Theme.bgPanel2))
-                }
-                .buttonStyle(.plain)
+                BackButton(action: { SaveStore.save(engine); onExit() })
 
                 Spacer(minLength: 4)
 

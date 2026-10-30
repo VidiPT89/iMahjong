@@ -57,6 +57,7 @@
 		BB7907E74C9F71106AA76D03 /* RiichiEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C129B3E2021A15F3C0BD6C /* RiichiEngine.swift */; };
 		BB83F975E9E3D3775889764F /* TileFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C48061D077F9186087204 /* TileFaceView.swift */; };
 		BE7FC75957676516ABAE7CA5 /* HandEval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241AD9E017CCE0B8FA98ED99 /* HandEval.swift */; };
+		C9D959852BAA0A4DE421E3BD /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2CBDEC3E847F112456804 /* NavigationUITests.swift */; };
 		CCEE739D8BCF2C9F70CAC25D /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7008DCDD66C61BA564943 /* TileView.swift */; };
 		CEBB97CCFDF8701C70F6627F /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DE7CE04483CAB22D2447D /* MainMenuView.swift */; };
 		CF57054752060B7F327A9F4B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAA95CDD4EA9218A046D465 /* Theme.swift */; };
@@ -94,6 +95,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5104F3633A410E1B901AD5B2;
 			remoteInfo = "iVidiMahjong-iOS";
+		};
+		D7B411BFE872E6D5A801C3BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9F6C6969FE000EDE3869C34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13563606BFFF17A39AA04689;
+			remoteInfo = "iVidiMahjong-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -141,6 +149,7 @@
 		E7CE2A1AA764D87EECE0FB77 /* Scoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scoring.swift; sourceTree = "<group>"; };
 		F601F106F46C2E0DCB8963E7 /* LocalMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMatch.swift; sourceTree = "<group>"; };
 		F638361A365B5FFA2794B2F4 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		FF12A0225467A75D1E1670C6 /* iVidiMahjongMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iVidiMahjongMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -161,6 +170,7 @@
 			children = (
 				A4F576970F784566B0E98332 /* iVidiMahjong-iOS.app */,
 				B2138F45C808AA217B221B26 /* iVidiMahjong-macOS.app */,
+				FF12A0225467A75D1E1670C6 /* iVidiMahjongMacUITests.xctest */,
 				52F3A77DC3309B2BCA3C25B6 /* iVidiMahjongTests.xctest */,
 				E1BE887739D11D4A81731722 /* iVidiMahjongUITests.xctest */,
 			);
@@ -314,6 +324,24 @@
 			productReference = E1BE887739D11D4A81731722 /* iVidiMahjongUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D3310E5E0E89DA28226016C1 /* iVidiMahjongMacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44295358A5A9CA654CB64DB2 /* Build configuration list for PBXNativeTarget "iVidiMahjongMacUITests" */;
+			buildPhases = (
+				0515110786987BE09A165AD1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BCCA0334A9FE88AB48783FA /* PBXTargetDependency */,
+			);
+			name = iVidiMahjongMacUITests;
+			packageProductDependencies = (
+			);
+			productName = iVidiMahjongMacUITests;
+			productReference = FF12A0225467A75D1E1670C6 /* iVidiMahjongMacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D96FD168C3068051ED45A8D4 /* iVidiMahjongTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CB549DA922743CD5160E1CD /* Build configuration list for PBXNativeTarget "iVidiMahjongTests" */;
@@ -354,6 +382,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5104F3633A410E1B901AD5B2;
 					};
+					D3310E5E0E89DA28226016C1 = {
+						DevelopmentTeam = S769436W24;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13563606BFFF17A39AA04689;
+					};
 					D96FD168C3068051ED45A8D4 = {
 						DevelopmentTeam = S769436W24;
 						ProvisioningStyle = Automatic;
@@ -378,6 +411,7 @@
 				13563606BFFF17A39AA04689 /* iVidiMahjong-macOS */,
 				D96FD168C3068051ED45A8D4 /* iVidiMahjongTests */,
 				71CA475B2906705483915605 /* iVidiMahjongUITests */,
+				D3310E5E0E89DA28226016C1 /* iVidiMahjongMacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -404,6 +438,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0515110786987BE09A165AD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9D959852BAA0A4DE421E3BD /* NavigationUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6D912F0D03BC31A40F6DF8C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -507,6 +549,11 @@
 			target = 5104F3633A410E1B901AD5B2 /* iVidiMahjong-iOS */;
 			targetProxy = 8AE9D10A6B2D63DFD7593E0B /* PBXContainerItemProxy */;
 		};
+		4BCCA0334A9FE88AB48783FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13563606BFFF17A39AA04689 /* iVidiMahjong-macOS */;
+			targetProxy = D7B411BFE872E6D5A801C3BD /* PBXContainerItemProxy */;
+		};
 		FF22ED3B7AEFB38CF1E27733 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 13563606BFFF17A39AA04689 /* iVidiMahjong-macOS */;
@@ -515,6 +562,26 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		206A83DDE0FEA77DDB605544 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.macuitests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "iVidiMahjong-macOS";
+			};
+			name = Debug;
+		};
 		39B9974611CFB20DD227AB39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -762,6 +829,26 @@
 			};
 			name = Debug;
 		};
+		B87B640F995C0F70C56F21F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.ividimahjong.macuitests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "iVidiMahjong-macOS";
+			};
+			name = Release;
+		};
 		C666C8CBA50091388D1DC028 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -810,6 +897,15 @@
 			buildConfigurations = (
 				C666C8CBA50091388D1DC028 /* Debug */,
 				B0F724E6D21226941D89E91D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		44295358A5A9CA654CB64DB2 /* Build configuration list for PBXNativeTarget "iVidiMahjongMacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				206A83DDE0FEA77DDB605544 /* Debug */,
+				B87B640F995C0F70C56F21F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -93,13 +93,7 @@ struct TraditionalTableView: View {
 
     private var header: some View {
         HStack(spacing: 6) {
-            Button(action: onExit) {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(Theme.text)
-                    .frame(width: 44, height: 44)
-                    .background(Circle().fill(Theme.bgPanel2))
-            }
-            .buttonStyle(.plain)
+            BackButton(action: onExit)
 
             Spacer()
 
@@ -221,8 +215,11 @@ struct TraditionalTableView: View {
                             .opacity(isMyDiscardTurn && !enabled ? 0.45 : 1)
                     }
                     .buttonStyle(.plain)
-                    .disabled(!enabled)
+                    // Not .disabled: macOS greys out disabled buttons, which made the whole
+                    // hand look inactive while waiting. humanDiscard rejects illegal taps.
+                    .allowsHitTesting(enabled)
                     .accessibilityLabel(tileAccessibilityName(tile, loc))
+                    .accessibilityIdentifier("handTile")
                 }
             }
             .frame(maxWidth: .infinity)

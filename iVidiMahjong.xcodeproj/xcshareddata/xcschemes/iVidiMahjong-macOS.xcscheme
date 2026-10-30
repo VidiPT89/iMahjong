@@ -50,6 +50,17 @@
                ReferencedContainer = "container:iVidiMahjong.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D3310E5E0E89DA28226016C1"
+               BuildableName = "iVidiMahjongMacUITests.xctest"
+               BlueprintName = "iVidiMahjongMacUITests"
+               ReferencedContainer = "container:iVidiMahjong.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <CommandLineArguments>
       </CommandLineArguments>

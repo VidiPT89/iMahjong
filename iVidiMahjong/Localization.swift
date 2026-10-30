@@ -30,7 +30,8 @@ final class Localization: ObservableObject {
 
     private let strings: [Lang: [String: String]] = [
         .pt: [
-            "tapToContinue": "Toque para continuar",
+            "tapToContinue": "Toca para continuar",
+            "clickToContinue": "Clica para continuar",
             "developedBy": "Desenvolvido por",
 
             "menuTag": "iVidiMahjong · Solitário",
@@ -165,6 +166,7 @@ final class Localization: ObservableObject {
         ],
         .en: [
             "tapToContinue": "Tap to continue",
+            "clickToContinue": "Click to continue",
             "developedBy": "Developed by",
 
             "menuTag": "iVidiMahjong · Solitaire",

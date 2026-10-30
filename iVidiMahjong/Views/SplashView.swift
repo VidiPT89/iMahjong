@@ -6,6 +6,12 @@ struct SplashView: View {
 
     @State private var appeared = false
 
+    #if os(macOS)
+    private static let continueKey = "clickToContinue"
+    #else
+    private static let continueKey = "tapToContinue"
+    #endif
+
     var body: some View {
         ZStack {
             BackgroundGlow()
@@ -42,7 +48,7 @@ struct SplashView: View {
 
                 Spacer()
 
-                Text(loc.t("tapToContinue"))
+                Text(loc.t(Self.continueKey))
                     .font(.system(size: 13, weight: .medium))
                     .foregroundColor(Theme.textFaint)
                     .padding(.bottom, 30)

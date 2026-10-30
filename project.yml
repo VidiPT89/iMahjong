@@ -109,6 +109,22 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         TEST_TARGET_NAME: iVidiMahjong-iOS
 
+  iVidiMahjongMacUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: iVidiMahjongUITests
+    dependencies:
+      - target: iVidiMahjong-macOS
+    settings:
+      base:
+        SWIFT_VERSION: "5.0"
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: true
+        PRODUCT_BUNDLE_IDENTIFIER: dev.ividi.ividimahjong.macuitests
+        TEST_TARGET_NAME: iVidiMahjong-macOS
+
 schemes:
   iVidiMahjong-iOS:
     build:
@@ -124,3 +140,4 @@ schemes:
     test:
       targets:
         - iVidiMahjongTests
+        - iVidiMahjongMacUITests
