@@ -6,7 +6,7 @@ final class ScoringRegressionTests: XCTestCase {
         let context = WinContext(concealed: true, openMelds: [], winTile: tile, winType: type,
                                  seatWind: "wE", roundWind: "wE", riichi: false, doubleRiichi: false,
                                  ippatsu: false, haitei: false, houtei: false, rinshan: false,
-                                 chankan: false, doraCount: 0, uraDoraCount: 0)
+                                 doraCount: 0, uraDoraCount: 0)
         return try XCTUnwrap(bestYakuResult(checkWin(hand, []), hand, context))
     }
 

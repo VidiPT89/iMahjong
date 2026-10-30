@@ -107,61 +107,17 @@ final class GameEngine: ObservableObject {
     func reset(difficulty newDifficulty: Difficulty? = nil) {
         if let newDifficulty { difficulty = newDifficulty }
         level = 1
-        let layout = difficulty.layout ?? buildInfiniteLayout(1)
-        tiles = layout.enumerated().map { i, pos in
-            GameTile(id: i, x: pos.x, y: pos.y, z: pos.z, removed: false, typeId: nil)
-        }
-
-        let refPositions = tiles.map { RefPosition(refId: $0.id, x: $0.x, y: $0.y, z: $0.z) }
-        guard let pairing = try? computeSolvablePairingWithRetry(refPositions) else {
-            fatalError("Could not compute a solvable pairing for the turtle layout")
-        }
-        let units = difficulty == .infinite ? buildInfinitePairUnits(totalTiles: tiles.count) : buildPairUnits(for: difficulty)
-
-        for (idx, pair) in pairing.enumerated() {
-            let (typeA, typeB) = units[idx]
-            setTypeId(typeA, forTileId: pair.0)
-            setTypeId(typeB, forTileId: pair.1)
-        }
-        provenSolveOrder = pairing
-
-        selectedId = nil
-        history = []
-        moves = 0
-        hintsUsed = 0
-        pausedAt = nil
-        startedAt = Date()
+        deal(difficulty.layout ?? buildInfiniteLayout(level))
+        resetRunStats()
     }
 
-    /// Levels mode only: starts play directly at a chosen level (used by level select),
-    /// rather than always beginning at level 1 like `reset` does.
+    /// Levels mode only: starts play directly at a chosen level (used by level select and
+    /// by restarting a level mid-run), rather than always beginning at level 1 like `reset`.
     func startLevel(_ startAt: Int) {
         difficulty = .infinite
         level = min(max(startAt, 1), LEVELS_MAX_LEVEL)
-        let layout = buildInfiniteLayout(level)
-        tiles = layout.enumerated().map { i, pos in
-            GameTile(id: i, x: pos.x, y: pos.y, z: pos.z, removed: false, typeId: nil)
-        }
-
-        let refPositions = tiles.map { RefPosition(refId: $0.id, x: $0.x, y: $0.y, z: $0.z) }
-        guard let pairing = try? computeSolvablePairingWithRetry(refPositions) else {
-            fatalError("Could not compute a solvable pairing for the levels layout")
-        }
-        let units = buildInfinitePairUnits(totalTiles: tiles.count)
-
-        for (idx, pair) in pairing.enumerated() {
-            let (typeA, typeB) = units[idx]
-            setTypeId(typeA, forTileId: pair.0)
-            setTypeId(typeB, forTileId: pair.1)
-        }
-        provenSolveOrder = pairing
-
-        selectedId = nil
-        history = []
-        moves = 0
-        hintsUsed = 0
-        pausedAt = nil
-        startedAt = Date()
+        deal(buildInfiniteLayout(level))
+        resetRunStats()
     }
 
     /// Levels mode only: deals the next (bigger) level's board in place, keeping the run's
@@ -172,32 +128,39 @@ final class GameEngine: ObservableObject {
     func dealNextInfiniteLevel() {
         guard level < LEVELS_MAX_LEVEL else { return }
         level += 1
-        let layout = buildInfiniteLayout(level)
+        deal(buildInfiniteLayout(level))
+    }
+
+    /// Lays out a fresh board and assigns tile types along a provably solvable pairing.
+    private func deal(_ layout: [BoardPosition]) {
         tiles = layout.enumerated().map { i, pos in
             GameTile(id: i, x: pos.x, y: pos.y, z: pos.z, removed: false, typeId: nil)
         }
 
         let refPositions = tiles.map { RefPosition(refId: $0.id, x: $0.x, y: $0.y, z: $0.z) }
         guard let pairing = try? computeSolvablePairingWithRetry(refPositions) else {
-            fatalError("Could not compute a solvable pairing for the infinite layout")
+            fatalError("Could not compute a solvable pairing for a built-in layout")
         }
-        let units = buildInfinitePairUnits(totalTiles: tiles.count)
-
-        for (idx, pair) in pairing.enumerated() {
-            let (typeA, typeB) = units[idx]
-            setTypeId(typeA, forTileId: pair.0)
-            setTypeId(typeB, forTileId: pair.1)
-        }
-        provenSolveOrder = pairing
-
+        let units = difficulty == .infinite ? buildInfinitePairUnits(totalTiles: tiles.count) : buildPairUnits(for: difficulty)
+        assignTypes(units, along: pairing)
         selectedId = nil
         history = []
     }
 
-    private func setTypeId(_ typeId: String, forTileId id: Int) {
-        if let idx = tiles.firstIndex(where: { $0.id == id }) {
-            tiles[idx].typeId = typeId
+    private func assignTypes(_ units: [(String, String)], along pairing: [(Int, Int)]) {
+        let indexById = Dictionary(uniqueKeysWithValues: tiles.indices.map { (tiles[$0].id, $0) })
+        for (idx, pair) in pairing.enumerated() {
+            tiles[indexById[pair.0]!].typeId = units[idx].0
+            tiles[indexById[pair.1]!].typeId = units[idx].1
         }
+        provenSolveOrder = pairing
+    }
+
+    private func resetRunStats() {
+        moves = 0
+        hintsUsed = 0
+        pausedAt = nil
+        startedAt = Date()
     }
 
     func getTile(_ id: Int) -> GameTile? {
@@ -361,15 +324,7 @@ final class GameEngine: ObservableObject {
 
         var typeCounts: [String: Int] = [:]
         for t in remainingTiles { typeCounts[t.typeId ?? "", default: 0] += 1 }
-        let units = buildPairUnitsFromInventory(typeCounts)
-
-        for (idx, pair) in pairing.enumerated() {
-            let (typeA, typeB) = units[idx]
-            setTypeId(typeA, forTileId: pair.0)
-            setTypeId(typeB, forTileId: pair.1)
-        }
-        provenSolveOrder = pairing
-
+        assignTypes(buildPairUnitsFromInventory(typeCounts), along: pairing)
         selectedId = nil
         return true
     }

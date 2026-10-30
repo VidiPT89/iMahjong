@@ -232,7 +232,6 @@ final class RiichiEngine {
             haitei: winType == .tsumo && liveWall.isEmpty && !isRinshanDraw,
             houtei: winType == .ron && liveWall.isEmpty,
             rinshan: winType == .tsumo && isRinshanDraw,
-            chankan: false,
             doraCount: 0,
             uraDoraCount: 0
         )

@@ -1,7 +1,5 @@
 import SwiftUI
 
-private let windLabelKeys = ["wE": "windE", "wS": "windS", "wW": "windW", "wN": "windN"]
-
 struct TraditionalTableView: View {
     @EnvironmentObject var loc: Localization
     @ObservedObject var match: LocalMatch
@@ -86,8 +84,12 @@ struct TraditionalTableView: View {
             Spacer()
 
             VStack(spacing: 1) {
-                Text("\(loc.t("roundLabel")) \(loc.t(windLabelKeys[match.roundWind] ?? "")) · \(loc.t("handLabel")) \(match.handNumber)")
-                Text("\(loc.t("doraLabel")): \(match.engine.doraIndicators().first ?? "") · \(loc.t("wallLeft")): \(match.engine.liveWall.count)")
+                Text("\(loc.t("roundLabel")) \(loc.t(windLabelKey(match.roundWind))) · \(loc.t("handLabel")) \(match.handNumber)")
+                HStack(spacing: 3) {
+                    Text("\(loc.t("doraLabel")):")
+                    ForEach(Array(match.engine.doraIndicators().enumerated()), id: \.offset) { _, t in MiniTileChip(typeId: t, width: 14) }
+                    Text("· \(loc.t("wallLeft")): \(match.engine.liveWall.count)")
+                }
             }
             .font(.system(size: 10, weight: .medium))
             .foregroundColor(Theme.textDim)
@@ -124,7 +126,7 @@ struct TraditionalTableView: View {
 
         return VStack(spacing: 8) {
             HStack(spacing: 8) {
-                Text(loc.t(windLabelKeys[seat.wind] ?? ""))
+                Text(loc.t(windLabelKey(seat.wind)))
                     .font(.system(size: 13, weight: .bold))
                     .foregroundColor(Theme.accent)
                 Text("\(loc.t("pointsLabel")): \(seat.points)")
@@ -213,8 +215,8 @@ struct TraditionalTableView: View {
             }
             if isMyTurn {
                 let ankanOpts = match.engine.canAnkan(displaySeat)
-                if let first = ankanOpts.first {
-                    actionButton(loc.t("kanBtn")) { match.humanAnkan(first) }
+                ForEach(ankanOpts, id: \.self) { type in
+                    actionButton(ankanOpts.count > 1 ? "\(loc.t("kanBtn")) \(tileAccessibilityName(type, loc))" : loc.t("kanBtn")) { match.humanAnkan(type) }
                 }
             }
         }
@@ -240,6 +242,7 @@ struct TraditionalTableView: View {
                 TileFaceView(typeId: tile)
                     .frame(width: 44, height: 60)
                     .background(RoundedRectangle(cornerRadius: 6).fill(Theme.tileFace))
+                    .accessibilityLabel(tileAccessibilityName(tile, loc))
 
                 VStack(spacing: 10) {
                     if opts.ron {
@@ -252,8 +255,13 @@ struct TraditionalTableView: View {
                         Button(loc.t("ponBtn")) { match.humanReact(displaySeat, .pon) }.buttonStyle(SecondaryButtonStyle())
                     }
                     ForEach(Array(opts.chi.enumerated()), id: \.offset) { _, pair in
-                        Button("\(loc.t("chiBtn")) \(pair[0])+\(pair[1])") { match.humanReact(displaySeat, .chi(pair[0], pair[1])) }
-                            .buttonStyle(SecondaryButtonStyle())
+                        Button(action: { match.humanReact(displaySeat, .chi(pair[0], pair[1])) }) {
+                            HStack(spacing: 6) {
+                                Text(loc.t("chiBtn"))
+                                ForEach(pair, id: \.self) { MiniTileChip(typeId: $0, width: 16) }
+                            }
+                        }
+                        .buttonStyle(SecondaryButtonStyle())
                     }
                     Button(loc.t("passBtn")) { match.humanReact(displaySeat, .pass) }.buttonStyle(GhostButtonStyle())
                 }
@@ -275,7 +283,7 @@ private struct OpponentPanel: View {
         let seat = match.engine.seats[seatIndex]
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text(loc.t(windLabelKeys[seat.wind] ?? ""))
+                Text(loc.t(windLabelKey(seat.wind)))
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(Theme.accent)
                 if seat.riichi {
@@ -302,16 +310,6 @@ private struct OpponentPanel: View {
     }
 }
 
-private struct MiniTileChip: View {
-    let typeId: String
-    var body: some View {
-        TileFaceView(typeId: typeId)
-            .frame(width: 22, height: 30)
-            .background(RoundedRectangle(cornerRadius: 3).fill(Theme.tileFace))
-            .overlay(RoundedRectangle(cornerRadius: 3).stroke(Theme.tileEdge, lineWidth: 0.5))
-    }
-}
-
 private struct HandResultModal: View {
     let loc: Localization
     @ObservedObject var match: LocalMatch
@@ -329,7 +327,7 @@ private struct HandResultModal: View {
 
                 ForEach(winEntries, id: \.seat) { entry in
                     VStack(spacing: 4) {
-                        Text("\(loc.t(windLabelKeys[match.engine.seats[entry.seat].wind] ?? "")) — \(loc.t("hanLabel")) \(entry.win.han) / \(loc.t("fuLabel")) \(entry.win.fu)")
+                        Text("\(loc.t(windLabelKey(match.engine.seats[entry.seat].wind))) — \(loc.t("hanLabel")) \(entry.win.han) / \(loc.t("fuLabel")) \(entry.win.fu)")
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundColor(Theme.accent)
                         Text(entry.win.yakuList.map { "\($0.name) (\($0.han))" }.joined(separator: ", "))
@@ -391,7 +389,7 @@ private struct MatchEndModal: View {
 
                 ForEach(rankedSeats, id: \.seat) { entry in
                     HStack {
-                        Text(loc.t(windLabelKeys[["wE", "wS", "wW", "wN"][entry.seat]] ?? ""))
+                        Text(loc.t(windLabelKey(["wE", "wS", "wW", "wN"][entry.seat])))
                             .font(.system(size: 14, weight: .bold))
                             .foregroundColor(Theme.text)
                         Spacer()

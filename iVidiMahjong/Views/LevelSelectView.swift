@@ -87,14 +87,14 @@ struct LevelSelectView: View {
                     Button(action: onBack) {
                         Image(systemName: "chevron.left")
                             .foregroundColor(Theme.text)
-                            .padding(10)
+                            .frame(width: 44, height: 44)
                             .background(Circle().fill(Theme.bgPanel2))
                     }
                     .buttonStyle(.plain)
                     Spacer()
                     Text(loc.t("levelsSelectTitle")).font(.system(size: 17, weight: .semibold)).foregroundColor(Theme.text)
                     Spacer()
-                    Color.clear.frame(width: 36, height: 36)
+                    Color.clear.frame(width: 44, height: 44)
                 }
                 .padding()
 

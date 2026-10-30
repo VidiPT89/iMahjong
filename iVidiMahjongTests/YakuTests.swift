@@ -7,7 +7,7 @@ final class YakuTests: XCTestCase {
         WinContext(
             concealed: true, openMelds: [], winTile: winTile, winType: winType,
             seatWind: "wE", roundWind: "wE", riichi: riichi, doubleRiichi: false,
-            ippatsu: false, haitei: false, houtei: false, rinshan: false, chankan: false,
+            ippatsu: false, haitei: false, houtei: false, rinshan: false,
             doraCount: 0, uraDoraCount: 0
         )
     }

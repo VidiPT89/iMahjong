@@ -46,8 +46,8 @@ final class LocalMatch: ObservableObject {
 
     init(isHuman: [Bool]) {
         self.isHuman = isHuman
-        // Deliberately NOT calling startHand() here — mirrors the web version: the
-        // caller should call match.startHand() right after construction.
+        // Deliberately NOT calling startHand() here: the caller starts the first hand
+        // right after construction, once it holds a reference to the match.
         watchdog = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.watchdogTick()
         }

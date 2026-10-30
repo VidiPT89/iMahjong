@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Soft ambient glow behind menu-style screens, matching the web app's radial accent glow.
+/// Soft ambient radial accent glow behind menu-style screens.
 struct BackgroundGlow: View {
     var body: some View {
         ZStack {

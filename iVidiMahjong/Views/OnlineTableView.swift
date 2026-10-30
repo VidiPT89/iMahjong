@@ -1,7 +1,5 @@
 import SwiftUI
 
-private let windLabelKeysOnline = ["wE": "windE", "wS": "windS", "wW": "windW", "wN": "windN"]
-
 /// Renders the traditional 4-player Riichi table for online play. Unlike TraditionalTableView
 /// (which reads a local RiichiEngine object graph), this reads the loosely-typed `state`
 /// dictionary the server pushes down after every change -- the server is the sole source of
@@ -58,8 +56,11 @@ struct OnlineTableView: View {
             .buttonStyle(.plain)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(loc.t("roundLabel")) \(loc.t(windLabelKeysOnline[state.str("roundWind") ?? "wE"] ?? "windE")) · \(loc.t("handLabel")) \(state.int("handNumber") ?? 1)")
-                Text("\(loc.t("doraLabel")): \(state.stringArray("dora").map { TILE_TYPES_BY_ID[$0]?.id ?? $0 }.joined(separator: " "))")
+                Text("\(loc.t("roundLabel")) \(loc.t(windLabelKey(state.str("roundWind")))) · \(loc.t("handLabel")) \(state.int("handNumber") ?? 1)")
+                HStack(spacing: 3) {
+                    Text("\(loc.t("doraLabel")):")
+                    ForEach(Array(state.stringArray("dora").enumerated()), id: \.offset) { _, t in MiniTileChip(typeId: t, width: 14) }
+                }
             }
             .font(.system(size: 11, weight: .semibold))
             .foregroundColor(Theme.textDim)
@@ -102,7 +103,7 @@ struct OnlineTableView: View {
     private func opponentPanel(_ seat: [String: Any], seatIndex: Int, isDealer: Bool, isActive: Bool) -> some View {
         VStack(spacing: 4) {
             HStack {
-                Text(loc.t(windLabelKeysOnline[seat.str("wind") ?? "wE"] ?? "windE") + (isDealer ? " 🀄" : ""))
+                Text(loc.t(windLabelKey(seat.str("wind"))) + (isDealer ? " 🀄" : ""))
                     .font(.system(size: 11, weight: .bold))
                     .foregroundColor(Theme.text)
                 Spacer()
@@ -129,7 +130,7 @@ struct OnlineTableView: View {
             if !melds.isEmpty {
                 HStack(spacing: 2) {
                     ForEach(melds.indices, id: \.self) { i in
-                        ForEach(Array(melds[i].stringArray("tiles").enumerated()), id: \.offset) { _, t in MiniTileChipOnline(typeId: t) }
+                        ForEach(Array(melds[i].stringArray("tiles").enumerated()), id: \.offset) { _, t in MiniTileChip(typeId: t, width: 14) }
                     }
                 }
             }
@@ -139,7 +140,7 @@ struct OnlineTableView: View {
                 let cols = Array(repeating: GridItem(.fixed(14), spacing: 2), count: 6)
                 LazyVGrid(columns: cols, spacing: 2) {
                     ForEach(discards.indices, id: \.self) { i in
-                        MiniTileChipOnline(typeId: discards[i].str("tile") ?? "")
+                        MiniTileChip(typeId: discards[i].str("tile") ?? "", width: 14)
                     }
                 }
             }
@@ -160,7 +161,7 @@ struct OnlineTableView: View {
 
         return VStack(spacing: 6) {
             HStack {
-                Text(loc.t(windLabelKeysOnline[mySeatInfo.str("wind") ?? "wE"] ?? "windE") + (mySeat == state.int("dealerSeat") ? " 🀄" : ""))
+                Text(loc.t(windLabelKey(mySeatInfo.str("wind"))) + (mySeat == state.int("dealerSeat") ? " 🀄" : ""))
                     .font(.system(size: 13, weight: .bold))
                     .foregroundColor(Theme.text)
                 Spacer()
@@ -180,7 +181,7 @@ struct OnlineTableView: View {
             if !melds.isEmpty {
                 HStack(spacing: 4) {
                     ForEach(melds.indices, id: \.self) { i in
-                        ForEach(Array(melds[i].stringArray("tiles").enumerated()), id: \.offset) { _, t in MiniTileChipOnline(typeId: t) }
+                        ForEach(Array(melds[i].stringArray("tiles").enumerated()), id: \.offset) { _, t in MiniTileChip(typeId: t, width: 14) }
                     }
                 }
             }
@@ -190,7 +191,7 @@ struct OnlineTableView: View {
                 let cols = Array(repeating: GridItem(.fixed(18), spacing: 3), count: 9)
                 LazyVGrid(columns: cols, spacing: 3) {
                     ForEach(discards.indices, id: \.self) { i in
-                        MiniTileChipOnline(typeId: discards[i].str("tile") ?? "")
+                        MiniTileChip(typeId: discards[i].str("tile") ?? "", width: 14)
                     }
                 }
             }
@@ -224,8 +225,10 @@ struct OnlineTableView: View {
                         Button(loc.t("riichiBtn"), action: { client.declareRiichi() }).buttonStyle(SecondaryButtonStyle())
                     }
                     ForEach(state.stringArray("ankanOptions"), id: \.self) { type in
-                        Button("\(loc.t("kanBtn")) \(TILE_TYPES_BY_ID[type]?.id ?? type)", action: { client.ankan(tileType: type) })
-                            .buttonStyle(GhostButtonStyle())
+                        Button(action: { client.ankan(tileType: type) }) {
+                            HStack(spacing: 6) { Text(loc.t("kanBtn")); MiniTileChip(typeId: type, width: 16) }
+                        }
+                        .buttonStyle(GhostButtonStyle())
                     }
                 }
             }
@@ -244,10 +247,10 @@ struct OnlineTableView: View {
         return ZStack {
             Color.black.opacity(0.5).ignoresSafeArea()
             VStack(spacing: 14) {
-                HStack {
-                    Text(TILE_TYPES_BY_ID[tile]?.id ?? tile).foregroundColor(Theme.text)
-                    TileFaceView(typeId: tile).frame(width: 34, height: 46)
-                }
+                TileFaceView(typeId: tile)
+                    .frame(width: 44, height: 60)
+                    .background(RoundedRectangle(cornerRadius: 6).fill(Theme.tileFace))
+                    .accessibilityLabel(tileAccessibilityName(tile, loc))
                 VStack(spacing: 8) {
                     if opts.bool("ron") == true {
                         Button(loc.t("ronBtn"), action: { client.reactRon() }).buttonStyle(PrimaryButtonStyle())
@@ -259,8 +262,13 @@ struct OnlineTableView: View {
                         Button(loc.t("ponBtn"), action: { client.reactPon() }).buttonStyle(GhostButtonStyle())
                     }
                     ForEach((opts.array("chi") as? [[String]]) ?? [], id: \.self) { pair in
-                        Button("\(loc.t("chiBtn")) \(pair.map { TILE_TYPES_BY_ID[$0]?.id ?? $0 }.joined(separator: "+"))", action: { client.reactChi(pair) })
-                            .buttonStyle(GhostButtonStyle())
+                        Button(action: { client.reactChi(pair) }) {
+                            HStack(spacing: 6) {
+                                Text(loc.t("chiBtn"))
+                                ForEach(pair, id: \.self) { MiniTileChip(typeId: $0, width: 16) }
+                            }
+                        }
+                        .buttonStyle(GhostButtonStyle())
                     }
                     Button(loc.t("passBtn"), action: { client.reactPass() }).buttonStyle(GhostButtonStyle())
                 }
@@ -290,7 +298,7 @@ struct OnlineTableView: View {
                         VStack(spacing: 4) {
                             ForEach(0..<seats.count, id: \.self) { i in
                                 HStack {
-                                    Text(loc.t(windLabelKeysOnline[seats[i].str("wind") ?? "wE"] ?? "windE"))
+                                    Text(loc.t(windLabelKey(seats[i].str("wind"))))
                                     Spacer()
                                     Text(tenpaiSeats.contains(i) ? loc.t("tenpaiLabel") : loc.t("notenLabel"))
                                 }
@@ -304,7 +312,7 @@ struct OnlineTableView: View {
                             ForEach(winners.indices, id: \.self) { i in
                                 let w = winners[i]
                                 let seat = w.int("seat") ?? (type == "tsumo" ? (result.int("seat") ?? 0) : 0)
-                                Text(loc.t(windLabelKeysOnline[seat < seats.count ? (seats[seat].str("wind") ?? "wE") : "wE"] ?? "windE"))
+                                Text(loc.t(windLabelKey(seat < seats.count ? seats[seat].str("wind") : nil)))
                                     .font(.system(size: 14, weight: .bold))
                                     .foregroundColor(Theme.accent)
                                 ForEach(w.dictArray("yakuList").indices, id: \.self) { j in
@@ -383,15 +391,5 @@ struct OnlineTableView: View {
             .padding(20)
             .background(RoundedRectangle(cornerRadius: 14).fill(Theme.bgPanel))
         }
-    }
-}
-
-private struct MiniTileChipOnline: View {
-    let typeId: String
-    var body: some View {
-        TileFaceView(typeId: typeId)
-            .frame(width: 14, height: 20)
-            .background(RoundedRectangle(cornerRadius: 3).fill(Theme.tileFace))
-            .overlay(RoundedRectangle(cornerRadius: 3).stroke(Theme.tileEdge, lineWidth: 0.5))
     }
 }

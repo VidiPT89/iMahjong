@@ -1,7 +1,5 @@
 import SwiftUI
 
-private let windLabelKeysLobby = ["wE": "windE", "wS": "windS", "wW": "windW", "wN": "windN"]
-
 struct OnlineLobbyView: View {
     @EnvironmentObject var loc: Localization
     @ObservedObject var client: OnlineClient
@@ -79,6 +77,7 @@ struct OnlineLobbyView: View {
         switch code {
         case "room-not-found": return loc.t("roomNotFound")
         case "room-full-or-started": return loc.t("roomFull")
+        case "invalid-url": return loc.t("invalidServerUrl")
         default: return code
         }
     }
@@ -190,7 +189,7 @@ struct OnlineLobbyView: View {
         let seat = index < seats.count ? seats[index] as? [String: Any] : nil
 
         return HStack {
-            Text(loc.t(windLabelKeysLobby[windId] ?? "windE"))
+            Text(loc.t(windLabelKey(windId)))
                 .foregroundColor(Theme.text)
             if let seat {
                 Text(seat.str("name") ?? "")

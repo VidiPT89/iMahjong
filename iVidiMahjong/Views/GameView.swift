@@ -19,7 +19,9 @@ struct GameView: View {
     @State private var modal: ModalKind = .none
     @State private var transitionTask: Task<Void, Never>?
     @State private var toastMessage: String?
+    @State private var toastTask: Task<Void, Never>?
     @State private var hintedIds: Set<Int> = []
+    @State private var hintTask: Task<Void, Never>?
     @State private var shakeTokens: [Int: Int] = [:]
     @State private var lastMoveDealOrder: [Int: Double] = [:]
 
@@ -57,7 +59,7 @@ struct GameView: View {
                     moves: engine.moves,
                     score: currentScore,
                     subtitle: engine.difficulty == .infinite ? loc.t("allLevelsComplete") : nil,
-                    onPlayAgain: { restartGame() },
+                    onPlayAgain: { restartGame(wholeRun: true) },
                     onMenu: { SaveStore.clear(); onExit() }
                 ).zIndex(600)
             case .stuck:
@@ -69,7 +71,7 @@ struct GameView: View {
             case .confirmRestart:
                 ConfirmModalView(
                     message: loc.t("restartConfirm"),
-                    onYes: { restartGame() },
+                    onYes: { restartGame(wholeRun: false) },
                     onCancel: { modal = .none }
                 ).zIndex(600)
             case .none:
@@ -84,6 +86,8 @@ struct GameView: View {
         }
         .onDisappear {
             transitionTask?.cancel()
+            toastTask?.cancel()
+            hintTask?.cancel()
             engine.pause()
         }
         .onChange(of: scenePhase) { phase in
@@ -110,7 +114,7 @@ struct GameView: View {
 
                 Spacer(minLength: 4)
 
-                actionIcon("lightbulb", tip: loc.t("hint"), badge: nil, action: performHint)
+                actionIcon("lightbulb", tip: loc.t("hint"), action: performHint)
                 actionIcon("shuffle", tip: loc.t("shuffle"), action: performShuffle)
                 actionIcon("arrow.uturn.backward", tip: loc.t("undo"), action: performUndo)
                 actionIcon("arrow.clockwise", tip: loc.t("restart"), action: { modal = .confirmRestart })
@@ -154,23 +158,13 @@ struct GameView: View {
         Rectangle().fill(Theme.borderStrong).frame(width: 1, height: 14)
     }
 
-    private func actionIcon(_ systemName: String, tip: String, badge: Int? = nil, action: @escaping () -> Void) -> some View {
+    private func actionIcon(_ systemName: String, tip: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            ZStack(alignment: .topTrailing) {
-                Image(systemName: systemName)
-                    .font(.system(size: 14))
-                    .foregroundColor(Theme.text)
-                    .frame(width: 44, height: 44)
-                    .background(Circle().fill(Theme.bgPanel2))
-                if let badge, badge >= 0 {
-                    Text("\(badge)")
-                        .font(.system(size: 8, weight: .bold))
-                        .foregroundColor(Theme.bg)
-                        .padding(3)
-                        .background(Circle().fill(Theme.accent))
-                        .offset(x: 4, y: -4)
-                }
-            }
+            Image(systemName: systemName)
+                .font(.system(size: 14))
+                .foregroundColor(Theme.text)
+                .frame(width: 44, height: 44)
+                .background(Circle().fill(Theme.bgPanel2))
         }
         .buttonStyle(.plain)
         .accessibilityLabel(tip)
@@ -227,7 +221,7 @@ struct GameView: View {
                         // Giving the tile's tap priority skips that wait entirely.
                         .highPriorityGesture(TapGesture().onEnded { handleTap(tile) })
                         .accessibilityElement(children: .ignore)
-                        .accessibilityLabel(tile.typeId ?? "")
+                        .accessibilityLabel(tileAccessibilityName(tile.typeId ?? "", loc))
                         .accessibilityAddTraits(.isButton)
                         .accessibilityAction { handleTap(tile) }
                         .id(tile.id)
@@ -347,14 +341,26 @@ struct GameView: View {
         engine.useHint()
         SaveStore.save(engine)
         hintedIds = [a.id, b.id]
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+        hintTask?.cancel()
+        hintTask = Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 1_300_000_000)
+            guard !Task.isCancelled else { return }
             hintedIds = []
         }
     }
 
-    private func restartGame() {
+    /// Solitaire always deals a fresh board. In Levels, restarting mid-run replays only the
+    /// current level; "play again" after clearing the whole ladder starts over from level 1.
+    private func restartGame(wholeRun: Bool) {
         transitionTask?.cancel()
-        withAnimation(Theme.ease) { engine.reset() }
+        hintedIds = []
+        withAnimation(Theme.ease) {
+            if engine.difficulty == .infinite && !wholeRun {
+                engine.startLevel(engine.level)
+            } else {
+                engine.reset()
+            }
+        }
         SaveStore.save(engine)
         assignDealOrder()
         modal = .none
@@ -382,7 +388,10 @@ struct GameView: View {
 
     private func showToast(_ message: String) {
         withAnimation { toastMessage = message }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        toastTask?.cancel()
+        toastTask = Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            guard !Task.isCancelled else { return }
             withAnimation { toastMessage = nil }
         }
     }

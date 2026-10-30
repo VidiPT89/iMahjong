@@ -104,7 +104,6 @@ function evaluateDecomposition(decomp, ctx) {
   if (ctx.haitei) yakuList.push({ name: 'Haitei Raoyue', han: 1 });
   if (ctx.houtei) yakuList.push({ name: 'Houtei Raoyui', han: 1 });
   if (ctx.rinshan) yakuList.push({ name: 'Rinshan Kaihou', han: 1 });
-  if (ctx.chankan) yakuList.push({ name: 'Chankan', han: 1 });
 
   if (!hasHonor && !hasTerminal) yakuList.push({ name: 'Tanyao', han: 1 });
   if (allTerminalOrHonor) yakuList.push({ name: 'Honroutou', han: 2 });

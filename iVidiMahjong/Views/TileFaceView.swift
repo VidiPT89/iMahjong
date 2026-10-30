@@ -1,7 +1,43 @@
 import SwiftUI
 
-/// Renders the printed face of a tile type — CJK glyphs and simple vector pips,
-/// no image assets, mirroring the web app's hand-drawn SVG/glyph approach.
+/// Localization key for a seat/round wind id ("wE" → "windE").
+func windLabelKey(_ windId: String?) -> String {
+    ["wE": "windE", "wS": "windS", "wW": "windW", "wN": "windN"][windId ?? ""] ?? "windE"
+}
+
+/// Spoken name of a tile for VoiceOver, e.g. "Bamboo 3" or "East wind".
+func tileAccessibilityName(_ typeId: String, _ loc: Localization) -> String {
+    guard let type = TILE_TYPES_BY_ID[typeId] else { return typeId }
+    switch type.category {
+    case .suit:
+        let suitKey: String
+        switch type.suit! {
+        case .characters: suitKey = "tileCharacters"
+        case .bamboo: suitKey = "tileBamboo"
+        case .circle: suitKey = "tileCircle"
+        }
+        return "\(loc.t(suitKey)) \(type.rank!)"
+    case .wind: return loc.t(windLabelKey(typeId))
+    case .dragon: return loc.t(["dR": "tileDragonRed", "dG": "tileDragonGreen"][typeId] ?? "tileDragonWhite")
+    case .flower: return "\(loc.t("tileFlower")) \(type.rank!)"
+    case .season: return "\(loc.t("tileSeason")) \(type.rank!)"
+    }
+}
+
+/// Small read-only tile used for melds, discards, dora and call choices at the Riichi tables.
+struct MiniTileChip: View {
+    let typeId: String
+    var width: CGFloat = 22
+
+    var body: some View {
+        TileFaceView(typeId: typeId)
+            .frame(width: width, height: width * 30 / 22)
+            .background(RoundedRectangle(cornerRadius: 3).fill(Theme.tileFace))
+            .overlay(RoundedRectangle(cornerRadius: 3).stroke(Theme.tileEdge, lineWidth: 0.5))
+    }
+}
+
+/// Renders the printed face of a tile type — CJK glyphs and simple vector pips, no image assets.
 struct TileFaceView: View {
     let typeId: String
 

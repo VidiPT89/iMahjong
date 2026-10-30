@@ -1,14 +1,13 @@
 import Foundation
 
-/// WebSocket client for the traditional 4-player Riichi online mode. Talks to the same
-/// authoritative Node server used by the web port (see Server/index.js's protocol
-/// comment) -- the server owns all game rules and just pushes down a fully-resolved "state"
-/// after every change, so this client is intentionally a thin, mostly untyped relay rather
-/// than a second implementation of the rules: messages are decoded with JSONSerialization
-/// into `[String: Any]` instead of Codable structs, mirroring the web client's own dynamic
-/// property access, since the `result` field's shape varies by hand outcome
-/// (tsumo/ron/exhaustive) in a way Codable models awkwardly.
-final class OnlineClient: NSObject, ObservableObject {
+/// WebSocket client for the traditional 4-player Riichi online mode. Talks to the
+/// authoritative Node server in Server/ (see Server/index.js's protocol comment) -- the
+/// server owns all game rules and just pushes down a fully-resolved "state" after every
+/// change, so this client is intentionally a thin, mostly untyped relay rather than a second
+/// implementation of the rules: messages are decoded with JSONSerialization into
+/// `[String: Any]` instead of Codable structs, since the `result` field's shape varies by
+/// hand outcome (tsumo/ron/exhaustive) in a way Codable models awkwardly.
+final class OnlineClient: ObservableObject {
     @Published var isConnected = false
     @Published var seat: Int?
     @Published var roomCode: String?
@@ -45,7 +44,7 @@ final class OnlineClient: NSObject, ObservableObject {
         guard let wsURL = URL(string: url.trimmingCharacters(in: .whitespacesAndNewlines)),
               ["ws", "wss"].contains(wsURL.scheme?.lowercased() ?? ""),
               let host = wsURL.host, !host.isEmpty else {
-            errorMessage = "Invalid WebSocket URL"
+            errorMessage = "invalid-url"
             completion(false)
             return
         }

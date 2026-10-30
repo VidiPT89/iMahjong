@@ -55,4 +55,18 @@ final class InfiniteModeTests: XCTestCase {
         XCTAssertEqual(engine.moves, 1)
         XCTAssertEqual(engine.remaining(), engine.tiles.count)
     }
+
+    func testRestartingALevelMidRunKeepsThatLevelAndClearsProgress() {
+        let engine = GameEngine()
+        engine.startLevel(7)
+        let (a, b) = engine.provenSolveOrder[0]
+        _ = engine.select(a)
+        _ = engine.select(b)
+
+        engine.startLevel(engine.level)
+
+        XCTAssertEqual(engine.level, 7)
+        XCTAssertEqual(engine.moves, 0)
+        XCTAssertEqual(engine.remaining(), buildInfiniteLayout(7).count)
+    }
 }

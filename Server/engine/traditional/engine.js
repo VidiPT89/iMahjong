@@ -162,7 +162,6 @@ class RiichiEngine {
       haitei: winType === 'tsumo' && this.liveWall.length === 0 && !this.isRinshanDraw,
       houtei: winType === 'ron' && this.liveWall.length === 0,
       rinshan: winType === 'tsumo' && this.isRinshanDraw,
-      chankan: false,
       doraCount: this.countDora(concealed, seat.melds, this.doraIndicators()),
       uraDoraCount: seat.riichi ? this.countDora(concealed, seat.melds, this.uraDoraIndicators()) : 0,
     };

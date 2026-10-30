@@ -4,7 +4,7 @@ import Foundation
 /// Evaluated per-decomposition — the turn engine tries every decomposition of a winning
 /// hand and keeps the highest score.
 ///
-/// Scope note: covers the the documented casual yaku set. Intentionally
+/// Scope note: covers the documented casual yaku set. Intentionally
 /// simplifies a few rare edge cases (e.g. double-yakuman variants count as a single
 /// yakuman here) rather than chasing every tournament-rule nuance.
 
@@ -25,7 +25,6 @@ struct WinContext {
     var haitei: Bool
     var houtei: Bool
     var rinshan: Bool
-    var chankan: Bool
     var doraCount: Int
     var uraDoraCount: Int
     var handKind: HandKind = .standard
@@ -156,7 +155,6 @@ func evaluateDecomposition(_ decomp: Decomposition, _ ctx: WinContext) -> YakuRe
     if ctx.haitei { yakuList.append(YakuEntry(name: "Haitei Raoyue", han: 1)) }
     if ctx.houtei { yakuList.append(YakuEntry(name: "Houtei Raoyui", han: 1)) }
     if ctx.rinshan { yakuList.append(YakuEntry(name: "Rinshan Kaihou", han: 1)) }
-    if ctx.chankan { yakuList.append(YakuEntry(name: "Chankan", han: 1)) }
 
     if !hasHonor && !hasTerminal { yakuList.append(YakuEntry(name: "Tanyao", han: 1)) }
     if allTerminalOrHonor { yakuList.append(YakuEntry(name: "Honroutou", han: 2)) }
